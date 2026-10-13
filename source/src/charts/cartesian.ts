@@ -23,6 +23,8 @@ export interface AxisOptions {
   roomAbove?: boolean
   /** Room for data labels beyond negative values. */
   roomBelow?: boolean
+  /** Extra room above the labels, in points, for annotation arrows. */
+  extraTop?: number
 }
 
 export interface Axes {
@@ -39,6 +41,8 @@ export interface Axes {
   back: string
   /** Tick labels, the zero line and category labels, drawn over the data. */
   front: string
+  /** Where the room for data labels beyond the data ends: the top of it for columns, the right for bars. */
+  edge: number
 }
 
 function tickText(ctx: ChartContext, value: number, step: number, percent: boolean): string {
@@ -62,7 +66,7 @@ function makeScale(ctx: ChartContext, o: AxisOptions, length: number, perTick: n
 
 const zeroOn = (scale: LinearScale): number => Math.min(scale.max, Math.max(scale.min, 0))
 
-/** Values beyond an axis range the author set are drawn at its edge, as Excel clips them. */
+/** Values beyond an axis range the author set are drawn at its edge, clipped to the range. */
 const clamp = (scale: LinearScale, v: number): number => Math.min(scale.max, Math.max(scale.min, v))
 
 /** Axes with categories along the bottom: column, stacked column, line and waterfall charts. */
@@ -70,7 +74,8 @@ export function columnAxes(ctx: ChartContext, area: Box, categories: string[], o
   const font = ctx.font
   const lh = lineHeight(font)
   const n = Math.max(1, categories.length)
-  const top = Math.max(o.roomAbove ? lh + font * 0.3 : 0, ctx.valueAxis ? font * 0.6 : 0)
+  const labelRoom = Math.max(o.roomAbove ? lh + font * 0.3 : 0, ctx.valueAxis ? font * 0.6 : 0)
+  const top = labelRoom + (o.extraTop ?? 0)
   const below = o.roomBelow ? lh : 0
   let scale = makeScale(ctx, o, area.h * 0.7, font * 2.6)
   let axisWidth = 0
@@ -110,7 +115,7 @@ export function columnAxes(ctx: ChartContext, area: Box, categories: string[], o
   })
   return {
     plot, scale, at, base, band, bandStart: (i) => plot.x + band * i,
-    back: group('gridlines', back.join('')), front: group('axes', front.join('')),
+    back: group('gridlines', back.join('')), front: group('axes', front.join('')), edge: plot.y - labelRoom,
   }
 }
 
@@ -119,6 +124,8 @@ export interface BarAxesOptions extends AxisOptions {
   labelRoom: number
   /** Width needed left of the longest negative bar for its data label. */
   negativeRoom: number
+  /** Extra width right of the labels, for annotation arrows. */
+  extraRight?: number
 }
 
 /** Axes with categories down the left: bar, stacked bar and 100% bar charts. */
@@ -141,7 +148,7 @@ export function barAxes(ctx: ChartContext, area: Box, categories: string[], o: B
     const last = scale.ticks[scale.ticks.length - 1]
     const tickHalf = ctx.valueAxis && last !== undefined ? textWidth(tickText(ctx, last, scale.step, Boolean(o.percent)), font) / 2 : 0
     const left = labelWidth + o.negativeRoom
-    const right = Math.max(o.labelRoom, tickHalf)
+    const right = Math.max(o.labelRoom + (o.extraRight ?? 0), tickHalf)
     plot = { x: area.x + left, y: area.y, w: Math.max(font * 4, area.w - left - right), h: plotH }
     const widest = Math.max(...scale.ticks.map((t) => textWidth(tickText(ctx, t, scale.step, Boolean(o.percent)), font)), font)
     scale = makeScale(ctx, o, plot.w, widest + font * 2)
@@ -160,5 +167,8 @@ export function barAxes(ctx: ChartContext, area: Box, categories: string[], o: B
     const cy = plot.y + band * (i + 0.5)
     front.push(textLinesCentred(area.x + labelWidth - font * 0.6, cy, w.lines, { size: fitted.size, fill: INK.text, anchor: 'end' }))
   })
-  return { plot, scale, at, base, band, bandStart: (i) => plot.y + band * i, back: '', front: group('axes', front.join('')) }
+  return {
+    plot, scale, at, base, band, bandStart: (i) => plot.y + band * i, back: '', front: group('axes', front.join('')),
+    edge: plot.x + plot.w + o.labelRoom,
+  }
 }

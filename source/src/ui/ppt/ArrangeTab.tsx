@@ -23,6 +23,8 @@ import { selectionTracker } from '../../ppt/selection.ts'
 import { UserFacingError } from '../../word/run.ts'
 import { Button, Checkbox, Notice, Section, SelectField, TextField } from '../components.tsx'
 import { useAction } from '../useAction.ts'
+import { FormatPainterSection } from './tools/FormatPainterSection.tsx'
+import { SelectSimilarSection } from './tools/SelectSimilarSection.tsx'
 import './ppt.css'
 
 type Option<T> = { value: T; label: string }
@@ -173,6 +175,8 @@ export function ArrangeTab() {
         </div>
       </div>
 
+      <SelectSimilarSection />
+
       <Section title="Line up" weight="act" intro="Choose what to line up with, then an edge. The anchor never moves.">
         <Segmented label="Line up with" value={reference} options={REFERENCES} onChange={setReference} />
         <div className="tool-grid">
@@ -275,6 +279,8 @@ export function ArrangeTab() {
           <Tool label="Ungroup" Icon={Ungroup} disabled={off || !can18} title={orderReason ?? 'Ungroup the selected groups'} onClick={go('ungroup', ungroupShapes)} />
         </div>
       </Section>
+
+      <FormatPainterSection />
 
       <Section title="Text boxes" intro="For the selected shapes and text boxes.">
         <div className="row">
