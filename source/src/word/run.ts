@@ -1,5 +1,7 @@
 // Thin wrappers around Word.run so every feature fails the same, readable way.
 
+import { inHost } from '../host.ts'
+
 export class NotInWordError extends Error {
   constructor() {
     super('Open this in Word to use it. The task pane is running in a plain browser.')
@@ -12,7 +14,7 @@ export class UserFacingError extends Error {
 }
 
 export function hasWord(): boolean {
-  return typeof Word !== 'undefined' && typeof Office !== 'undefined'
+  return typeof Word !== 'undefined' && inHost('word')
 }
 
 /** True when the host supports the given WordApi requirement set (1.1 to 1.9). */

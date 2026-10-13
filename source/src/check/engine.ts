@@ -2,6 +2,7 @@
 
 import { brandFindings } from './rulesBrand.ts'
 import { consistencyFindings } from './rulesConsistency.ts'
+import { copyeditFindings } from './rulesCopyedit.ts'
 import { sendFindings } from './rulesSend.ts'
 import { structureFindings } from './rulesStructure.ts'
 import { tableFindings } from './rulesTables.ts'
@@ -21,6 +22,7 @@ export function runChecks(snapshot: DocSnapshot): CheckReport {
     ...brandFindings(snapshot),
     ...consistency.findings,
     ...writingFindings(snapshot),
+    ...copyeditFindings(snapshot),
   ].sort((a, b) => ORDER[a.severity] - ORDER[b.severity] || Number(Boolean(a.advisory)) - Number(Boolean(b.advisory)))
 
   const counts = Object.fromEntries(SEVERITIES.map((s) => [s, 0])) as Record<Severity, number>

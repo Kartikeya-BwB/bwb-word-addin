@@ -1,15 +1,17 @@
 import {
-  Award, Briefcase, CaseUpper, Grid2x2, Hash, Image, Info, LayoutGrid, Lightbulb, Quote, Scale,
+  Award, Briefcase, CaseUpper, Grid2x2, Hash, Info, LayoutGrid, Lightbulb, Quote, Scale,
   SeparatorHorizontal, SquarePlus, TableOfContents, TableProperties,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { LibraryBlock } from '../../brand/library.ts'
 import { LIBRARY } from '../../brand/library.ts'
 import { insertBlocks } from '../../word/insert.ts'
-import { HARVEY_BALLS, fetchPng, insertHarveyBall, insertPageBreak, insertPicture } from '../../word/marks.ts'
+import { HARVEY_BALLS, insertHarveyBall, insertPageBreak } from '../../word/marks.ts'
 import { insertAbbreviations, insertContents, insertDisclaimer, insertEuAcknowledgement } from '../../word/parts.ts'
 import { Disclosure, Section, Tile } from '../components.tsx'
 import { useAction } from '../useAction.ts'
+import { ImagePicker } from '../library/ImagePicker.tsx'
+import { LogoPanel } from '../library/LogoPanel.tsx'
 import { IconPicker } from './IconPicker.tsx'
 import { CalloutForm, KeyFiguresForm, PullQuoteForm, SnapshotForm } from './PanelForms.tsx'
 import { CaptionForm, DataTableForm, FormatTable, SourceAndFootnote } from './TableForms.tsx'
@@ -42,10 +44,6 @@ const DOCUMENT_PARTS: DocumentPart[] = [
   },
 ]
 
-const LOGOS = [
-  { id: 'logo', label: 'BwB logo', hint: 'For white pages, 4 cm wide', src: './assets/brand/logo-black.png', widthCm: 4, onNavy: false },
-  { id: 'logo-white', label: 'BwB logo in white', hint: 'Only on navy panels, 4 cm wide', src: './assets/brand/logo-white.png', widthCm: 4, onNavy: true },
-]
 
 const mark = (Icon: LucideIcon) => <Icon size={18} strokeWidth={1.8} />
 
@@ -107,22 +105,16 @@ export function InsertTab() {
         </div>
       </Section>
 
+      <Section id="photos" title="Photos" intro="The BwB photo library: sectors, themes, markets, and the team. Double-click a photo to insert it.">
+        <ImagePicker />
+      </Section>
+
       <Section id="icons" title="Icons" intro="1,866 Lucide icons in the BwB colours and sizes. Double-click an icon to insert it.">
         <IconPicker />
       </Section>
 
       <Section title="Logo">
-        <div className="tiles">
-          {LOGOS.map((l) => (
-            <Tile key={l.id} mark={<Image size={18} strokeWidth={1.8} />} markClass={l.onNavy ? '' : 'light'}
-              {...(l.onNavy ? {} : { markStyle: { color: 'var(--navy)' } })} label={l.label} hint={l.hint} disabled={working}
-              onClick={() => void run(l.id, async () => {
-                const png = await fetchPng(l.src)
-                await insertPicture(png.bytes, l.widthCm, (l.widthCm * png.height) / png.width, 'Bankers without Boundaries logo')
-                return 'Logo inserted.'
-              })} />
-          ))}
-        </div>
+        <LogoPanel />
       </Section>
     </>
   )

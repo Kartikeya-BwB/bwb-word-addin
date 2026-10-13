@@ -1,4 +1,4 @@
-# Deploying the BwB Toolkit
+# Deploying the BwB Toolkit (Word and PowerPoint)
 
 ## Where it lives
 
@@ -20,9 +20,12 @@ removed and added again.
 
 ## Installing it in Word
 
+One manifest installs the toolkit in both Word and PowerPoint: each app gets its own BwB tab.
+
 ### For everyone at BwB (recommended)
 
-A Microsoft 365 administrator deploys it once and it appears for everyone chosen, on Windows, Mac and the web:
+A Microsoft 365 administrator deploys it once and it appears in Word and PowerPoint for everyone chosen, on Windows,
+Mac and the web:
 
 1. Microsoft 365 admin centre, Settings, Integrated apps, Upload custom apps.
 2. Choose "Office Add-in", then give the manifest URL above (or upload `manifest.xml`).
@@ -30,12 +33,14 @@ A Microsoft 365 administrator deploys it once and it appears for everyone chosen
 
 ### For one person, to try it
 
-- **Word on the web:** Insert, Add-ins, then My Add-ins, Upload My Add-in, and choose `manifest.xml`.
+- **Word or PowerPoint on the web:** Insert, Add-ins, then My Add-ins, Upload My Add-in, and choose `manifest.xml`.
+  Do it once in each app.
 - **Windows:** put `manifest.xml` in a shared network folder. In Word, File, Options, Trust Center, Trust Center
   Settings, Trusted Add-in Catalogs: add the folder's path, tick "Show in Menu" and restart Word. Then Insert,
-  My Add-ins, Shared Folder, BwB Toolkit.
-- **Mac:** copy `manifest.xml` to `~/Library/Containers/com.microsoft.Word/Data/Documents/wef/` (create the `wef`
-  folder if needed), restart Word, then Insert, Add-ins, My Add-ins.
+  My Add-ins, Shared Folder, BwB Toolkit. PowerPoint uses the same catalogue: Insert, My Add-ins, Shared Folder.
+- **Mac:** copy `manifest.xml` to `~/Library/Containers/com.microsoft.Word/Data/Documents/wef/` for Word and to
+  `~/Library/Containers/com.microsoft.Powerpoint/Data/Documents/wef/` for PowerPoint (create the `wef` folders if
+  needed), restart the app, then Insert, Add-ins, My Add-ins.
 
 Once installed, the **BwB** tab appears on the ribbon. The manifest asks for it to sit after Home; Word versions that do not support tab positions put it at the end.
 

@@ -1,0 +1,799 @@
+{
+  "tab": {
+    "id": "BwBP.Tab",
+    "label": "BwB"
+  },
+  "groups": [
+    {
+      "id": "Slides",
+      "label": "Slides",
+      "icon": "presentation",
+      "controls": [
+        {
+          "type": "button",
+          "id": "SlideLibrary",
+          "label": "Slide library",
+          "icon": "layout-template",
+          "pane": "slides",
+          "tip": "BwB slides ready to use: title, agenda, divider, key figures, process, matrix, timeline, team and more."
+        },
+        {
+          "type": "menu",
+          "id": "Agenda",
+          "label": "Agenda",
+          "icon": "list-ordered",
+          "tip": "An agenda slide built from the deck's sections, and trackers that show each slide's section.",
+          "items": [
+            {
+              "id": "AgendaInsert",
+              "label": "Insert agenda slide",
+              "icon": "list-ordered",
+              "fn": "pptAgendaInsert",
+              "tip": "Adds an agenda slide listing the deck's sections, after the current slide."
+            },
+            {
+              "id": "TrackersAdd",
+              "label": "Add section trackers",
+              "icon": "bookmark-plus",
+              "fn": "pptTrackersAdd",
+              "tip": "Adds a tracker to the top of every slide, with its section highlighted."
+            },
+            {
+              "id": "TrackersUpdate",
+              "label": "Update trackers",
+              "icon": "refresh-cw",
+              "fn": "pptTrackersUpdate",
+              "tip": "Refreshes every tracker after sections change."
+            },
+            {
+              "id": "TrackersRemove",
+              "label": "Remove trackers",
+              "icon": "bookmark-x",
+              "fn": "pptTrackersRemove",
+              "tip": "Removes the trackers from every slide."
+            },
+            {
+              "id": "SectionMark",
+              "label": "Start a section here",
+              "icon": "bookmark",
+              "fn": "pptSectionMark",
+              "tip": "Marks the current slide as the start of a section, named after its title."
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Storyline",
+          "label": "Storyline",
+          "icon": "list-tree",
+          "pane": "slides/storyline",
+          "tip": "Every slide title in order, to read the storyline, jump to a slide or make an executive summary."
+        },
+        {
+          "type": "menu",
+          "id": "Sticker",
+          "label": "Sticker",
+          "icon": "sticker",
+          "tip": "A status label at the top right of the slide, such as Draft or For discussion.",
+          "items": [
+            {
+              "id": "StickerDraft",
+              "label": "Draft",
+              "icon": "sticker",
+              "fn": "pptStickerDraft",
+              "tip": "DRAFT on the selected slides."
+            },
+            {
+              "id": "StickerDiscussion",
+              "label": "For discussion",
+              "icon": "sticker",
+              "fn": "pptStickerForDiscussion",
+              "tip": "FOR DISCUSSION on the selected slides."
+            },
+            {
+              "id": "StickerPreliminary",
+              "label": "Preliminary",
+              "icon": "sticker",
+              "fn": "pptStickerPreliminary",
+              "tip": "PRELIMINARY on the selected slides."
+            },
+            {
+              "id": "StickerIllustrative",
+              "label": "Illustrative",
+              "icon": "sticker",
+              "fn": "pptStickerIllustrative",
+              "tip": "ILLUSTRATIVE on the selected slides."
+            },
+            {
+              "id": "StickerConfidential",
+              "label": "Confidential",
+              "icon": "sticker",
+              "fn": "pptStickerConfidential",
+              "tip": "CONFIDENTIAL on the selected slides."
+            },
+            {
+              "id": "StickerRestricted",
+              "label": "Not for distribution",
+              "icon": "sticker",
+              "fn": "pptStickerNotForDistribution",
+              "tip": "NOT FOR DISTRIBUTION on the selected slides."
+            },
+            {
+              "id": "StickerRemove",
+              "label": "Remove all stickers",
+              "icon": "eraser",
+              "fn": "pptStickerRemoveAll",
+              "tip": "Removes stickers from every slide."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Align",
+      "label": "Align",
+      "icon": "align-center-horizontal",
+      "controls": [
+        {
+          "type": "menu",
+          "id": "AlignMenu",
+          "label": "Align",
+          "icon": "align-horizontal-justify-start",
+          "tip": "Lines up the selected shapes with each other. With one shape selected, lines it up with the slide margins.",
+          "items": [
+            {
+              "id": "AlignLeft",
+              "label": "Left edges",
+              "icon": "align-horizontal-justify-start",
+              "fn": "pptAlignLeft",
+              "tip": "Lines up the left edges."
+            },
+            {
+              "id": "AlignCentre",
+              "label": "Centres",
+              "icon": "align-horizontal-justify-center",
+              "fn": "pptAlignCentre",
+              "tip": "Lines up the centres, left to right."
+            },
+            {
+              "id": "AlignRight",
+              "label": "Right edges",
+              "icon": "align-horizontal-justify-end",
+              "fn": "pptAlignRight",
+              "tip": "Lines up the right edges."
+            },
+            {
+              "id": "AlignTop",
+              "label": "Top edges",
+              "icon": "align-vertical-justify-start",
+              "fn": "pptAlignTop",
+              "tip": "Lines up the top edges."
+            },
+            {
+              "id": "AlignMiddle",
+              "label": "Middles",
+              "icon": "align-vertical-justify-center",
+              "fn": "pptAlignMiddle",
+              "tip": "Lines up the middles, top to bottom."
+            },
+            {
+              "id": "AlignBottom",
+              "label": "Bottom edges",
+              "icon": "align-vertical-justify-end",
+              "fn": "pptAlignBottom",
+              "tip": "Lines up the bottom edges."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "AlignSlide",
+          "label": "Align to slide",
+          "icon": "frame",
+          "tip": "Places the selection on the slide: centred, or against the BwB margins.",
+          "items": [
+            {
+              "id": "CentreSlide",
+              "label": "Centre on the slide",
+              "icon": "align-center-horizontal",
+              "fn": "pptCentreOnSlide",
+              "tip": "Centres the selection, as a group, left to right on the slide."
+            },
+            {
+              "id": "MiddleSlide",
+              "label": "Middle of the slide",
+              "icon": "align-center-vertical",
+              "fn": "pptMiddleOnSlide",
+              "tip": "Centres the selection, as a group, top to bottom on the slide."
+            },
+            {
+              "id": "MarginLeft",
+              "label": "Left margin",
+              "icon": "align-start-vertical",
+              "fn": "pptAlignMarginLeft",
+              "tip": "Moves the selection to the left margin."
+            },
+            {
+              "id": "MarginRight",
+              "label": "Right margin",
+              "icon": "align-end-vertical",
+              "fn": "pptAlignMarginRight",
+              "tip": "Moves the selection to the right margin."
+            },
+            {
+              "id": "MarginTop",
+              "label": "Top of the content area",
+              "icon": "align-start-horizontal",
+              "fn": "pptAlignMarginTop",
+              "tip": "Moves the selection to the top of the content area, under the title."
+            },
+            {
+              "id": "MarginBottom",
+              "label": "Bottom margin",
+              "icon": "align-end-horizontal",
+              "fn": "pptAlignMarginBottom",
+              "tip": "Moves the selection to the bottom margin, above the source line."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "Distribute",
+          "label": "Distribute",
+          "icon": "align-horizontal-space-between",
+          "tip": "Equal gaps between the selected shapes, within the selection or across the margins, or tidy them into rows and columns.",
+          "items": [
+            {
+              "id": "DistH",
+              "label": "Horizontally, equal gaps",
+              "icon": "align-horizontal-space-between",
+              "fn": "pptDistributeHorizontally",
+              "tip": "Equal gaps left to right, keeping the outer shapes where they are."
+            },
+            {
+              "id": "DistV",
+              "label": "Vertically, equal gaps",
+              "icon": "align-vertical-space-between",
+              "fn": "pptDistributeVertically",
+              "tip": "Equal gaps top to bottom, keeping the outer shapes where they are."
+            },
+            {
+              "id": "DistHMargins",
+              "label": "Across the margins",
+              "icon": "move-horizontal",
+              "fn": "pptDistributeAcrossMargins",
+              "tip": "Spreads the shapes from the left margin to the right margin with equal gaps."
+            },
+            {
+              "id": "DistVMargins",
+              "label": "Down the content area",
+              "icon": "move-vertical",
+              "fn": "pptDistributeDownContent",
+              "tip": "Spreads the shapes over the content area, top to bottom, with equal gaps."
+            },
+            {
+              "id": "TidyUp",
+              "label": "Tidy up into rows and columns",
+              "icon": "layout-grid",
+              "fn": "pptTidyUp",
+              "tip": "Finds the rows and columns in a rough layout and lines them up with equal gaps."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "SameSizeMenu",
+          "label": "Same size",
+          "icon": "scaling",
+          "tip": "Gives the selected shapes the width, height or size of the anchor shape (the first selected, or the one you set in the pane).",
+          "items": [
+            {
+              "id": "SameWidth",
+              "label": "Same width",
+              "icon": "move-horizontal",
+              "fn": "pptSameWidth",
+              "tip": "Every shape gets the anchor's width."
+            },
+            {
+              "id": "SameHeight",
+              "label": "Same height",
+              "icon": "move-vertical",
+              "fn": "pptSameHeight",
+              "tip": "Every shape gets the anchor's height."
+            },
+            {
+              "id": "SameSize",
+              "label": "Same width and height",
+              "icon": "scaling",
+              "fn": "pptSameSize",
+              "tip": "Every shape gets the anchor's width and height."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "Position",
+          "label": "Position",
+          "icon": "move",
+          "tip": "Swap, stack, snap to the BwB grid, change the order and group.",
+          "items": [
+            {
+              "id": "Swap",
+              "label": "Swap two shapes",
+              "icon": "arrow-left-right",
+              "fn": "pptSwap",
+              "tip": "Swaps the positions of two selected shapes."
+            },
+            {
+              "id": "StackH",
+              "label": "Stack side by side",
+              "icon": "columns-3",
+              "fn": "pptStackHorizontally",
+              "tip": "Butts the shapes together left to right, with no gaps."
+            },
+            {
+              "id": "StackV",
+              "label": "Stack top to bottom",
+              "icon": "rows-3",
+              "fn": "pptStackVertically",
+              "tip": "Butts the shapes together top to bottom, with no gaps."
+            },
+            {
+              "id": "SnapGrid",
+              "label": "Snap to the BwB grid",
+              "icon": "grid-3x3",
+              "fn": "pptSnapToGrid",
+              "tip": "Moves the edges of each shape to the nearest column of the BwB 12-column grid."
+            },
+            {
+              "id": "Front",
+              "label": "Bring to front",
+              "icon": "bring-to-front",
+              "fn": "pptBringToFront",
+              "tip": "Brings the selection in front of everything else."
+            },
+            {
+              "id": "Back",
+              "label": "Send to back",
+              "icon": "send-to-back",
+              "fn": "pptSendToBack",
+              "tip": "Sends the selection behind everything else."
+            },
+            {
+              "id": "Group",
+              "label": "Group",
+              "icon": "group",
+              "fn": "pptGroup",
+              "tip": "Groups the selected shapes."
+            },
+            {
+              "id": "Ungroup",
+              "label": "Ungroup",
+              "icon": "ungroup",
+              "fn": "pptUngroup",
+              "tip": "Ungroups the selected group."
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "ArrangeTools",
+          "label": "Arrange tools",
+          "icon": "pencil-ruler",
+          "pane": "arrange",
+          "tip": "Every alignment tool in the pane: choose what to align to, exact gaps, sizes and positions in centimetres, grids and the anchor shape."
+        }
+      ]
+    },
+    {
+      "id": "Insert",
+      "label": "Insert",
+      "icon": "square-plus",
+      "controls": [
+        {
+          "type": "menu",
+          "id": "Elements",
+          "label": "Elements",
+          "icon": "blocks",
+          "tip": "BwB slide elements: callouts, key figures, quotes, process flows, matrices, timelines and source lines.",
+          "items": [
+            {
+              "id": "ElCallout",
+              "label": "Callout",
+              "icon": {
+                "name": "lightbulb",
+                "colour": "green"
+              },
+              "fn": "pptInsertCallout",
+              "tip": "An off-white box with a green bar, a title and a message."
+            },
+            {
+              "id": "ElKeyFigures",
+              "label": "Key figures",
+              "icon": "hash",
+              "fn": "pptInsertKeyFigures",
+              "tip": "Three headline numbers on a navy panel, the first in lime."
+            },
+            {
+              "id": "ElQuote",
+              "label": "Quote",
+              "icon": "quote",
+              "fn": "pptInsertQuote",
+              "tip": "A quotation in Candara italic with a lime bar."
+            },
+            {
+              "id": "ElProcess",
+              "label": "Process, three steps",
+              "icon": "chevrons-right",
+              "fn": "pptInsertProcess",
+              "tip": "Three chevrons across the content area, ready to label."
+            },
+            {
+              "id": "ElMatrix",
+              "label": "Two-by-two matrix",
+              "icon": "grid-2x2",
+              "fn": "pptInsertMatrix",
+              "tip": "Four quadrants with axis labels."
+            },
+            {
+              "id": "ElTimeline",
+              "label": "Timeline",
+              "icon": "milestone",
+              "fn": "pptInsertTimeline",
+              "tip": "A line with four milestones to label."
+            },
+            {
+              "id": "ElSteps",
+              "label": "Numbered markers",
+              "icon": "list-ordered",
+              "fn": "pptInsertStepMarkers",
+              "tip": "Navy circles numbered 1 to 4."
+            },
+            {
+              "id": "ElSource",
+              "label": "Source line",
+              "icon": "text-align-start",
+              "fn": "pptInsertSourceLine",
+              "tip": "A source line in 8 pt charcoal at the bottom left of the slide."
+            },
+            {
+              "id": "ElTable",
+              "label": "BwB table",
+              "icon": "table",
+              "fn": "pptInsertTable",
+              "tip": "A four-by-four table with a navy header row."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "PptHarvey",
+          "label": "Harvey balls",
+          "icon": {
+            "harvey": 3
+          },
+          "tip": "Harvey balls to score options, in navy.",
+          "items": [
+            {
+              "id": "PHarvey0",
+              "label": "Empty",
+              "icon": {
+                "harvey": 0
+              },
+              "fn": "pptHarvey0",
+              "tip": "0 per cent."
+            },
+            {
+              "id": "PHarvey1",
+              "label": "Quarter",
+              "icon": {
+                "harvey": 1
+              },
+              "fn": "pptHarvey1",
+              "tip": "25 per cent."
+            },
+            {
+              "id": "PHarvey2",
+              "label": "Half",
+              "icon": {
+                "harvey": 2
+              },
+              "fn": "pptHarvey2",
+              "tip": "50 per cent."
+            },
+            {
+              "id": "PHarvey3",
+              "label": "Three quarters",
+              "icon": {
+                "harvey": 3
+              },
+              "fn": "pptHarvey3",
+              "tip": "75 per cent."
+            },
+            {
+              "id": "PHarvey4",
+              "label": "Full",
+              "icon": {
+                "harvey": 4
+              },
+              "fn": "pptHarvey4",
+              "tip": "100 per cent."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "Status",
+          "label": "Status",
+          "icon": "circle-check",
+          "tip": "Status marks: BwB ticks and crosses, and red, amber and green dots for trackers.",
+          "items": [
+            {
+              "id": "StOnTrack",
+              "label": "On track (tick)",
+              "icon": {
+                "name": "circle-check",
+                "colour": "green"
+              },
+              "fn": "pptStatusOnTrack",
+              "tip": "A green circled tick."
+            },
+            {
+              "id": "StAtRisk",
+              "label": "At risk",
+              "icon": {
+                "name": "circle-alert",
+                "colour": "charcoal"
+              },
+              "fn": "pptStatusAtRisk",
+              "tip": "A charcoal circled exclamation mark."
+            },
+            {
+              "id": "StOffTrack",
+              "label": "Off track (cross)",
+              "icon": {
+                "name": "circle-x",
+                "colour": "charcoal"
+              },
+              "fn": "pptStatusOffTrack",
+              "tip": "A charcoal circled cross."
+            },
+            {
+              "id": "RagGreen",
+              "label": "Green dot",
+              "icon": {
+                "name": "circle",
+                "colour": "green",
+                "fill": true
+              },
+              "fn": "pptRagGreen",
+              "tip": "A green status dot."
+            },
+            {
+              "id": "RagAmber",
+              "label": "Amber dot",
+              "icon": "circle-dot",
+              "fn": "pptRagAmber",
+              "tip": "An amber status dot, outside the BwB palette: for trackers only."
+            },
+            {
+              "id": "RagRed",
+              "label": "Red dot",
+              "icon": "circle-dot",
+              "fn": "pptRagRed",
+              "tip": "A red status dot, outside the BwB palette: for trackers only."
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "PptIcons",
+          "label": "Icons",
+          "icon": "shapes",
+          "pane": "insert/icons",
+          "tip": "Search 1,866 Lucide icons, the set BwB uses, and insert them as recolourable shapes."
+        },
+        {
+          "type": "button",
+          "id": "PptPhotos",
+          "label": "Photos",
+          "icon": "image",
+          "pane": "insert/photos",
+          "tip": "The BwB photo library: sectors, themes, markets and the team."
+        },
+        {
+          "type": "button",
+          "id": "PptChart",
+          "label": "Chart",
+          "icon": "chart-column",
+          "pane": "insert/charts",
+          "tip": "Build a chart in the BwB style from figures pasted from Excel."
+        }
+      ]
+    },
+    {
+      "id": "Review",
+      "label": "Review",
+      "icon": "shield-check",
+      "controls": [
+        {
+          "type": "button",
+          "id": "DeckCheck",
+          "label": "Deck check",
+          "icon": {
+            "name": "shield-check",
+            "colour": "green"
+          },
+          "pane": "check",
+          "tip": "Checks every slide for off-brand fonts and colours, small text, jumping titles, empty placeholders, stray shapes and house-style wording, with fixes."
+        },
+        {
+          "type": "menu",
+          "id": "Notes",
+          "label": "Review notes",
+          "icon": "sticky-note",
+          "tip": "Notes for reviewers on the slide, removed in one click before sending.",
+          "items": [
+            {
+              "id": "NoteAdd",
+              "label": "Add a review note",
+              "icon": "sticky-note",
+              "fn": "pptNoteAdd",
+              "tip": "Adds a navy review note at the top of the slide."
+            },
+            {
+              "id": "NotesRemove",
+              "label": "Remove all review notes",
+              "icon": "eraser",
+              "fn": "pptNotesRemoveAll",
+              "tip": "Removes every review note from the deck."
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "CleanText",
+          "label": "Clean up wording",
+          "icon": "sparkles",
+          "fn": "pptCleanText",
+          "tip": "Fixes house style with one right answer in the selected shapes: UK spelling, dashes, dates, currency codes and per cent."
+        }
+      ]
+    },
+    {
+      "id": "Brand",
+      "label": "Brand",
+      "icon": "palette",
+      "controls": [
+        {
+          "type": "menu",
+          "id": "Colours",
+          "label": "Colour",
+          "icon": "paint-bucket",
+          "tip": "BwB colours for the selected shapes: fills, text and lines.",
+          "items": [
+            {
+              "id": "FillNavy",
+              "label": "Fill navy",
+              "icon": {
+                "name": "square",
+                "colour": "navy",
+                "fill": true
+              },
+              "fn": "pptFillNavy",
+              "tip": "Navy fill, white text."
+            },
+            {
+              "id": "FillGreen",
+              "label": "Fill green",
+              "icon": {
+                "name": "square",
+                "colour": "green",
+                "fill": true
+              },
+              "fn": "pptFillGreen",
+              "tip": "Green fill, white text."
+            },
+            {
+              "id": "FillOffWhite",
+              "label": "Fill off-white",
+              "icon": "square",
+              "fn": "pptFillOffWhite",
+              "tip": "Off-white fill, navy text."
+            },
+            {
+              "id": "FillNone",
+              "label": "No fill",
+              "icon": "square-dashed",
+              "fn": "pptFillNone",
+              "tip": "Removes the fill."
+            },
+            {
+              "id": "TextNavy",
+              "label": "Text navy",
+              "icon": "type",
+              "fn": "pptTextNavy",
+              "tip": "Navy text."
+            },
+            {
+              "id": "TextCharcoal",
+              "label": "Text charcoal",
+              "icon": {
+                "name": "type",
+                "colour": "charcoal"
+              },
+              "fn": "pptTextCharcoal",
+              "tip": "Charcoal text, for notes and sources."
+            },
+            {
+              "id": "TextWhite",
+              "label": "Text white",
+              "icon": "type",
+              "fn": "pptTextWhite",
+              "tip": "White text, on navy or green only."
+            },
+            {
+              "id": "LineGrey",
+              "label": "Light grey outline",
+              "icon": "square",
+              "fn": "pptLineGrey",
+              "tip": "A thin light grey outline."
+            },
+            {
+              "id": "LineNone",
+              "label": "No outline",
+              "icon": "square-dashed",
+              "fn": "pptLineNone",
+              "tip": "Removes the outline."
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "id": "TextFormat",
+          "label": "Text",
+          "icon": "type",
+          "tip": "BwB fonts and text boxes: titles in Candara, text in Aptos, margins and autofit.",
+          "items": [
+            {
+              "id": "FontsBwB",
+              "label": "BwB fonts",
+              "icon": "type",
+              "fn": "pptFontsBwB",
+              "tip": "Candara for titles, Aptos for everything else, in the selected shapes."
+            },
+            {
+              "id": "MarginsZero",
+              "label": "No text margins",
+              "icon": "square-dashed",
+              "fn": "pptMarginsZero",
+              "tip": "Sets the text margins of the selected shapes to zero, so text lines up with other shapes."
+            },
+            {
+              "id": "MarginsBwB",
+              "label": "Standard text margins",
+              "icon": "square",
+              "fn": "pptMarginsStandard",
+              "tip": "Sets 0.2 cm text margins on every side."
+            },
+            {
+              "id": "AutofitOff",
+              "label": "Do not autofit",
+              "icon": "lock",
+              "fn": "pptAutofitOff",
+              "tip": "Stops PowerPoint shrinking or growing the selected text boxes."
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "PptBrandGuide",
+          "label": "Brand guide",
+          "icon": "palette",
+          "pane": "brand",
+          "tip": "BwB colours, type, house style and slide rules."
+        }
+      ]
+    }
+  ]
+}

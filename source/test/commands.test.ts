@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
-import ribbon from '../src/commands/ribbon.json'
+import wordRibbon from '../src/commands/ribbon-word.json'
+import pptRibbon from '../src/commands/ribbon-powerpoint.json'
 import { HANDLERS } from '../src/commands/handlers.ts'
 import { createModel, para } from './fakeWord/model.ts'
 import { installFakeWord, uninstallFakeWord } from './fakeWord/install.ts'
@@ -9,24 +10,28 @@ import { installFakeWord, uninstallFakeWord } from './fakeWord/install.ts'
 afterEach(uninstallFakeWord)
 
 interface Entry { id: string; label: string; tip: string; fn?: string; pane?: string; icon: unknown; items?: Entry[] }
+interface Ribbon { groups: Array<{ id: string; icon: unknown; controls: Entry[] }> }
 
-const controls = ribbon.groups.flatMap((g) => g.controls as Entry[])
-const entries = controls.flatMap((c) => [c, ...(c.items ?? [])])
-const TABS = ['start', 'write', 'insert', 'check', 'brand']
+const RIBBONS: Array<{ host: string; ribbon: Ribbon; tabs: string[] }> = [
+  { host: 'Word', ribbon: wordRibbon as Ribbon, tabs: ['start', 'write', 'insert', 'tools', 'check', 'brand'] },
+  { host: 'PowerPoint', ribbon: pptRibbon as Ribbon, tabs: ['slides', 'arrange', 'insert', 'check', 'brand'] },
+]
+const entriesOf = (r: Ribbon): Entry[] => r.groups.flatMap((g) => g.controls).flatMap((c) => [c, ...(c.items ?? [])])
 
-describe('the ribbon definition', () => {
-  it('has a handler for every function button, and no handler without a button', () => {
-    const fns = entries.flatMap((e) => (e.fn ? [e.fn] : []))
+describe('the ribbon definitions', () => {
+  it('have a handler for every function button, and no handler without a button', () => {
+    const fns = RIBBONS.flatMap(({ ribbon }) => entriesOf(ribbon).flatMap((e) => (e.fn ? [e.fn] : [])))
     expect(new Set(fns).size).toBe(fns.length)
     expect([...fns].sort()).toEqual(Object.keys(HANDLERS).sort())
   })
 
-  it('opens the pane only at tabs that exist', () => {
-    for (const e of entries.filter((x) => x.pane)) expect(TABS, e.id).toContain(e.pane?.split('/')[0])
+  it.each(RIBBONS)('$host: opens the pane only at tabs that exist', ({ ribbon, tabs }) => {
+    for (const e of entriesOf(ribbon).filter((x) => x.pane)) expect(tabs, e.id).toContain(e.pane?.split('/')[0])
   })
 
-  it('stays inside Word’s limits and BwB wording rules', () => {
+  it.each(RIBBONS)('$host: stays inside Office\u2019s limits and BwB wording rules', ({ ribbon }) => {
     for (const g of ribbon.groups) expect(g.controls.length, g.id).toBeLessThanOrEqual(6)
+    const entries = entriesOf(ribbon)
     const ids = entries.map((e) => e.id)
     expect(new Set(ids).size).toBe(ids.length)
     for (const e of entries) {
@@ -34,12 +39,13 @@ describe('the ribbon definition', () => {
       expect(e.tip.length, e.id).toBeLessThanOrEqual(250)
       expect(`${e.label} ${e.tip}`, e.id).not.toMatch(/[\u2014!]/)
       expect(Boolean(e.fn) !== Boolean(e.pane) || Boolean(e.items), e.id).toBe(true)
+      if (e.items) expect(e.items.length, e.id).toBeLessThanOrEqual(15)
     }
   })
 
-  it('uses only Lucide icons that exist', () => {
+  it.each(RIBBONS)('$host: uses only Lucide icons that exist', ({ ribbon }) => {
     const index = JSON.parse(readFileSync(join(import.meta.dirname, '../public/assets/lucide/index.json'), 'utf8')) as { icons: Record<string, unknown> }
-    const names = [...ribbon.groups.map((g) => g.icon as unknown), ...entries.map((e) => e.icon)]
+    const names = [...ribbon.groups.map((g) => g.icon), ...entriesOf(ribbon).map((e) => e.icon)]
       .map((i) => (typeof i === 'string' ? i : i && typeof i === 'object' && 'name' in i ? String(i.name) : null))
       .filter((n): n is string => n !== null)
     for (const n of names) expect(index.icons[n], n).toBeDefined()

@@ -5,18 +5,19 @@ import { loadIconIndex } from '../brand/icons.ts'
 import { LUCIDE_ALIASES, createIconResolver, lucideSvgFromNodes, recolourSvg } from '../docx/index.ts'
 import type { IconColour, IconRenderer } from '../docx/types.ts'
 
-export async function svgToPng(svg: string, px: number): Promise<Uint8Array> {
+/** Draws SVG markup to a PNG `px` wide and `pxHigh` high (square by default). */
+export async function svgToPng(svg: string, px: number, pxHigh = px): Promise<Uint8Array> {
   // Size the SVG itself, so every browser rasterises it at full resolution rather than scaling up 24 px.
-  const sized = svg.replace(/width="\d+" height="\d+"/, `width="${px}" height="${px}"`)
-  const image = new Image(px, px)
+  const sized = pxHigh === px ? svg.replace(/width="\d+" height="\d+"/, `width="${px}" height="${px}"`) : svg
+  const image = new Image(px, pxHigh)
   image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(sized)}`
   await image.decode()
   const canvas = document.createElement('canvas')
   canvas.width = px
-  canvas.height = px
+  canvas.height = pxHigh
   const context = canvas.getContext('2d')
   if (!context) throw new Error('This browser cannot draw icons (no canvas).')
-  context.drawImage(image, 0, 0, px, px)
+  context.drawImage(image, 0, 0, px, pxHigh)
   const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('The icon could not be drawn.')
   return new Uint8Array(await blob.arrayBuffer())

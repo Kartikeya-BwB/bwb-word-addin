@@ -67,6 +67,20 @@ describe('createNewDocument', () => {
     expect(doc).not.toContain('953637')
   })
 
+  it('uses a photo from the image library as the cover when one is chosen', async () => {
+    vi.stubGlobal('fetch', async (url: string) => {
+      if (url.startsWith('./templates/') || url.startsWith('./assets/images/')) return new Response(readFileSync(join(PUBLIC, url.slice(2))))
+      return new Response('', { status: 404 })
+    })
+    const model = createModel()
+    installFakeWord(model)
+    const coverPhoto = { id: 'sector-energy', title: 'Energy finance', category: 'sectors', tags: [], file: 'assets/images/sector-energy.jpg', thumb: '', width: 1672, height: 941, bytes: 0 }
+    await createNewDocument(request('final-report', { coverPhoto }))
+    const b64 = model.created[0] ?? ''
+    const files = unzipSync(new Uint8Array(Buffer.from(b64, 'base64')))
+    expect(Object.keys(files).some((n) => n.startsWith('word/media/cover_custom'))).toBe(true)
+  })
+
   it('builds every document type without errors', async () => {
     for (const type of DOC_TYPES) {
       const model = createModel()

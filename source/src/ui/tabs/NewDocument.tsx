@@ -5,7 +5,9 @@ import { DOC_TYPES, searchDocTypes } from '../../brand/docTypes.ts'
 import { bwbDate, createNewDocument } from '../../word/newDocument.ts'
 import { FUNDER_FRAMES } from '../../word/properties.ts'
 import type { FunderFrame } from '../../word/properties.ts'
-import { Button, Checkbox, Notice, SelectField, TextField } from '../components.tsx'
+import type { ImageEntry } from '../../brand/images.ts'
+import { Button, Checkbox, Disclosure, Notice, SelectField, TextField } from '../components.tsx'
+import { ImagePicker } from '../library/ImagePicker.tsx'
 import { DocTypeIcon } from '../docTypeIcons.tsx'
 import { useAction } from '../useAction.ts'
 
@@ -50,6 +52,7 @@ function DetailsForm({ type, onBack }: { type: DocType; onBack: () => void }) {
   const [funder, setFunder] = useState<FunderFrame | ''>('')
   const [disclaimer, setDisclaimer] = useState(type.disclaimer)
   const [dividers, setDividers] = useState(false)
+  const [coverPhoto, setCoverPhoto] = useState<ImageEntry | null>(null)
   const [done, setDone] = useState<string[] | null>(null)
   const memo = type.layout === 'memo'
 
@@ -60,6 +63,7 @@ function DetailsForm({ type, onBack }: { type: DocType; onBack: () => void }) {
         : []
       const { warnings } = await createNewDocument({
         type, title, tagline, date, preparedBy, details, disclaimer, dividers: dividers && type.layout === 'report', project, deliverable, funder,
+        ...(coverPhoto && type.layout === 'report' ? { coverPhoto } : {}),
       })
       setDone(warnings)
       return `${type.name} created in a new window.`
@@ -85,8 +89,14 @@ function DetailsForm({ type, onBack }: { type: DocType; onBack: () => void }) {
         options={[{ value: '', label: 'Not set' }, ...FUNDER_FRAMES.map((f) => ({ value: f.id, label: f.label }))]}
         hint="EU grant deliverables get the EU funding acknowledgement and EU checks." />
       {type.layout === 'report' && (
-        <Checkbox label="Open each main section with a navy divider page" checked={dividers} onChange={setDividers}
-          hint="For long reports with a few large parts." />
+        <>
+          <Disclosure title={`Cover photo: ${coverPhoto ? coverPhoto.title : 'the BwB harbour photo'}`}>
+            <ImagePicker chooseLabel="Use" onChoose={setCoverPhoto} />
+            {coverPhoto && <Button small variant="link" onClick={() => setCoverPhoto(null)}>Use the default photo</Button>}
+          </Disclosure>
+          <Checkbox label="Open each main section with a navy divider page" checked={dividers} onChange={setDividers}
+            hint="For long reports with a few large parts." />
+        </>
       )}
       <Checkbox label="End with the BwB disclaimer" checked={disclaimer} onChange={setDisclaimer}
         hint={type.disclaimer ? 'Client-facing documents need it.' : 'Bids and internal notes usually do not.'} />

@@ -1,10 +1,16 @@
-// Shared by make-ribbon-icons.mjs and make-manifest.mjs: the icon each ribbon control uses, drawn as SVG.
+// Shared by make-ribbon-icons.mjs and make-manifest.mjs: the two ribbons and the icon each control uses, drawn as SVG.
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 export const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-export const ribbon = JSON.parse(readFileSync(join(root, 'src', 'commands', 'ribbon.json'), 'utf8'))
+const load = (name) => JSON.parse(readFileSync(join(root, 'src', 'commands', name), 'utf8'))
+
+/** One add-in, two hosts: each has its own ribbon, control id prefix and resource id prefix. */
+export const HOSTS = [
+  { key: 'word', manifestHost: 'Document', idPrefix: 'BwB', res: 'W', ribbon: load('ribbon-word.json') },
+  { key: 'powerpoint', manifestHost: 'Presentation', idPrefix: 'BwBP', res: 'P', ribbon: load('ribbon-powerpoint.json') },
+]
 
 /** Every size Word desktop asks for at the common display scales; 16, 32 and 80 are required. */
 export const SIZES = [16, 20, 24, 32, 40, 48, 64, 80]
@@ -19,8 +25,8 @@ export function iconKey(spec) {
   return [spec.name, spec.colour ?? 'navy', spec.fill ? 'fill' : '', spec.background ? `on-${spec.background}` : ''].filter(Boolean).join('-')
 }
 
-/** Every control and menu item, with its group, in ribbon order. */
-export function allControls() {
+/** Every control and menu item of a ribbon, with its group, in ribbon order. */
+export function allControls(ribbon) {
   const out = []
   for (const group of ribbon.groups) {
     for (const control of group.controls) {
@@ -31,11 +37,13 @@ export function allControls() {
   return out
 }
 
-/** Distinct icon specs used by the tab's groups, controls and menu items, keyed by iconKey. */
+/** Distinct icon specs used by both ribbons' groups, controls and menu items, keyed by iconKey. */
 export function collectIcons() {
   const icons = new Map()
-  for (const group of ribbon.groups) icons.set(iconKey(group.icon), group.icon)
-  for (const control of allControls()) icons.set(iconKey(control.icon), control.icon)
+  for (const { ribbon } of HOSTS) {
+    for (const group of ribbon.groups) icons.set(iconKey(group.icon), group.icon)
+    for (const control of allControls(ribbon)) icons.set(iconKey(control.icon), control.icon)
+  }
   return icons
 }
 

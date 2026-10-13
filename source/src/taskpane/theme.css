@@ -216,3 +216,26 @@ textarea {
 .swatch-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--light-grey); }
 .swatch-row:last-child { border-bottom: 0; }
 .swatch-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+/* Image library */
+.image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; max-height: 420px; overflow-y: auto; }
+.image-cell { display: flex; flex-direction: column; gap: 3px; padding: 3px; border: 1px solid var(--light-grey); background: var(--white); cursor: pointer; text-align: left; }
+.image-cell img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.image-cell span { font-size: 10.5px; color: var(--charcoal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.image-cell:hover, .image-cell[aria-selected='true'] { border-color: var(--navy); background: var(--off-white); }
+.image-cell[aria-selected='true'] { outline: 2px solid var(--green); outline-offset: -2px; }
+
+/* Find a tool */
+.command-search { position: relative; padding: 8px 14px 6px; background: var(--off-white); border-bottom: 1px solid var(--light-grey); flex-shrink: 0; }
+.command-search input { width: 100%; padding: 6px 8px 6px 28px; border: 1px solid var(--charcoal-20); background: var(--white); font-size: 12.5px; }
+.command-search input:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 2px var(--focus-glow); }
+.command-search-icon { position: absolute; left: 23px; top: 16px; color: var(--charcoal); }
+.command-results { position: absolute; left: 14px; right: 14px; top: 38px; z-index: 20; margin: 0; padding: 4px 0; list-style: none; background: var(--white); border: 1px solid var(--charcoal-20); box-shadow: 0 6px 18px var(--shadow); max-height: 340px; overflow-y: auto; }
+.command-results button { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 6px 10px; border: 0; background: transparent; text-align: left; cursor: pointer; }
+.command-results li[aria-selected='true'] button { background: var(--off-white); box-shadow: inset 3px 0 0 var(--green); }
+.command-label { font-weight: 600; color: var(--navy); }
+.command-path { font-size: 11px; color: var(--charcoal); }
+
+/* Slide grid diagram */
+.grid-diagram { margin: 0 0 10px; }
+.grid-diagram svg { width: 100%; height: auto; display: block; font-family: var(--font-body); }

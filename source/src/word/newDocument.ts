@@ -2,6 +2,7 @@
 // structure, then let Word open it as a new, unsaved document.
 
 import type { DocType } from '../brand/docTypes.ts'
+import type { ImageEntry } from '../brand/images.ts'
 import { euAcknowledgementBlocks } from '../brand/eu.ts'
 import type { Block, Content } from './docxApi.ts'
 import { buildDocx } from './docxApi.ts'
@@ -20,6 +21,8 @@ export interface NewDocumentRequest {
   disclaimer: boolean
   /** Reports only: a navy divider page before each Heading 1. */
   dividers?: boolean
+  /** Reports only: a photo from the BwB image library for the cover, instead of the default harbour photo. */
+  coverPhoto?: ImageEntry
   project: string
   deliverable: string
   funder: FunderFrame | ''
@@ -68,12 +71,15 @@ export function contentFor(request: NewDocumentRequest): Content {
 
 export async function createNewDocument(request: NewDocumentRequest): Promise<{ warnings: string[] }> {
   const report = request.type.layout === 'report'
+  const photo = report ? request.coverPhoto : undefined
   const [base, cover, icons] = await Promise.all([
     fetchBytes('./templates/bwb-base.docx'),
-    report ? fetchBytes('./templates/bwb-cover.jpg') : Promise.resolve(undefined),
+    report ? fetchBytes(photo ? `./${photo.file}` : './templates/bwb-cover.jpg') : Promise.resolve(undefined),
     createIconRenderer().catch(() => undefined),
   ])
-  const { docx, warnings } = await buildDocx(contentFor(request), {
+  const content = contentFor(request)
+  if (photo && cover && content.meta) content.meta.cover_image = { data: cover, ext: 'jpg', widthPx: photo.width, heightPx: photo.height }
+  const { docx, warnings } = await buildDocx(content, {
     base,
     ...(cover ? { cover } : {}),
     ...(icons ? { icons } : {}),
