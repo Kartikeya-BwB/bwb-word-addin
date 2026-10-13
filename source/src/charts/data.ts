@@ -239,3 +239,24 @@ export function toSeriesTable(input: Grid, options: { decimalComma?: boolean } =
     invalid,
   }
 }
+
+export interface ColumnValues {
+  /** One value per data row, in the units the column mostly uses; null for gaps and text. */
+  values: Array<number | null>
+  hint: NumberFormat
+  /** Cells that held text other than a number. */
+  invalid: number
+}
+
+/** The numbers in one column of a grid (1 is the column after the labels), each in the column's own units. */
+export function columnValues(input: Grid, column: number, options: { decimalComma?: boolean } = {}): ColumnValues {
+  const rows = normaliseGrid(input).slice(1).filter((row) => row.some((c) => c.trim()))
+  const parsed = rows.map((row) => parseNumber(row[column] ?? '', options))
+  const hint = unitsHint(parsed)
+  const factor = SCALE_FACTOR[hint.scale ?? '']
+  return {
+    values: parsed.map((cell) => (cell.value === null ? null : (cell.value * (cell.scale ? SCALE_FACTOR[cell.scale] : factor)) / factor)),
+    hint,
+    invalid: parsed.filter((cell) => !cell.ok).length,
+  }
+}

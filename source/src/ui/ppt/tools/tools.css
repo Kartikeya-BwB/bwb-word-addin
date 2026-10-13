@@ -1,0 +1,19 @@
+/* PowerPoint power tools: the format painter, select similar, tables, org charts, diagrams and picture into frame.
+   Colours come from the theme tokens in theme.css. */
+
+.painter-current { font-size: 12px; color: var(--charcoal); margin: 8px 0; padding: 6px 8px; background: var(--off-white); border-left: 3px solid var(--green); }
+.painter-current b { color: var(--navy); }
+
+.painter-parts { border: 1px solid var(--light-grey); margin: 0 0 10px; padding: 6px 10px 4px; }
+.painter-parts legend { font-size: 11.5px; font-weight: 600; color: var(--charcoal); padding: 0 4px; }
+
+.style-list { list-style: none; margin: 0 0 8px; padding: 0; border-top: 1px solid var(--light-grey); }
+.style-list li { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid var(--light-grey); }
+.style-list .style-name { flex: 1; min-width: 0; font-weight: 600; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.style-list .field { flex: 1; margin-bottom: 0; }
+
+.tool-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+
+.org-input textarea, .paste-input textarea { min-height: 120px; font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; white-space: pre; }
+
+.tools-note { font-size: 11px; color: var(--amber-text); margin: -2px 0 8px; }

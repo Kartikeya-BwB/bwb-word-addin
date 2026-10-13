@@ -97,3 +97,31 @@ export const inQuote = (ip: IndexedParagraph, at: number): boolean => ip.quotes.
 
 /** True when the word at `at` starts a sentence, so its capital says nothing about the word. */
 export const atSentenceStart = (ip: IndexedParagraph, at: number): boolean => ip.starts.has(at)
+
+export interface Word {
+  text: string
+  lower: string
+  start: number
+  end: number
+}
+
+/** Words: letters, with apostrophes and hyphens inside them (policy-maker, don't). Numbers are not words here. */
+const WORD = /\p{L}[\p{L}\p{M}'\u2019]*(?:[-\u2010\u2011]\p{L}[\p{L}\p{M}'\u2019]*)*/gu
+const words = new WeakMap<IndexedParagraph, Word[]>()
+
+/** The words of an indexed paragraph, worked out once. */
+export function wordsOf(ip: IndexedParagraph): Word[] {
+  const known = words.get(ip)
+  if (known) return known
+  const out: Word[] = []
+  for (const m of ip.p.text.matchAll(WORD)) {
+    const text = m[0].replace(/['\u2019]+$/, '')
+    out.push({ text, lower: text.toLowerCase(), start: m.index, end: m.index + text.length })
+  }
+  words.set(ip, out)
+  return out
+}
+
+/** True when only spaces lie between two words, so they can be read as one phrase. */
+export const joinedBySpace = (text: string, a: { end: number }, b: { start: number }): boolean =>
+  b.start > a.end && /^[ \u00a0]+$/.test(text.slice(a.end, b.start))

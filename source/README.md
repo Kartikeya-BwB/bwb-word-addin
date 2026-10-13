@@ -134,6 +134,8 @@ view: Microsoft 365 on Windows, Mac or the web, or Office 2021 or later on Windo
 | `scripts` | Generators for the manifest, ribbon icons and libraries; deploy and live-check scripts |
 | `test/fakeWord`, `test/fakePpt` | In-memory Word and PowerPoint APIs with Office.js load and sync semantics, used by the tests and the demo |
 | `docs/v1-recovery.md` | How version 1 was recovered from its deployed build, and how version 2 deals with its issues |
+| `docs/research` | Research on premium Word and PowerPoint add-ins: what they offer, what they cost, what the toolkit builds instead, and the legal boundaries |
+| `docs/clean-room` | The rules for building features independently, and a record for each feature built that way |
 
 ## Licences
 
@@ -154,5 +156,6 @@ view: Microsoft 365 on Windows, Mac or the web, or Office 2021 or later on Windo
 - **The checks are snapshots.** After editing, run them again; a fix on text that has changed is skipped, not
   guessed. The deck check does not read speaker notes (PowerPoint has no API for them), or text in tables, charts
   and SmartArt.
-- **Keyboard shortcuts** are not set up yet. Word supports custom shortcuts for add-ins; PowerPoint does not yet.
+- **Keyboard shortcuts** are not set up yet. Word and current versions of PowerPoint (Windows 2601 or later, Mac
+  16.105.2 or later, and the web) support custom shortcuts for add-ins; they are being added.
 - **Ribbon commands** report failures in a small dialog, because a ribbon button has no pane to show a message in.

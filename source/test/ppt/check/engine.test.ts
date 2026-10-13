@@ -63,7 +63,7 @@ describe('the Pre-QA check for decks', () => {
     const old = deck([], { can: can({ placeholders: false, groups: false, altText: false, pageSize: false, selection: false, hidden: false, background: false, links: false, markers: false }), partial: true })
     const limits = deckLimits(old)
     expect(limits).toHaveLength(5)
-    expect(limits.join(' ')).toMatch(/API 1\.8.*API 1\.10.*API 1\.10.*API 1\.5/)
+    expect(limits.join(' ')).toMatch(/API 1\.5.*API 1\.6.*API 1\.8.*API 1\.10.*not checked\.$/)
     expect(deckLimits(deck([]))).toEqual([])
     expect(runDeckCheck(old).limits).toEqual(limits)
   })

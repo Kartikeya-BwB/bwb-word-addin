@@ -72,6 +72,13 @@ export function niceScale(lo: number, hi: number, options: ScaleOptions = {}): L
   return { min, max, step, ticks }
 }
 
+/** Zero stays on an axis unless the values sit far from it, where it would flatten the data. */
+export function nearZero(lo: number, hi: number): boolean {
+  if (lo >= 0) return lo <= hi * 0.5
+  if (hi <= 0) return hi >= lo * 0.5
+  return true
+}
+
 /** Maps a value on the scale to a coordinate between start (the minimum) and end (the maximum). */
 export function project(scale: LinearScale, value: number, start: number, end: number): number {
   const span = scale.max - scale.min || 1

@@ -5,7 +5,7 @@ import type { NumberFormat } from './format.ts'
 import { formatNumber, unitsLabel } from './format.ts'
 import { MIN_FONT_PT, ellipsise, lineHeight, textWidth, wrapText } from './measure.ts'
 import { INK } from './palette.ts'
-import type { ChartSpec } from './spec.ts'
+import type { ChartResources, ChartSpec } from './spec.ts'
 import { centredBaseline, circle, diamond, group, line, rect, text, textLines } from './svg.ts'
 
 export interface Box {
@@ -30,6 +30,8 @@ export interface ChartContext {
   warnings: string[]
   /** Set when data labels were left out for lack of room, so the chart can show a value axis instead. */
   labelsDropped: boolean
+  /** Data loaded by the caller, such as the world map. */
+  resources: ChartResources
 }
 
 export const LABELS_DROPPED = 'Some data labels did not fit and are left out. Make the chart bigger or turn labels off.'

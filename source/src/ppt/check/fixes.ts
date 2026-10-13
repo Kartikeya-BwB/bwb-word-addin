@@ -3,10 +3,11 @@
 // rather than guess if not. Many fixes run in a few batched syncs: find the shapes, check them, then apply.
 
 import { UserFacingError } from '../../word/run.ts'
+import { dropUnusedFootnotes } from '../slides/footnoteOps.ts'
 import { updateTrackers } from '../slides/sectionOps.ts'
 import { NEEDS, shapeAt, syncEach } from '../slides/office.ts'
 import { requirePpt, runPpt } from '../run.ts'
-import { hasTag, tagLabel } from './shapes.ts'
+import { hasTag, isEmptySlide, tagLabel } from './shapes.ts'
 import { takeDeckSnapshot } from './snapshot.ts'
 import type { Box, DeckFix, DeckLocation, ShapeFix } from './types.ts'
 
@@ -31,7 +32,7 @@ export function flattenFixes(fixes: DeckFix[]): DeckFix[] {
   return fixes.flatMap((f) => (f.kind === 'batch' ? flattenFixes(f.fixes) : [f]))
 }
 
-const isShapeFix = (f: DeckFix): f is ShapeFix => 'slideId' in f
+const isShapeFix = (f: DeckFix): f is ShapeFix => 'path' in f
 const isTextFix = (f: ShapeFix): f is TextFix => 'expectedText' in f
 
 /** Replacements in one shape, from the end of the text back so earlier offsets stay right; overlaps are skipped. */
@@ -196,6 +197,18 @@ async function applyShapeFixes(fixes: ShapeFix[]): Promise<FixResult> {
   })
 }
 
+/** Deletes a slide if it is still empty; returns false (and leaves it) when it is gone or has something on it now. */
+export async function deleteEmptySlide(slideId: string): Promise<boolean> {
+  const snapshot = await takeDeckSnapshot({ formatting: false, slideIds: [slideId] })
+  const slide = snapshot.slides[0]
+  if (!slide || !isEmptySlide(slide, snapshot.can.placeholders)) return false
+  await runPpt(async (context) => {
+    context.presentation.slides.getItem(slideId).delete()
+    await context.sync()
+  })
+  return true
+}
+
 /** Deletes every shape carrying `tag`, or only those whose label (tag value, else text, in capitals) is `text`. */
 export async function deleteTaggedShapes(tag: string, text?: string): Promise<number> {
   const snapshot = await takeDeckSnapshot({ formatting: false })
@@ -220,14 +233,24 @@ export async function applyDeckFixes(fixes: DeckFix[]): Promise<FixResult> {
   const shapeFixes = flat.filter(isShapeFix)
   const result = shapeFixes.length ? await applyShapeFixes(shapeFixes) : { applied: 0, skipped: 0 }
   const done = new Set<string>()
+  const once = (key: string): boolean => (done.has(key) ? false : (done.add(key), true))
   for (const f of flat) {
-    if (f.kind !== 'delete-tagged' && f.kind !== 'update-trackers') continue
-    const key = f.kind === 'update-trackers' ? f.kind : `${f.tag}|${f.text ?? ''}`
-    if (done.has(key)) continue
-    done.add(key)
-    if (f.kind === 'update-trackers') await updateTrackers()
-    else await deleteTaggedShapes(f.tag, f.text)
-    result.applied += 1
+    if (f.kind === 'update-trackers' && once(f.kind)) {
+      await updateTrackers()
+      result.applied += 1
+    } else if (f.kind === 'delete-tagged' && once(`${f.tag}|${f.text ?? ''}`)) {
+      await deleteTaggedShapes(f.tag, f.text)
+      result.applied += 1
+    } else if (f.kind === 'remove-unused-footnotes' && once(`${f.kind}|${f.slideId}`)) {
+      if (await dropUnusedFootnotes(f.slideId)) result.applied += 1
+      else result.skipped += 1
+    }
+  }
+  // Slides go last, after any fix on what is on them.
+  for (const f of flat) {
+    if (f.kind !== 'delete-slide' || !once(`${f.kind}|${f.slideId}`)) continue
+    if (await deleteEmptySlide(f.slideId)) result.applied += 1
+    else result.skipped += 1
   }
   return result
 }

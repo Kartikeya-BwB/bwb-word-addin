@@ -3,7 +3,9 @@
 
 import type { Severity } from '../../check/types.ts'
 import { SEVERITIES } from '../../check/types.ts'
+import { accessFindings, hiddenFindings } from './rulesAccess.ts'
 import { brandFindings } from './rulesBrand.ts'
+import { footnoteFindings } from './rulesFootnotes.ts'
 import { layoutFindings } from './rulesLayout.ts'
 import { sendFindings } from './rulesSend.ts'
 import { slideFindings } from './rulesSlides.ts'
@@ -14,26 +16,44 @@ import type { DeckFinding, DeckFix, DeckReport, DeckSnapshot } from './types.ts'
 
 const ORDER: Record<Severity, number> = { blocker: 0, major: 1, minor: 2, copyedit: 3 }
 
-/** Checks this PowerPoint could not run, in plain words for the pane. */
+/** Checks this PowerPoint could not run, in plain words for the pane, from the oldest API level up. */
 export function deckLimits(snapshot: DeckSnapshot): string[] {
+  const { can } = snapshot
   const out: string[] = []
-  if (!snapshot.can.placeholders) {
-    out.push('This PowerPoint does not report placeholder types or the shapes inside groups (PowerPoint API 1.8), so titles are found by their names and grouped shapes are not checked.')
+  if (!can.selection) out.push('Go to needs PowerPoint API 1.5: use the slide numbers instead.')
+  if (!can.links) out.push('Only addresses typed in the text are checked for internal links: reading hyperlinks needs PowerPoint API 1.6.')
+  if (!can.placeholders || !can.markers) {
+    out.push('This PowerPoint does not report placeholder types, the shapes inside groups or superscript (PowerPoint API 1.8), so titles are found by their names, and grouped shapes and footnote markers are not checked.')
   }
-  if (!snapshot.can.altText) out.push('Alt text on pictures is not checked: that needs PowerPoint API 1.10.')
-  if (!snapshot.can.pageSize) out.push('Shapes off the slide are judged against a 16:9 slide: reading the slide size needs PowerPoint API 1.10.')
-  if (!snapshot.can.selection) out.push('Go to needs PowerPoint API 1.5: use the slide numbers instead.')
-  if (snapshot.partial) out.push('Some text mixes so much formatting that part of it was not checked for fonts, colours and sizes.')
+  if (!can.altText || !can.hidden || !can.background || !can.pageSize) {
+    out.push('Alt text, hidden shapes and contrast against slide backgrounds are not checked, and shapes off the slide are judged against a 16:9 slide: these need PowerPoint API 1.10.')
+  }
+  if (snapshot.partial) out.push('Some text mixes so much formatting, or has so many numbers, that part of it was not checked.')
   return out
 }
 
+/** The snapshot as it shows: without hidden shapes, or the shapes inside hidden groups. */
+export function shownShapes(snapshot: DeckSnapshot): DeckSnapshot {
+  return {
+    ...snapshot,
+    slides: snapshot.slides.map((slide) => {
+      const hidden = new Set(slide.shapes.filter((s) => s.visible === false).map((s) => s.id))
+      return hidden.size ? { ...slide, shapes: slide.shapes.filter((s) => !s.path.some((id) => hidden.has(id))) } : slide
+    }),
+  }
+}
+
 export function runDeckCheck(snapshot: DeckSnapshot): DeckReport {
+  const shown = shownShapes(snapshot)
   const findings: DeckFinding[] = [
-    ...sendFindings(snapshot),
-    ...brandFindings(snapshot),
-    ...layoutFindings(snapshot),
-    ...wordingFindings(snapshot),
-    ...slideFindings(snapshot),
+    ...sendFindings(shown),
+    ...hiddenFindings(snapshot),
+    ...brandFindings(shown),
+    ...accessFindings(shown),
+    ...layoutFindings(shown),
+    ...wordingFindings(shown),
+    ...slideFindings(shown),
+    ...footnoteFindings(shown),
   ].sort(
     (a, b) =>
       ORDER[a.severity] - ORDER[b.severity] ||
@@ -60,7 +80,7 @@ export function runDeckCheck(snapshot: DeckSnapshot): DeckReport {
 }
 
 /** Fixes that change only what the finding names, so they can run in bulk without review. */
-const BULK_SAFE = new Set<DeckFix['kind']>(['replace', 'font', 'align-title', 'delete-empty', 'update-trackers'])
+const BULK_SAFE = new Set<DeckFix['kind']>(['replace', 'font', 'align-title', 'delete-empty', 'delete-slide', 'update-trackers'])
 
 export function isBulkSafe(fix: DeckFix): boolean {
   return fix.kind === 'batch' ? fix.fixes.length > 0 && fix.fixes.every(isBulkSafe) : BULK_SAFE.has(fix.kind)

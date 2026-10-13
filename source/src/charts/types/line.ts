@@ -3,6 +3,7 @@
 // the labels are spread so they never touch.
 
 import { COLOURS } from '../../brand/tokens.ts'
+import { nearZero } from '../axes.ts'
 import { columnAxes } from '../cartesian.ts'
 import { autoDecimals } from '../format.ts'
 import type { ChartContext, LegendItem } from '../frame.ts'
@@ -26,12 +27,6 @@ export function lineStyle(series: DrawSeries): LineStyle {
   return { colour: series.colour, dashed: false }
 }
 
-/** Zero stays on the axis unless the values sit far from it, where it would flatten the line. */
-function keepZero(lo: number, hi: number): boolean {
-  if (lo >= 0) return lo <= hi * 0.5
-  if (hi <= 0) return hi >= lo * 0.5
-  return true
-}
 
 /** Moves labels apart so that each is at least `gap` below the one above, keeping them inside top to bottom. */
 export function spread(ys: number[], gap: number, top: number, bottom: number): number[] {
@@ -82,7 +77,7 @@ export function renderLine(ctx: ChartContext): string {
   const hi = Math.max(...values)
   const area = { ...frame.plot, w: frame.plot.w - endRoom }
   const axes = columnAxes(ctx, area, p.categories, {
-    lo, hi, includeZero: keepZero(lo, hi), roomAbove: ctx.labels && !many, roomBelow: ctx.labels && !many,
+    lo, hi, includeZero: nearZero(lo, hi), roomAbove: ctx.labels && !many, roomBelow: ctx.labels && !many,
   })
   const x = (i: number): number => axes.bandStart(i) + axes.band / 2
   const stroke = Math.max(1.5, font * 0.19)

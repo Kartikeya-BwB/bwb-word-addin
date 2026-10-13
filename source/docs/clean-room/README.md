@@ -22,7 +22,9 @@ record that each feature was built independently.
 - Copy or trace another product's text, screenshots, icons, templates, slide designs, chart styles, help pages,
   word lists or style sheets, or ask an AI tool to reproduce them.
 - Use another product's name, or a look-alike, anywhere in the Toolkit: the ribbon, the pane, file names, code,
-  comments, tests, commit messages or documentation. Features get plain, descriptive names.
+  comments, tests, commit messages or user documentation. Features get plain, descriptive names. The one exception
+  is the market research in `docs/research`, which names the products it looked at; it decides what to build, never
+  how a feature looks or reads.
 - Use confidential knowledge of another product.
 
 ## Record of independent development

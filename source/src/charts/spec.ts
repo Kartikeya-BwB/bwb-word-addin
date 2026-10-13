@@ -14,12 +14,16 @@ import type { Grid } from './grid.ts'
 import { MIN_FONT_PT } from './measure.ts'
 import { toSeriesTable } from './data.ts'
 import { svgDocument } from './svg.ts'
+import { renderArea } from './types/area.ts'
 import { renderBars, renderColumns } from './types/bars.ts'
+import { renderCombo } from './types/combo.ts'
 import { renderDonut } from './types/donut.ts'
 import { renderGantt } from './types/gantt.ts'
 import { renderHarvey } from './types/harvey.ts'
 import { renderLine } from './types/line.ts'
+import { renderMap } from './types/map.ts'
 import { renderMekko } from './types/mekko.ts'
+import { renderScatter } from './types/scatter.ts'
 import { renderWaterfall } from './types/waterfall.ts'
 
 export type { ChartType, ChartTypeInfo } from './catalogue.ts'
@@ -135,12 +139,15 @@ export const DEFAULT_SIZES: Record<'word' | 'powerpoint', ChartSize> = {
   powerpoint: { widthPt: 880, heightPt: 360 },
 }
 
+/** Types read from a value axis by default: lines, areas and point charts. */
+const AXIS_FIRST = new Set<ChartType>(['line', 'area', 'area100', 'scatter', 'bubble'])
+
 /** Options that suit each type before the author changes anything. */
 export function defaultOptions(type: ChartType): Partial<ChartSpec> {
   return {
     labels: true,
     legend: type !== 'waterfall',
-    valueAxis: type === 'line',
+    valueAxis: AXIS_FIRST.has(type),
     gapWidth: type === 'waterfall' ? 40 : 60,
     markers: true,
     sort: 'none',
@@ -149,7 +156,7 @@ export function defaultOptions(type: ChartType): Partial<ChartSpec> {
 
 const clampSize = (v: number, fallback: number): number => (Number.isFinite(v) && v >= 36 ? Math.min(v, 4000) : fallback)
 
-export function createContext(spec: ChartSpec): ChartContext {
+export function createContext(spec: ChartSpec, resources: ChartResources = {}): ChartContext {
   const width = clampSize(spec.size.widthPt, DEFAULT_SIZES.word.widthPt)
   const height = clampSize(spec.size.heightPt, DEFAULT_SIZES.word.heightPt)
   const hint = toSeriesTable(spec.data).hint
@@ -166,11 +173,12 @@ export function createContext(spec: ChartSpec): ChartContext {
     format: { ...hint, ...spec.format },
     warnings: [],
     labelsDropped: false,
+    resources,
   }
 }
 
 /** Types whose values can be read from a value axis when their labels do not fit. */
-const AXIS_FALLBACK = new Set<ChartType>(['column', 'stackedColumn', 'bar', 'stackedBar', 'line', 'waterfall'])
+const AXIS_FALLBACK = new Set<ChartType>(['column', 'stackedColumn', 'bar', 'stackedBar', 'line', 'waterfall', 'combo'])
 
 function draw(ctx: ChartContext): string {
   switch (ctx.spec.type) {
@@ -188,6 +196,18 @@ function draw(ctx: ChartContext): string {
       return renderBars(ctx, 'percent')
     case 'line':
       return renderLine(ctx)
+    case 'area':
+      return renderArea(ctx, 'stacked')
+    case 'area100':
+      return renderArea(ctx, 'percent')
+    case 'combo':
+      return renderCombo(ctx)
+    case 'scatter':
+      return renderScatter(ctx, false)
+    case 'bubble':
+      return renderScatter(ctx, true)
+    case 'map':
+      return renderMap(ctx)
     case 'waterfall':
       return renderWaterfall(ctx)
     case 'mekko':
@@ -201,15 +221,18 @@ function draw(ctx: ChartContext): string {
   }
 }
 
-/** Draws a chart: SVG in points, its size, alt text, and any warnings for the author. */
-export function renderChart(spec: ChartSpec): RenderedChart {
-  let ctx = createContext(spec)
+/**
+ * Draws a chart: SVG in points, its size, alt text, and any warnings for the author. Data maps need the world map
+ * in `resources`; without it they draw a placeholder.
+ */
+export function renderChart(spec: ChartSpec, resources: ChartResources = {}): RenderedChart {
+  let ctx = createContext(spec, resources)
   let body = draw(ctx)
   if (ctx.labelsDropped && !ctx.valueAxis && AXIS_FALLBACK.has(spec.type)) {
     const retry: ChartContext = { ...ctx, valueAxis: true, warnings: [], labelsDropped: false }
     body = draw(retry)
     ctx = { ...retry, warnings: [...retry.warnings.filter((w) => w !== LABELS_DROPPED), LABELS_TO_AXIS] }
   }
-  const altText = describeChart(spec, ctx.format)
+  const altText = describeChart(spec, ctx.format, resources)
   return { svg: svgDocument(ctx.width, ctx.height, body, altText), widthPt: ctx.width, heightPt: ctx.height, altText, warnings: ctx.warnings }
 }
