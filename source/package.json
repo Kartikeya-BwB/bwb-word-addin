@@ -4,7 +4,7 @@
   "version": "2.1.0",
   "type": "module",
   "scripts": {
-    "assets": "node scripts/make-icon-index.mjs && node scripts/make-ribbon-icons.mjs && node scripts/make-manifest.mjs",
+    "assets": "node scripts/make-icon-index.mjs && node scripts/make-ribbon-icons.mjs && node scripts/make-manifest.mjs && node scripts/make-notices.mjs",
     "icons": "node scripts/make-icon-libraries.mjs",
     "slides": "python3 scripts/make-slide-library.py",
     "images": "python3 scripts/make-image-library.py",

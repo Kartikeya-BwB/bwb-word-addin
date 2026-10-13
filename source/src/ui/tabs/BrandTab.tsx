@@ -4,7 +4,7 @@ import type { ColourName } from '../../brand/tokens.ts'
 import { PALETTE, TYPE_SCALE, WRITING_RULES } from '../../brand/tokens.ts'
 import { currentHost } from '../../host.ts'
 import { colourSelection } from '../../word/marks.ts'
-import { Button, Section } from '../components.tsx'
+import { Button, Disclosure, Section } from '../components.tsx'
 import { useNotify } from '../toast.tsx'
 import { useAction } from '../useAction.ts'
 import { SlideBrandSections, SlideColourActions } from './BrandSlides.tsx'
@@ -125,6 +125,19 @@ export function BrandTab() {
         Source: the BwB document format (v1.1.0), the BwB slide template and the BwB Style Guide. Where a client template applies, it overrides
         BwB house style.
       </p>
+
+      <Disclosure title="About and licences">
+        <p className="small">
+          The BwB Toolkit for Word and PowerPoint is built by Bankers without Boundaries. It uses React and fflate (MIT), Lucide icons (ISC),
+          Tabler icons (MIT), flag-icons (MIT) and maps from Natural Earth (public domain) through world-atlas (ISC).
+        </p>
+        <p className="small">
+          <a href="./THIRD-PARTY-NOTICES.txt" target="_blank" rel="noreferrer">Third-party notices and licence texts</a>
+        </p>
+        <p className="small muted">
+          Team photos are BwB's own. Check the licence of a sector, theme or market photo before using it in a client deliverable.
+        </p>
+      </Disclosure>
     </>
   )
 }

@@ -28,7 +28,7 @@ export interface SlideSize {
 export type Axis = 'horizontal' | 'vertical'
 
 /**
- * What shapes line up with, as in think-cell and PowerPoint Labs: the selection's outer edges, the anchor (the key
+ * What shapes line up with: the selection's outer edges, the anchor (the key
  * object, which never moves), the slide edges, the BwB margins or the content area between the title and the source.
  */
 export type Reference = 'selection' | 'anchor' | 'slide' | 'margins' | 'content'

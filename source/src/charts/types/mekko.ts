@@ -1,4 +1,4 @@
-// Mekko (marimekko) charts: one column per category, as wide as the category's share of the grand total, with its
+// Mekko charts (variable-width stacked columns): one column per category, as wide as the category's share of the grand total, with its
 // segments stacked to 100%. Segments carry their share, columns their total above, categories their name below.
 
 import { autoDecimals, formatNumber } from '../format.ts'

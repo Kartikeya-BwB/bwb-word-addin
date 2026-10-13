@@ -1,4 +1,4 @@
-// Copyedit checks in the spirit of PerfectIt and Macabacus Deck Check: repeated words, unmatched brackets and
+// Copyedit checks a proofreader makes before QA: repeated words, unmatched brackets and
 // quotation marks, spaces before punctuation, doubled punctuation and lists that end their items inconsistently.
 
 import type { DocSnapshot, Finding, Location, ParagraphInfo } from './types.ts'

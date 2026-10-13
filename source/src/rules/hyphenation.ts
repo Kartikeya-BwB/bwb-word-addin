@@ -1,6 +1,6 @@
 /**
  * Compounds written more than one way in the same document: hyphenated (decision-making), open (decision making) and
- * closed (decisionmaking), compared case-insensitively, in the spirit of PerfectIt's hyphenation check.
+ * closed (decisionmaking), compared case-insensitively.
  *
  * Only two-part compounds of letters are considered, so numbers and ranges (2022-2025, 5-10, COVID-19) and longer chains
  * (state-of-the-art) never count. An open form counts only when its two words also appear hyphenated or closed, and

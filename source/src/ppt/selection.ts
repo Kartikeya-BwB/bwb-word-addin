@@ -1,4 +1,4 @@
-// Which shapes are selected, in the order they joined the selection, and the anchor (think-cell's key object).
+// Which shapes are selected, in the order they joined the selection, and the anchor (the shape the others line up with).
 // PowerPoint does not report the order of selection, so while the pane is open it listens to DocumentSelectionChanged
 // and diffs the selected ids. The state goes to localStorage too, so the ribbon's commands, which run in a page of
 // their own, use the same anchor and order.

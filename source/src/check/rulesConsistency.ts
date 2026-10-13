@@ -1,5 +1,5 @@
 // Consistency: acronyms spelled out on first use (with an abbreviations table for long reports) and
-// compounds written more than one way, in the spirit of PerfectIt.
+// compounds written more than one way across the document.
 
 import type { AcronymEntry } from '../rules/acronyms.ts'
 import { analyseAcronyms } from '../rules/acronyms.ts'
