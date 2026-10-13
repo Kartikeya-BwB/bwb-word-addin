@@ -1,0 +1,82 @@
+// BwB brand tokens for documents, from the BwB Document Format skill v1.1.0 (references/brand-rules.md).
+// The task pane's own colours live in src/taskpane/theme.css.
+
+export const COLOURS = {
+  navy: '022338',
+  green: '328840',
+  lime: 'BED62F',
+  charcoal: '4A4A4C',
+  green50: '7CC287',
+  lightGrey: 'E8E9E6',
+  offWhite: 'F7F8F5',
+  white: 'FFFFFF',
+  black: '000000',
+  charcoal20: 'D5D5D6',
+} as const
+
+export type ColourName = keyof typeof COLOURS
+
+export interface PaletteEntry {
+  name: string
+  key: ColourName
+  hex: string
+  use: string
+  /** Where text in this colour is allowed. */
+  textRule: string
+}
+
+export const PALETTE: PaletteEntry[] = [
+  { name: 'Navy', key: 'navy', hex: COLOURS.navy, use: 'Headings, panels, table headers, cover and divider backgrounds', textRule: 'Text on white at any size' },
+  { name: 'Green', key: 'green', hex: COLOURS.green, use: 'Bullets, rules, callout bars, large numbers and icons on light backgrounds', textRule: 'Text only at 18 pt and above on a light background' },
+  { name: 'Lime', key: 'lime', hex: COLOURS.lime, use: 'Navy backgrounds only: statistics, bullets and icons on navy panels, the cover rule', textRule: 'Never as text, bullets or icons on white or off-white' },
+  { name: 'Charcoal', key: 'charcoal', hex: COLOURS.charcoal, use: 'Captions, sources, footnotes, metadata', textRule: 'Text on white at any size' },
+  { name: 'Green 50', key: 'green50', hex: COLOURS.green50, use: 'Chart series and tints', textRule: 'Charts only' },
+  { name: 'Light grey', key: 'lightGrey', hex: COLOURS.lightGrey, use: 'Table borders and dividers', textRule: 'Not for text' },
+  { name: 'Off-white', key: 'offWhite', hex: COLOURS.offWhite, use: 'Callout and total-row fill', textRule: 'Not for text' },
+  { name: 'Black', key: 'black', hex: COLOURS.black, use: 'Body text on white', textRule: 'Body text' },
+  { name: 'White', key: 'white', hex: COLOURS.white, use: 'Text on navy', textRule: 'Only on navy' },
+]
+
+/** Every colour the BwB format allows anywhere in a document, upper-case hex without '#'. */
+export const ALLOWED_HEX = new Set<string>(Object.values(COLOURS))
+
+export const FONTS = {
+  heading: 'Candara',
+  body: 'Aptos',
+} as const
+
+/** Fonts a BwB document may use: the two brand fonts plus symbol fonts Word uses for bullets. */
+export const ALLOWED_FONTS = new Set(['candara', 'aptos', 'aptos display', 'symbol', 'wingdings', 'wingdings 2', 'wingdings 3'])
+
+export interface TypeSpec {
+  element: string
+  font: string
+  sizePt: number
+  detail: string
+}
+
+export const TYPE_SCALE: TypeSpec[] = [
+  { element: 'Heading 1', font: 'Candara', sizePt: 18, detail: 'Bold, navy, numbered 1.' },
+  { element: 'Heading 2', font: 'Candara', sizePt: 14, detail: 'Bold, navy, numbered 1.1' },
+  { element: 'Heading 3', font: 'Candara', sizePt: 12, detail: 'Bold, navy, numbered 1.1.1' },
+  { element: 'Heading 4', font: 'Candara', sizePt: 11, detail: 'Bold italic, navy, not numbered' },
+  { element: 'Body', font: 'Aptos', sizePt: 10, detail: 'Black, justified, line spacing at least 16 pt, 8 pt after' },
+  { element: 'Table text', font: 'Aptos', sizePt: 10, detail: '9 pt above five columns, 8 pt above eight' },
+  { element: 'Captions and footnotes', font: 'Aptos', sizePt: 9, detail: 'Charcoal; captions italic' },
+  { element: 'Source lines', font: 'Aptos', sizePt: 8, detail: 'Italic, charcoal. Nothing is set below 8 pt' },
+]
+
+export const MIN_TEXT_PT = 8
+
+/** House style used for checks and for the guidance shown in the task pane. */
+export const WRITING_RULES: Array<{ rule: string; example: string }> = [
+  { rule: 'UK spelling', example: 'organisation, programme, analyse, colour, behaviour, modelling, centre' },
+  { rule: 'No em dashes and no spaced en dashes', example: 'Use a comma, a colon or a full stop. Ranges read "2022 to 2025"' },
+  { rule: 'Dates as D Month YYYY', example: '5 October 2026. No ordinals, no US order, no abbreviated months in prose' },
+  { rule: 'Currency as an ISO code, then a space', example: 'GBP 5m, USD 250m, EUR 1.2bn. Not £, $ or €' },
+  { rule: '"per cent" in prose', example: 'Use the % sign in tables and statistics' },
+  { rule: 'The company name', example: '"Bankers without Boundaries" (lower-case "without") and "BwB"' },
+  { rule: 'Typographic quotation marks', example: 'Single for a term, double for speech' },
+  { rule: 'Sentence case for headings', example: 'Titles are in title case' },
+  { rule: 'Plain, sober wording', example: 'No filler such as "touch base", "circle back", "going forward"' },
+]

@@ -1,0 +1,14 @@
+{
+  "note": "Written by source/scripts/deploy-to-root.mjs",
+  "files": [
+    "assets",
+    "commands.html",
+    "icon-16.png",
+    "icon-32.png",
+    "icon-80.png",
+    "index.html",
+    "manifest.xml",
+    "notice.html",
+    "templates"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+ "source": "unicode.json",
+ "parts": {
+  "[Content_Types].xml": {
+   "sha256": "ec80336a76ebafecc5b4ad0b34de97e50a6691adca12943585dc86e1cc0c73cc",
+   "size": 2449
+  },
+  "_rels/.rels": {
+   "sha256": "d6f21829c0081670bdb417d3e3f644b81134a121e074fb153c7686faaa8b167b",
+   "size": 589
+  },
+  "docProps/app.xml": {
+   "sha256": "0d69094eb7ed09260517fb963b92c48ad3cd78e19d7e0a3eb33c79fcf4653c8f",
+   "size": 368
+  },
+  "docProps/core.xml": {
+   "sha256": "1e739fc5bfe064d8d0c03c756de283d1abd4a439e1b9843c839bbe9bdf63a216",
+   "size": 856
+  },
+  "word/_rels/document.xml.rels": {
+   "sha256": "36543705fa1060e3e96e41c3ba3996d9e7dc9bbf6c7542e6a318edde1aa13f2e",
+   "size": 1999
+  },
+  "word/_rels/footer1.xml.rels": {
+   "sha256": "e2304f79451b3014ad06594082459db35417f8de2ca120a5632a43cc90a14d76",
+   "size": 423
+  },
+  "word/_rels/footer2.xml.rels": {
+   "sha256": "b0d013e13eaba9ba5275a269b634a9342adec6ed24b5777a01b44b2c5f3b82f9",
+   "size": 287
+  },
+  "word/_rels/header1.xml.rels": {
+   "sha256": "bf2ceb2f22f509ef69107a9c447bd24092f17ba9bec8d6b74bc1752be1d9717f",
+   "size": 293
+  },
+  "word/document.xml": {
+   "sha256": "e33a90d66ea9e76719cc8c0a761e4e28e25976834098b9d5f344532a515328cc",
+   "size": 17836
+  },
+  "word/endnotes.xml": {
+   "sha256": "83838bb116f08d84aae0b4af91ca4127859173da32717e814bc433e36577c796",
+   "size": 2207
+  },
+  "word/fontTable.xml": {
+   "sha256": "cc140fef837543d15eb2ec223f8a38dff8e74951b0b954f5b3917a1de3a3c708",
+   "size": 2089
+  },
+  "word/footer1.xml": {
+   "sha256": "aac80508dedb5c3d5042e4bc4a22c50ac86096c3edaf8ac9c5bf9c5e2d5dcfd6",
+   "size": 4725
+  },
+  "word/footer2.xml": {
+   "sha256": "e5ea6e6e04e2a4cbda07e7022d7ef7c2b83e300bd830c4153bdbbc7f22cc3a12",
+   "size": 3819
+  },
+  "word/footer3.xml": {
+   "sha256": "9097bd34e1fe97d2802eb99fca51a51d09496228f68326235eae164b58932de8",
+   "size": 2003
+  },
+  "word/footnotes.xml": {
+   "sha256": "5b351bfc5ac7f7b32316dca41c9e7720052bab3f81bd82c3960b5731750287ff",
+   "size": 2213
+  },
+  "word/header1.xml": {
+   "sha256": "9831270a023b74da1a80e8b9f245ac72ba667bba2126b6ff87fccefd61954702",
+   "size": 3013
+  },
+  "word/header2.xml": {
+   "sha256": "5a3e0f1d2e5ac156c717bc2533a0a87692856970e9f9d66cbdd32c5e0c92ee49",
+   "size": 2003
+  },
+  "word/media/cover_default.jpg": {
+   "sha256": "1637d1998ff83f6b2f72c6242eb6434ab2b17f89b90572bfa71c98bf9c3ff4fe",
+   "size": 445214
+  },
+  "word/media/header_logo.png": {
+   "sha256": "bb598fb3182a4c993a2b2ba6a24bbb48f10661cee877a6c1344d5b0bfcb78643",
+   "size": 11913
+  },
+  "word/media/logo_black.png": {
+   "sha256": "3424611f80774dd1e25649f439234113f599687135b1c0abded6a66942c30e8c",
+   "size": 21148
+  },
+  "word/media/strip.png": {
+   "sha256": "0de05b0bbf492b964e21507e8e2b051b8b72c9269d51d3335bd95fe59d770717",
+   "size": 184
+  },
+  "word/numbering.xml": {
+   "sha256": "ab944ae507a525595146319f94149ebab1fa80f20820fa45c34f7ee5a26aa25e",
+   "size": 24998
+  },
+  "word/settings.xml": {
+   "sha256": "ec35df0632af7dbde2b91a30f17244914e936f335c10dd5293432647da3b0d7b",
+   "size": 3090
+  },
+  "word/styles.xml": {
+   "sha256": "6cdbda23f154e21ae7714f190fc034ec623808a2033cfbbc1f25999e84899c77",
+   "size": 42130
+  },
+  "word/theme/theme1.xml": {
+   "sha256": "42ecadc34f3385acae760984f25996974cdc5b07c61be07d8ad5941e65907454",
+   "size": 3694
+  },
+  "word/webSettings.xml": {
+   "sha256": "12443b63e8559a3bf80aaabbdd692ea4cbf767636132f64ced1ed25222c625ef",
+   "size": 1018
+  }
+ },
+ "media": [
+  "cover_default.jpg",
+  "header_logo.png",
+  "logo_black.png",
+  "strip.png"
+ ],
+ "icons": [],
+ "warnings": []
+}

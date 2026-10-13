@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Blue Carbon Finance for Pacific Fisheries",
+    "tagline": "Feasibility assessment for a blended finance facility supporting coastal communities",
+    "format": "report",
+    "date": "5 October 2026",
+    "prepared_by": "Bankers without Boundaries",
+    "details": [
+      [
+        "Client",
+        "Illustrative client"
+      ],
+      [
+        "Status",
+        "Draft for discussion"
+      ],
+      [
+        "Version",
+        "0.3"
+      ]
+    ],
+    "toc": "auto",
+    "dividers": "none"
+  },
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Executive summary"
+    },
+    {
+      "type": "lead",
+      "text": "A blended finance facility can mobilise private capital for community fisheries if concessional funding absorbs the first losses."
+    },
+    {
+      "type": "stats",
+      "hero": 1,
+      "items": [
+        {
+          "value": "USD 250m",
+          "label": "Indicative facility size"
+        },
+        {
+          "value": "3.2x",
+          "label": "Private capital mobilised per USD of concessional funding"
+        },
+        {
+          "value": "12",
+          "label": "Coastal communities in the first phase"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The facility would lend to community fisheries cooperatives against verified blue carbon outcomes. The structure has three tiers: a first-loss grant tranche, a concessional debt tranche and a commercial senior tranche. Each tier has a clear owner and a defined return."
+    },
+    {
+      "type": "callout",
+      "title": "Key message",
+      "text": "Capital is not the binding constraint. Coordination, bankability and verification are.",
+      "variant": "green"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Context"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The financing gap"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pacific coastal ecosystems store large quantities of carbon, but most community-led conservation is funded by short grants. Investors lack a standard way to price the risk, and communities lack the technical capacity to prepare bankable projects."
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "**Fragmented funding:** many small grants, none large enough to finance infrastructure.",
+        "**No shared standard:** verification methods differ between donors and registries.",
+        "**Limited local capacity:** project preparation is slow and costly."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the facility fits"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Tier",
+        "Provider",
+        "Share",
+        "Role"
+      ],
+      "rows": [
+        [
+          "First-loss grant",
+          "Development partners",
+          "10%",
+          "Absorbs initial losses"
+        ],
+        [
+          "Concessional debt",
+          "Development finance institutions",
+          "30%",
+          "Lowers the blended cost of capital"
+        ],
+        [
+          "Senior debt",
+          "Commercial lenders",
+          "60%",
+          "Provides scale"
+        ],
+        [
+          "Total",
+          "",
+          "100%",
+          ""
+        ]
+      ],
+      "align": [
+        null,
+        null,
+        "right",
+        null
+      ],
+      "total_row": true,
+      "caption": "Indicative capital structure.",
+      "source": "BwB analysis, 2026"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Structure"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Governance"
+    },
+    {
+      "type": "paragraph",
+      "text": "A steering committee of funders and community representatives approves each project. The facility manager reports to the committee every quarter^[Reporting follows the agreed template and covers financial and verified carbon outcomes.]."
+    },
+    {
+      "type": "pull_quote",
+      "text": "The real failure is one of coordination, bankability and structuring capacity.",
+      "attribution": "Bankers without Boundaries"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Risks and mitigants"
+    },
+    {
+      "type": "table",
+      "style": "comparison",
+      "header": [
+        "Risk",
+        "Mitigant"
+      ],
+      "rows": [
+        [
+          "Verification risk",
+          "Independent verifier, published methodology"
+        ],
+        [
+          "Currency risk",
+          "Local currency tranche with a partial guarantee"
+        ],
+        [
+          "Delivery risk",
+          "Technical assistance window for project preparation"
+        ]
+      ],
+      "caption": "Principal risks and how the structure addresses them."
+    },
+    {
+      "type": "case_study",
+      "title": "Fisheries cooperative, Fiji",
+      "meta": "Pacific, 2024 to 2026",
+      "body": "A cooperative of 140 members restored 220 hectares of mangrove and sold verified credits to a regional buyer. Revenue funded cold storage, which cut post-harvest losses.",
+      "stats": [
+        {
+          "value": "220 ha",
+          "label": "Restored"
+        },
+        {
+          "value": "40%",
+          "label": "Lower losses"
+        }
+      ],
+      "source": "Illustrative example"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Next steps"
+    },
+    {
+      "type": "bullets",
+      "style": "arrow",
+      "items": [
+        "Agree the first-loss commitment with development partners.",
+        "Confirm the verification standard with the registry.",
+        "Prepare the investment memorandum for the senior tranche."
+      ]
+    },
+    {
+      "type": "numbered",
+      "items": [
+        "Circulate this draft to the steering committee.",
+        "Collect comments by 30 October 2026.",
+        "Issue version 1.0."
+      ]
+    }
+  ]
+}

@@ -1,14 +1,12 @@
-# BwB Document Assistant (Word add-in)
+# BwB Toolkit (Word add-in)
 
-A Word task pane for applying BwB heading, body and list styles, inserting
-tables and page breaks, and copying brand colours.
+A Word add-in for writing documents in the BwB format: a **BwB** ribbon tab and a task pane that start any of
+17 BwB document types, apply BwB styles, insert building blocks (callouts, key figures, snapshots, tables,
+captions, icons, Harvey balls and more), and run a Pre-QA check with one-click fixes before a document goes to QA.
 
-- **Repo root:** what GitHub Pages serves at
-  `https://Kartikeya-BwB.github.io/bwb-word-addin/` (`index.html`, `assets/`,
-  `manifest.xml` and the icons). These files are build output, so don't edit
-  them by hand.
-- **[`source/`](source/README.md):** the source code, recovered from the
-  deployed build in October 2026 and verified to rebuild it byte for byte. The
-  README there covers building, deploying and known issues.
-- **[HOW-TO-DEPLOY.md](HOW-TO-DEPLOY.md):** hosting and sideloading the
-  add-in in Word.
+- **Repo root:** what GitHub Pages serves at `https://kartikeya-bwb.github.io/bwb-word-addin/`. These files are
+  build output from `source/`, so don't edit them by hand. `manifest.xml` is the file Word installs.
+- **[`source/`](source/README.md):** the source code, with how it works and how to build, test and deploy it.
+- **[HOW-TO-DEPLOY.md](HOW-TO-DEPLOY.md):** installing the add-in in Word, for one person or for everyone.
+- **[`source/docs/v1-recovery.md`](source/docs/v1-recovery.md):** how the first version's source was recovered
+  from its deployed build with REA, and what version 2 changed.

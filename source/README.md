@@ -1,115 +1,101 @@
-# BwB Document Assistant: source
+# BwB Toolkit: source
 
-This folder is the source code for the BwB Word add-in that GitHub Pages serves
-from the repo root.
+The BwB Toolkit is a Word add-in for writing documents in the BwB format. It works the way consulting firms'
+in-house toolbars do: a ribbon tab and a task pane that put the house template, a library of building blocks,
+status stickers, Harvey balls and a house-style checker one click away.
 
-## Where it came from
+GitHub Pages serves the build from the repository root. Everything here is the source.
 
-Until October 2026 the repo held only the compiled build: one minified 212 KB
-JavaScript file and no source. On 13 October 2026 the source was recovered from
-that build with [REA (Reverse Engineer Anything)](https://github.com/morluto/rea)
-and rewritten into the files in this folder.
+## What it does
 
-**Proof that it is the same app:** building this folder reproduces all 9
-deployed files byte for byte, including `assets/index-BarzYrWO.js` (SHA-256
-`df524a42…`), the CSS, `index.html`, `manifest.xml` and the icons. Run
-`npm run verify` to check this yourself.
+| Where | What |
+| ----- | ---- |
+| **Start** | Starts any of 17 BwB document types (inception report, final report, gap analysis, policy brief, memo and so on). Each comes with the cover, contents, numbered headings, the type's structure with writing prompts, and the disclaimer; long reports can open each main section with a navy divider page. Records the document type, project, deliverable, version and funder in the document, and suggests a file name in the BwB pattern. |
+| **Write** | Applies BwB heading, text and list styles. Headings 1 to 3 number themselves. **Clean up** fixes the house style in the selection that has one right answer: UK spelling, dashes, dates, currency codes, "per cent", the company name, double spaces and quotation marks. |
+| **Insert** | Eight building blocks with placeholders to type over: callout, note, key figures, snapshot, pull quote, case study, icon grid and details table. Also BwB data tables, formatting for a pasted table, numbered captions, source lines, footnotes, contents, the disclaimer, the EU acknowledgement, an abbreviations table built from the document, Harvey balls, 1,866 Lucide icons in the brand colours and sizes, and the logo. |
+| **Check** | A Pre-QA check in the BwB QA vocabulary (Blocker, Major, Minor, Copyedit). It covers what to clear before sending, structure, tables and figures, brand, consistency (acronyms, hyphenation) and house-style wording. Every finding has **Go to**, and most have **Fix**; **Fix all safe items** applies the ones that change only what they name. Also the author self-check list (saved with the document), status stickers (Draft, For discussion and so on), field updates and a QA note to paste into the QA request. |
+| **Brand** | Colours (with the text rules, and buttons to apply the text colours), type scale, house style, document furniture and icon rules. |
+| **Ribbon** | A BwB tab with Document, Text, Insert, Review and Brand groups. Most buttons act at once; the rest open the pane where they are needed. |
 
-How the recovery went:
-
-1. `rea analyze-javascript-application` inventoried the deployed files and
-   traced `index.html` to `assets/index-BarzYrWO.js`. Its deeper semantic pass
-   ran out of memory on the bundled React code (even with an 8 GB limit), and
-   REA reported that coverage as partial rather than guessing.
-2. `rea recover-javascript-sources`, using the Wakaru engine, turned the
-   one-line bundle into about 17,000 readable lines with the JSX restored.
-   About 850 of those lines are the add-in; the rest is React and the icon
-   library.
-3. The toolchain was identified from evidence in the files. `favicon.svg` and
-   `icons.svg` are byte-identical to the create-vite 9 React starter, the
-   bundle embeds React `19.2.6`, its helper code is Rolldown's (Vite 8), and
-   the icon code matches lucide-react 1.x. The upload date (11 May 2026)
-   narrowed the versions.
-4. The add-in code was rewritten as ordinary JSX and rebuilt. With Vite 8.0.11,
-   @vitejs/plugin-react 6.0.1, React 19.2.6 and lucide-react 1.14.0 the output
-   matched exactly. Changing a single character of the source changes the
-   output hash, so the match is not a coincidence.
-
-What could not be recovered: the original variable names, comments and file
-layout. The names here were chosen for readability and do not affect the build
-output, and the split into one file per tab is a reconstruction.
+The rules come from the BwB Document Format skill (v1.1.0). The QA vocabulary, checklists and document types come
+from the BwB Deliverables Hub plan (QA Policy v2.0, Style Guide v2.0 and the document-type research of
+10 October 2026).
 
 ## Working on it
 
-Needs Node.js 20.19+ or 22.12+.
+Needs Node.js 22 or later.
 
 ```sh
 cd source
-npm ci          # installs the exact versions in package-lock.json
-npm run dev     # previews the task pane in a browser; Word actions do nothing outside Word
-npm run build   # writes dist/
-npm run verify  # builds, then compares dist/ with the deployed files at the repo root
+npm ci          # exact versions from package-lock.json
+npm test        # unit tests, including tests against a fake Word API
+npm run build   # regenerates the icons and manifests, type-checks, then writes dist/
+npm run deploy  # builds, then copies dist/ to the repository root for GitHub Pages
 ```
 
-To deploy a change, run `npm run build`, copy everything in `source/dist/` to
-the repo root (replacing the old files in `assets/`), then commit and push to
-`main`. After you change the source, `verify` will list the files that differ
-from the live site, which is a quick way to see what a deploy will change.
+To try a change in Word before deploying it:
 
-`manifest.xml` and the icons live in `source/public/` and are copied into the
-build, so edit them there.
+1. Run `npx office-addin-dev-certs install` once. It trusts a localhost certificate that the dev server picks up.
+2. Run `npm run dev` to serve the add-in at https://localhost:3000.
+3. Sideload `manifest.dev.xml`, which installs as "BwB Toolkit (dev)" next to the published add-in. In Word on
+   the web: Insert, Add-ins, Upload My Add-in. On Windows and Mac, see [HOW-TO-DEPLOY.md](../HOW-TO-DEPLOY.md).
 
-Versions are pinned exactly so the build stays reproducible. Upgrading them is
-fine, but the output hashes will change.
+`public/manifest.xml` and `manifest.dev.xml` are generated from `src/commands/ribbon.json` by
+`scripts/make-manifest.mjs`, and the ribbon icons by `scripts/make-ribbon-icons.mjs`. Edit the JSON, never the XML.
+
+## How it works
+
+- **New documents are built in the pane.** `src/docx` is a TypeScript port of the BwB skill's Python document
+  builder. It fills the BwB base template (`public/templates/bwb-base.docx`) with the cover, contents, skeleton and
+  disclaimer. Word opens the result with `createDocument().open()` (WordApi 1.3), so it works the same on Windows,
+  Mac and the web.
+- **Blocks are inserted as WordprocessingML.** The same builder turns a block into a fragment that carries the
+  BwB styles with it. Word adds any style the document lacks and never overwrites one it has.
+- **Styles arrive when they are first needed.** In a document that did not start from the template, the first BwB
+  style used brings in the full BwB style set (`src/word/styles.ts`), without changing any text.
+- **The check reads a snapshot.** `src/word/snapshot.ts` reads the document in a few batched calls; the rules in
+  `src/check` are pure functions over that snapshot, so they are tested without Word. Fixes check that the
+  paragraph still reads as it did, and stop rather than guess if it does not.
+- **The wording rules are a line-by-line port** of the skill's Python rules (`src/rules/writing.ts`). A
+  differential test checks the port against outputs recorded from the Python on a corpus of over 700 strings.
+
+### Word versions
+
+Everything needs WordApi 1.3 (Word 2016 or later, Microsoft 365, Word on the web). Newer Word adds:
+
+| Requirement set | Adds |
+| --------------- | ---- |
+| WordApi 1.4 | The count of comments in the check |
+| WordApi 1.5 | Checking which styles a document has, restyling Word's own styles, updating fields from the pane, footnotes |
+| WordApi 1.6 | The count of tracked changes in the check |
+
+Without them, the add-in says what to do by hand (for example Ctrl+A, then F9 to update fields).
+
+The pane also needs a modern web view: Microsoft 365 on Windows, Mac or the web, or Office 2021 or later on Windows.
+Office 2016 and 2019 bought outright run add-ins in Internet Explorer 11 or the old Edge, which cannot run it.
 
 ## Layout
 
-| File                               | What it does                                                  |
-| ---------------------------------- | ------------------------------------------------------------- |
-| `src/main.jsx`                     | Waits for `Office.onReady`, then renders the app              |
-| `src/App.jsx`                      | Header, the four tabs, toast messages and the `runWord` helper |
-| `src/components/StylesPanel.jsx`   | Applies heading and body paragraph styles                     |
-| `src/components/ListsPanel.jsx`    | Applies BwB bullet and numbered list styles                   |
-| `src/components/InsertPanel.jsx`   | Inserts tables, the callout paragraph and page breaks         |
-| `src/components/ColoursPanel.jsx`  | Brand colour swatches with copy buttons, and the brand fonts  |
-| `src/components/ui.jsx`            | Shared `Section` and `Divider` components                     |
-| `scripts/verify-live.mjs`          | Compares a build with the deployed files                      |
+| Path | What it holds |
+| ---- | ------------- |
+| `src/brand` | BwB tokens, styles, document types and their skeletons, checklists, the block library and icons |
+| `src/docx` | The document and block builder (a port of the skill's Python builder) and the BwB template's styles |
+| `src/rules` | House-style wording rules, acronym and hyphenation analysis, heading case |
+| `src/check` | The Pre-QA rules and the engine that runs them |
+| `src/word` | Everything that talks to Word: styles, inserting, tables, stickers, properties, the snapshot, fixes |
+| `src/ui` | The task pane (React) |
+| `src/commands` | The ribbon definition and the functions its buttons run |
+| `scripts` | Generators for the manifests, ribbon icons and icon index; deploy and live-check scripts |
+| `test/fakeWord` | An in-memory Word API with Office.js load and sync semantics, used by the tests |
+| `docs/v1-recovery.md` | How version 1 was recovered from its deployed build, and how version 2 deals with its issues |
 
-## Issues spotted during recovery
+## Known limits and open questions
 
-All of these are in the add-in as deployed today. None has been fixed here, so
-that the build stays identical to the live version. Items marked "check in
-Word" are inferences from the code and Microsoft's documentation and have not
-been tested in Word.
-
-1. **Inserting a data table can leave two tables** (check in Word). The table
-   is inserted first and styled afterwards. Commands that already ran are not
-   undone when a later one fails (Microsoft's `OfficeExtension.Error` example
-   shows this), so if a styling step throws, the table stays and the fallback
-   in the `catch` block inserts a second one. Two lines look likely to throw:
-   `cell.shadingColor = '001522'` (Microsoft documents the `#RRGGBB` form) and
-   `table.style = 'TableGrid'` (the style's name is "Table Grid", and the next
-   line sets `styleBuiltIn` anyway).
-2. **Header text may be unreadable** (check in Word). Header cells are shaded
-   navy but no font colour is set. If the BwB template's body text is navy, as
-   the Colours tab says, the header text will be navy on navy.
-3. **Two-Column Layout comes out entirely navy.** It is a one-row table, and
-   the header shading is applied to the first row, which is the whole table.
-4. **Highlight Callout does not insert a box.** It inserts a plain Normal
-   paragraph and then tells the user to apply the BwB Highlight table style,
-   which cannot be applied to a paragraph.
-5. **Section Divider is not implemented.** It only shows a red message asking
-   the user to copy the panel from the template.
-6. **Most styles only work in documents based on the BwB template.**
-   `BwB Bullet Lime`, `Strong1` and the other BwB styles are custom styles, so
-   they only work where those styles exist. The heading names (`heading 1` and
-   so on) are the English names; `styleBuiltIn` also works in other Word
-   languages.
-7. **The add-in ID is a placeholder.** `manifest.xml` uses
-   `a1b2c3d4-e5f6-7890-abcd-ef1234567890`. Replace it with a freshly generated
-   GUID before an organisation-wide rollout, because changing it later makes
-   Word treat it as a different add-in.
-8. **Leftovers.** `favicon.svg` and `icons.svg` are the Vite starter's logo
-   and social icons and are not used. `ui.jsx` has 11 unused style entries.
-   `manifest.xml` does not declare the WordApi 1.3 requirement that table
-   insertion and table styles need.
+- **The disclaimer wording** is the standard text from the BwB Document Format skill. The Deliverables Hub plan
+  lists the disclaimer variants as an open compliance question, so check with the Compliance Lead before relying on
+  it for anything that could be a financial promotion.
+- **Fonts.** Candara and Aptos ship with Microsoft 365. Under the BwB licensing rule the pane never serves them;
+  it uses them when they are installed and falls back to Segoe UI.
+- **The check is a snapshot.** After editing, run it again; a fix on a paragraph that has changed is skipped, not
+  guessed.
+- **Ribbon commands** report failures in a small dialog, because a ribbon button has no pane to show a message in.

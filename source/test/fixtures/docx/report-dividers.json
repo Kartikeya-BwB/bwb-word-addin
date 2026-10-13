@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Dividers and Front Matter",
+    "subtitle": "A Second Title Line",
+    "tagline": "Section dividers before every numbered chapter",
+    "format": "report",
+    "date": "1 January 2027",
+    "prepared_by": "BwB Advisory",
+    "meta_right": "",
+    "details": [["Client", "Example client"], ["Version", "1.0"]],
+    "dividers": "h1",
+    "toc": true,
+    "toc_levels": 1,
+    "disclaimer_paragraphs": ["Custom disclaimer paragraph one.", "**Custom** paragraph two."],
+    "disclaimer_note": "",
+    "subject": "Subject text",
+    "keywords": "dividers, test",
+    "description": "A description & more"
+  },
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Executive summary"},
+    {"type": "paragraph", "text": "Front matter is not numbered and gets no divider."},
+    {"type": "heading", "level": 1, "text": "Context", "subtitle": "Why this matters"},
+    {"type": "paragraph", "text": "Chapter one."},
+    {"type": "heading", "level": 2, "text": "Background"},
+    {"type": "heading", "level": 1, "text": "Structure", "divider_variant": "light"},
+    {"type": "paragraph", "text": "Chapter two."},
+    {"type": "heading", "level": 1, "text": "Unnumbered chapter", "numbered": false},
+    {"type": "heading", "level": 2, "text": "Inherits unnumbered"},
+    {"type": "heading", "level": 2, "text": "Forced numbered", "numbered": true},
+    {"type": "heading", "level": 1, "text": "Annex: data tables"},
+    {"type": "paragraph", "text": "Annexes are not numbered."}
+  ]
+}

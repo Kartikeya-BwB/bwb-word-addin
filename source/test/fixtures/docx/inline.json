@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Inline Mark-up",
+    "format": "report",
+    "date": "9 September 2026",
+    "toc": true,
+    "toc_levels": 3,
+    "toc_title": "Contents"
+  },
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Emphasis and **escapes**"},
+    {"type": "paragraph", "text": "Plain, **bold**, *italic*, ***both***, and **bold with *nested* italic**."},
+    {"type": "paragraph", "text": "Escapes: \\*not italic\\*, \\[not a link\\](x), \\^[not a footnote], a backslash \\\\ and 5 \\* 3."},
+    {"type": "paragraph", "text": "Special characters: & < > \" ' and a tab\there, a line\nbreak, an emoji 🌍 and an accent é."},
+    {"type": "heading", "level": 2, "text": "Links"},
+    {"type": "paragraph", "text": "See [the BwB site](https://bwb.earth) and [the same site](https://bwb.earth), [a query link](https://example.org/a?b=1&c=2) and [a bookmark](#_Toc100000001)."},
+    {"type": "heading", "level": 2, "text": "Footnotes^[A footnote on a heading.]"},
+    {"type": "paragraph", "text": "First note^[Plain footnote text.] and second^[With **bold**, *italic* and [a link](https://example.org).]."},
+    {"type": "paragraph", "text": "A note with an icon^[Icon {icon:leaf} stripped.] in it."},
+    {"type": "heading", "level": 3, "text": "Level three"},
+    {"type": "heading", "level": 4, "text": "Level four"},
+    {"type": "heading", "level": 5, "text": "Level five"},
+    {"type": "heading", "level": 6, "text": "Level six"},
+    {"type": "heading", "level": 9, "text": "Level nine clamps to six"},
+    {"type": "heading", "level": 0, "text": "Level zero clamps to one"},
+    {"type": "heading", "level": 2, "text": "Not in the contents", "in_toc": false},
+    {"type": "heading", "level": 1, "text": "Captions", "numbered": false},
+    {"type": "table", "header": ["A"], "rows": [["1"]], "caption": "First table."},
+    {"type": "figure", "path": "media/chart.png", "caption": "First figure.", "alt": "Chart"},
+    {"type": "table", "header": ["B"], "rows": [["2"]], "caption": "table 12 - Second table, label removed.", "source": "Source with *italic*"},
+    {"type": "figure", "path": "media/photo.jpg", "caption": "Second figure.", "source": "Photo library"},
+    {"type": "heading", "level": 1, "text": "Appendix A: icons inline"},
+    {"type": "paragraph", "text": "Inline {icon:leaf} default navy, {icon:leaf:green} green, {icon:alert-triangle} renamed, {icon:leaf:lime} lime on white, {icon:leaf:purple} unknown colour and {icon:no-such-icon} unknown."},
+    {"type": "paragraph", "text": "**Bold {icon:droplets} icon** and *italic {icon:banknote:charcoal}*, {icon:Lucide-Leaf-Icon} normalised."},
+    {"type": "heading", "level": 2, "text": "Heading with {icon:leaf} icon"}
+  ]
+}

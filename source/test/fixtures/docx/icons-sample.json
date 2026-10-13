@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Using icons in a BwB report",
+    "tagline": "Where icons help, and how to place them in the approved colours",
+    "format": "report",
+    "date": "5 October 2026",
+    "disclaimer": false
+  },
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Where icons help"},
+    {"type": "paragraph", "text": "An icon earns its place when it names a topic, marks a callout or labels a tile. Inline icons sit with the text, for example {icon:droplets} water, {icon:banknote} finance and {icon:landmark} institutions, and take the size of the line."},
+    {"type": "callout", "title": "Lesson", "icon": "lightbulb", "text": "Use few icons, and give every one a job. A page of icons is decoration, not signposting."},
+    {"type": "callout", "title": "Caveat", "icon": "triangle-alert", "variant": "charcoal", "text": "Lime and white never go on a light background. The builder substitutes an approved colour and says so."},
+    {"type": "heading", "level": 2, "text": "Icon grid"},
+    {"type": "paragraph", "text": "A short list of workstreams, each with a title and a sentence, reads well as an icon grid."},
+    {"type": "icon_grid", "columns": 3, "items": [
+      {"icon": "leaf", "title": "Nature finance", "text": "Structures that pay for the protection and restoration of land and water."},
+      {"icon": "landmark", "title": "Capital markets", "text": "Bond structuring and investor engagement for sovereigns and cities."},
+      {"icon": "handshake", "title": "Partnerships", "text": "Public and private partners working from one set of facts."},
+      {"icon": "chart-line", "title": "Analysis", "text": "Evidence that supports a decision."},
+      {"icon": "scale", "title": "Governance", "text": "Clear roles, safeguards and reporting."},
+      {"icon": "globe", "title": "Reach", "text": "Work across Africa, Asia and the Pacific."}
+    ]},
+    {"type": "heading", "level": 1, "text": "On navy panels"},
+    {"type": "icon_grid", "columns": 4, "variant": "navy", "hero": 1, "items": [
+      {"icon": "sprout", "title": "Grow", "text": "Build the pipeline."},
+      {"icon": "coins", "title": "Fund", "text": "Mobilise capital."},
+      {"icon": "scale", "title": "Govern", "text": "Set the rules."},
+      {"icon": "users", "title": "Include", "text": "Share the benefit."}
+    ]},
+    {"type": "stats", "hero": 1, "items": [
+      {"value": "USD 102bn", "label": "Current flow", "icon": "banknote"},
+      {"value": "USD 700bn", "label": "Annual need", "icon": "trending-up"},
+      {"value": "7x", "label": "Gap to close", "icon": "layers"}
+    ]},
+    {"type": "snapshot", "columns": 3, "items": [
+      {"icon": "map-pin", "eyebrow": "REGION", "value": "Southeast Asia", "note": "Four countries"},
+      {"icon": "calendar", "eyebrow": "PERIOD", "value": "2023 to 2025", "note": "Three years"},
+      {"icon": "users", "eyebrow": "TEAM", "value": "Six people", "note": "Two countries"}
+    ]},
+    {"type": "case_study", "title": "Sovereign green bond", "icon": "landmark", "meta": "Africa, 2024",
+     "body": ["A short case study. The icon above the title sits on the navy panel in white."],
+     "stats": [{"value": "USD 500m", "label": "Raised"}], "source": "BwB analysis"}
+  ]
+}

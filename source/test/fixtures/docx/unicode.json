@@ -1,0 +1,71 @@
+{
+ "meta": {
+  "title": "Ünïcödé 🌍 Title with Wide Characters and Non breaking Spaces That Wrap",
+  "format": "report",
+  "toc": false,
+  "disclaimer": false,
+  "date": "7 July 2026"
+ },
+ "blocks": [
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Émissions 🌱 and ✓ marks"
+  },
+  {
+   "type": "paragraph",
+   "text": "Text with a non-breaking space, a narrow space and an ideographic　space."
+  },
+  {
+   "type": "table",
+   "header": [
+    "Région",
+    "Valeur 💶",
+    "Note"
+   ],
+   "rows": [
+    [
+     "Île-de-France",
+     "1 234",
+     "🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍"
+    ],
+    [
+     "北京",
+     "5 678",
+     "中文文本中文文本中文文本中文文本中文文本中文文本"
+    ]
+   ]
+  },
+  {
+   "type": "case_study",
+   "title": "Développement durable 🌿",
+   "body": "Body."
+  },
+  {
+   "type": "stats",
+   "items": [
+    {
+     "value": "€ 102bn",
+     "label": "Euro sign"
+    },
+    {
+     "value": "USD 250m",
+     "label": "No-break space after the code"
+    }
+   ]
+  },
+  {
+   "type": "pull_quote",
+   "text": "  \"Spaces around\"  "
+  },
+  {
+   "type": "callout",
+   "title": "Tab\tand\nnewline",
+   "text": "Line one\nLine two"
+  },
+  {
+   "type": "paragraph",
+   "text": "**🌍 bold emoji** and *é italic*"
+  }
+ ]
+}

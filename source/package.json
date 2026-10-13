@@ -1,21 +1,36 @@
 {
-  "name": "bwb-word-addin",
+  "name": "bwb-toolkit",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "assets": "node scripts/make-icon-index.mjs && node scripts/make-ribbon-icons.mjs && node scripts/make-manifest.mjs",
+    "dev": "npm run assets && vite",
+    "demo": "vite --open /demo.html",
+    "build": "npm run assets && tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "preview": "vite preview",
-    "verify": "vite build && node scripts/verify-live.mjs"
+    "deploy": "npm run build && node scripts/deploy-to-root.mjs",
+    "check-live": "node scripts/verify-live.mjs"
   },
   "dependencies": {
-    "lucide-react": "1.14.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "fflate": "0.8.3",
+    "lucide-react": "1.52.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "6.0.1",
-    "vite": "8.0.11"
+    "@resvg/resvg-js": "2.6.2",
+    "@types/node": "24.19.2",
+    "@types/office-js": "1.0.611",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "@xmldom/xmldom": "0.9.12",
+    "lucide-static": "1.52.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
   }
 }

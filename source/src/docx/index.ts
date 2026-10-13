@@ -1,0 +1,60 @@
+/** Public API of the BwB document builder (a TypeScript port of the BwB skill's Python builder). */
+export { buildDocx, countHeadings } from './compose.ts'
+export { buildBlockOoxml } from './flatOpc.ts'
+export { readImageInfo, type ImageInfo } from './imageInfo.ts'
+export {
+  checkColour,
+  colourName,
+  createIconResolver,
+  ICON_COLOURS,
+  ICON_PX,
+  ICON_SIZES_CM,
+  lucideSvgFromNodes,
+  normaliseIconName,
+  recolourSvg,
+  resolveIconName,
+  suggestIconNames,
+  type ColourCheck,
+  type LucideIconNode,
+} from './iconPolicy.ts'
+export { LUCIDE_ALIASES } from './lucideAliases.ts'
+export { DEFAULT_DISCLAIMER, DISCLAIMER_NOTE } from './sections.ts'
+export { escapeInline } from './xml.ts'
+export type {
+  AccentBlock,
+  Block,
+  BlockOptions,
+  BlockResult,
+  BuildAssets,
+  BuildResult,
+  BulletsBlock,
+  BulletStyle,
+  CaptionBlock,
+  CalloutBlock,
+  CaseStudyBlock,
+  ColumnAlign,
+  Content,
+  ContentMeta,
+  DisclaimerBlock,
+  DividerBlock,
+  FigureBlock,
+  GuidanceBlock,
+  HeadingBlock,
+  IconColour,
+  IconGridBlock,
+  IconRenderer,
+  KeyValuesBlock,
+  LeadBlock,
+  ListItem,
+  NumberedBlock,
+  PageBreakBlock,
+  ParagraphBlock,
+  PictureData,
+  PullQuoteBlock,
+  SnapshotBlock,
+  SourceBlock,
+  StatsBlock,
+  TableBlock,
+  TableCell,
+  TocBlock,
+} from './types.ts'

@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "Facility Structure: Decision Needed on the First-Loss Tranche",
+    "format": "memo",
+    "date": "5 October 2026",
+    "details": [
+      [
+        "To",
+        "Investment Committee"
+      ],
+      [
+        "From",
+        "Kartikeya Aggarwal"
+      ],
+      [
+        "Date",
+        "5 October 2026"
+      ],
+      [
+        "Subject",
+        "First-loss tranche sizing"
+      ]
+    ],
+    "disclaimer": false
+  },
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Decision"
+    },
+    {
+      "type": "paragraph",
+      "text": "We ask the committee to approve a first-loss tranche of 10 per cent of the facility, which is USD 25m on the current size."
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Why 10 per cent"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "It is the smallest tranche that keeps senior lenders at their required coverage ratio.",
+        "Development partners have indicated appetite up to USD 30m.",
+        "A larger tranche would reduce the leverage the facility achieves."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Options considered"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Option",
+        "First-loss",
+        "Private capital mobilised",
+        "Assessment"
+      ],
+      "rows": [
+        [
+          "A",
+          "5%",
+          "USD 235m",
+          "Senior lenders do not proceed"
+        ],
+        [
+          "B",
+          "10%",
+          "USD 225m",
+          "Recommended"
+        ],
+        [
+          "C",
+          "15%",
+          "USD 212m",
+          "Lower leverage, same risk profile"
+        ]
+      ],
+      "align": [
+        null,
+        "right",
+        "right",
+        null
+      ],
+      "caption": "Tranche sizing options.",
+      "source": "BwB analysis"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Next steps"
+    },
+    {
+      "type": "bullets",
+      "style": "arrow",
+      "items": [
+        "Committee decision by 16 October 2026.",
+        "Term sheet to partners by 30 October 2026."
+      ]
+    }
+  ]
+}

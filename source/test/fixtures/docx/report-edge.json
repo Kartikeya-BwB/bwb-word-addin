@@ -1,0 +1,104 @@
+{
+ "meta": {
+  "title": "Edge Cases",
+  "date": "8 August 2026",
+  "toc": "auto",
+  "dividers": "h1",
+  "h1_page_break": false,
+  "disclaimer_paragraphs": []
+ },
+ "blocks": [
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Level two first"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Summary"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Under the summary"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Main"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Under main"
+  },
+  {
+   "type": "stats",
+   "items": [
+    {
+     "value": "1",
+     "label": "One item"
+    }
+   ]
+  },
+  {
+   "type": "snapshot",
+   "columns": 1,
+   "items": [
+    {
+     "eyebrow": "ONE",
+     "value": "Column"
+    }
+   ]
+  },
+  {
+   "type": "figure",
+   "path": "media/chart.png",
+   "width_cm": 12.7,
+   "caption": "Twelve point seven centimetres."
+  },
+  {
+   "type": "icon_grid",
+   "columns": 9,
+   "items": [
+    {
+     "title": "A"
+    },
+    {
+     "title": "B"
+    }
+   ]
+  },
+  {
+   "type": "bullets",
+   "items": [
+    {
+     "text": "Level zero object"
+    }
+   ]
+  },
+  {
+   "type": "page_break"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "After a page break"
+  },
+  {
+   "type": "paragraph",
+   "text": "Summaryish is not front matter, but Summary: is."
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Summaryish chapter"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "References"
+  }
+ ]
+}

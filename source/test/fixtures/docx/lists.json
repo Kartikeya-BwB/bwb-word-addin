@@ -1,0 +1,25 @@
+{
+  "meta": {"title": "Lists", "format": "memo", "disclaimer": false},
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Bullet styles"},
+    {"type": "bullets", "items": ["Green square one", {"text": "Sub-item", "level": 1}, {"text": "Sub-sub-item", "level": 2},
+                                  {"text": "Clamped to the third level", "level": 3}, "Back to the top"]},
+    {"type": "bullets", "style": "navy-circle", "items": ["Navy one", "Navy two"]},
+    {"type": "bullets", "style": "green-circle", "items": ["Green circle"]},
+    {"type": "bullets", "style": "charcoal-dash", "items": ["Assumption one", {"text": "Detail", "level": 1}]},
+    {"type": "bullets", "style": "arrow", "items": ["Next step"]},
+    {"type": "bullets", "style": "lime-navy", "items": ["Lime on navy"]},
+    {"type": "bullets", "style": "unknown-style", "items": ["Falls back to green square"]},
+    {"type": "bullets", "items": []},
+    {"type": "heading", "level": 1, "text": "Numbered lists"},
+    {"type": "numbered", "items": ["First", {"text": "First a", "level": 1}, {"text": "First a i", "level": 2}, "Second"]},
+    {"type": "paragraph", "text": "A paragraph between two numbered lists."},
+    {"type": "numbered", "items": ["Restarts at one", "Two"]},
+    {"type": "numbered", "items": []},
+    {"type": "numbered", "items": ["Third list"]},
+    {"type": "page_break"},
+    {"type": "bullets", "items": ["The first bullet starts a new page."]},
+    {"type": "page_break"},
+    {"type": "numbered", "items": ["So does this numbered item."]}
+  ]
+}

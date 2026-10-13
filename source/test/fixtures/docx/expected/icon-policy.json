@@ -1,0 +1,1054 @@
+{
+ "check_colour": [
+  [
+   "",
+   false,
+   null,
+   "green",
+   "'' is not an approved icon colour; used green"
+  ],
+  [
+   "",
+   false,
+   "navy",
+   "navy",
+   "'' is not an approved icon colour; used navy"
+  ],
+  [
+   "",
+   false,
+   "white",
+   "green",
+   "'' is not an approved icon colour; used green"
+  ],
+  [
+   "",
+   false,
+   "lime",
+   "green",
+   "'' is not an approved icon colour; used green"
+  ],
+  [
+   "",
+   false,
+   "purple",
+   "green",
+   "'' is not an approved icon colour; used green"
+  ],
+  [
+   "",
+   true,
+   null,
+   "white",
+   "'' is not an approved icon colour; used white"
+  ],
+  [
+   "",
+   true,
+   "navy",
+   "white",
+   "'' is not an approved icon colour; used white"
+  ],
+  [
+   "",
+   true,
+   "white",
+   "white",
+   "'' is not an approved icon colour; used white"
+  ],
+  [
+   "",
+   true,
+   "lime",
+   "lime",
+   "'' is not an approved icon colour; used lime"
+  ],
+  [
+   "",
+   true,
+   "purple",
+   "white",
+   "'' is not an approved icon colour; used white"
+  ],
+  [
+   "green",
+   false,
+   null,
+   "green",
+   null
+  ],
+  [
+   "green",
+   false,
+   "navy",
+   "green",
+   null
+  ],
+  [
+   "green",
+   false,
+   "white",
+   "green",
+   null
+  ],
+  [
+   "green",
+   false,
+   "lime",
+   "green",
+   null
+  ],
+  [
+   "green",
+   false,
+   "purple",
+   "green",
+   null
+  ],
+  [
+   "green",
+   true,
+   null,
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "green",
+   true,
+   "navy",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "green",
+   true,
+   "white",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "green",
+   true,
+   "lime",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "green",
+   true,
+   "purple",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "navy",
+   false,
+   null,
+   "navy",
+   null
+  ],
+  [
+   "navy",
+   false,
+   "navy",
+   "navy",
+   null
+  ],
+  [
+   "navy",
+   false,
+   "white",
+   "navy",
+   null
+  ],
+  [
+   "navy",
+   false,
+   "lime",
+   "navy",
+   null
+  ],
+  [
+   "navy",
+   false,
+   "purple",
+   "navy",
+   null
+  ],
+  [
+   "navy",
+   true,
+   null,
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "navy",
+   true,
+   "navy",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "navy",
+   true,
+   "white",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "navy",
+   true,
+   "lime",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "navy",
+   true,
+   "purple",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "charcoal",
+   false,
+   null,
+   "charcoal",
+   null
+  ],
+  [
+   "charcoal",
+   false,
+   "navy",
+   "charcoal",
+   null
+  ],
+  [
+   "charcoal",
+   false,
+   "white",
+   "charcoal",
+   null
+  ],
+  [
+   "charcoal",
+   false,
+   "lime",
+   "charcoal",
+   null
+  ],
+  [
+   "charcoal",
+   false,
+   "purple",
+   "charcoal",
+   null
+  ],
+  [
+   "charcoal",
+   true,
+   null,
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "charcoal",
+   true,
+   "navy",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "charcoal",
+   true,
+   "white",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "charcoal",
+   true,
+   "lime",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "charcoal",
+   true,
+   "purple",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "white",
+   false,
+   null,
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "white",
+   false,
+   "navy",
+   "navy",
+   "white icon on a light background; used navy (lime and white are for navy panels only)"
+  ],
+  [
+   "white",
+   false,
+   "white",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "white",
+   false,
+   "lime",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "white",
+   false,
+   "purple",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "white",
+   true,
+   null,
+   "white",
+   null
+  ],
+  [
+   "white",
+   true,
+   "navy",
+   "white",
+   null
+  ],
+  [
+   "white",
+   true,
+   "white",
+   "white",
+   null
+  ],
+  [
+   "white",
+   true,
+   "lime",
+   "white",
+   null
+  ],
+  [
+   "white",
+   true,
+   "purple",
+   "white",
+   null
+  ],
+  [
+   "lime",
+   false,
+   null,
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "lime",
+   false,
+   "navy",
+   "navy",
+   "lime icon on a light background; used navy (lime and white are for navy panels only)"
+  ],
+  [
+   "lime",
+   false,
+   "white",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "lime",
+   false,
+   "lime",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "lime",
+   false,
+   "purple",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "lime",
+   true,
+   null,
+   "lime",
+   null
+  ],
+  [
+   "lime",
+   true,
+   "navy",
+   "lime",
+   null
+  ],
+  [
+   "lime",
+   true,
+   "white",
+   "lime",
+   null
+  ],
+  [
+   "lime",
+   true,
+   "lime",
+   "lime",
+   null
+  ],
+  [
+   "lime",
+   true,
+   "purple",
+   "lime",
+   null
+  ],
+  [
+   "purple",
+   false,
+   null,
+   "green",
+   "'purple' is not an approved icon colour; used green"
+  ],
+  [
+   "purple",
+   false,
+   "navy",
+   "navy",
+   "'purple' is not an approved icon colour; used navy"
+  ],
+  [
+   "purple",
+   false,
+   "white",
+   "green",
+   "'purple' is not an approved icon colour; used green"
+  ],
+  [
+   "purple",
+   false,
+   "lime",
+   "green",
+   "'purple' is not an approved icon colour; used green"
+  ],
+  [
+   "purple",
+   false,
+   "purple",
+   "green",
+   "'purple' is not an approved icon colour; used green"
+  ],
+  [
+   "purple",
+   true,
+   null,
+   "white",
+   "'purple' is not an approved icon colour; used white"
+  ],
+  [
+   "purple",
+   true,
+   "navy",
+   "white",
+   "'purple' is not an approved icon colour; used white"
+  ],
+  [
+   "purple",
+   true,
+   "white",
+   "white",
+   "'purple' is not an approved icon colour; used white"
+  ],
+  [
+   "purple",
+   true,
+   "lime",
+   "lime",
+   "'purple' is not an approved icon colour; used lime"
+  ],
+  [
+   "purple",
+   true,
+   "purple",
+   "white",
+   "'purple' is not an approved icon colour; used white"
+  ],
+  [
+   "Grey",
+   false,
+   null,
+   "charcoal",
+   null
+  ],
+  [
+   "Grey",
+   false,
+   "navy",
+   "charcoal",
+   null
+  ],
+  [
+   "Grey",
+   false,
+   "white",
+   "charcoal",
+   null
+  ],
+  [
+   "Grey",
+   false,
+   "lime",
+   "charcoal",
+   null
+  ],
+  [
+   "Grey",
+   false,
+   "purple",
+   "charcoal",
+   null
+  ],
+  [
+   "Grey",
+   true,
+   null,
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "Grey",
+   true,
+   "navy",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "Grey",
+   true,
+   "white",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "Grey",
+   true,
+   "lime",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "Grey",
+   true,
+   "purple",
+   "white",
+   "charcoal icon on a navy panel is hard to read; used white"
+  ],
+  [
+   "#328840",
+   false,
+   null,
+   "green",
+   null
+  ],
+  [
+   "#328840",
+   false,
+   "navy",
+   "green",
+   null
+  ],
+  [
+   "#328840",
+   false,
+   "white",
+   "green",
+   null
+  ],
+  [
+   "#328840",
+   false,
+   "lime",
+   "green",
+   null
+  ],
+  [
+   "#328840",
+   false,
+   "purple",
+   "green",
+   null
+  ],
+  [
+   "#328840",
+   true,
+   null,
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "#328840",
+   true,
+   "navy",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "#328840",
+   true,
+   "white",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "#328840",
+   true,
+   "lime",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "#328840",
+   true,
+   "purple",
+   "white",
+   "green icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "BED62F",
+   false,
+   null,
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "BED62F",
+   false,
+   "navy",
+   "navy",
+   "lime icon on a light background; used navy (lime and white are for navy panels only)"
+  ],
+  [
+   "BED62F",
+   false,
+   "white",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "BED62F",
+   false,
+   "lime",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "BED62F",
+   false,
+   "purple",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "BED62F",
+   true,
+   null,
+   "lime",
+   null
+  ],
+  [
+   "BED62F",
+   true,
+   "navy",
+   "lime",
+   null
+  ],
+  [
+   "BED62F",
+   true,
+   "white",
+   "lime",
+   null
+  ],
+  [
+   "BED62F",
+   true,
+   "lime",
+   "lime",
+   null
+  ],
+  [
+   "BED62F",
+   true,
+   "purple",
+   "lime",
+   null
+  ],
+  [
+   "black",
+   false,
+   null,
+   "navy",
+   null
+  ],
+  [
+   "black",
+   false,
+   "navy",
+   "navy",
+   null
+  ],
+  [
+   "black",
+   false,
+   "white",
+   "navy",
+   null
+  ],
+  [
+   "black",
+   false,
+   "lime",
+   "navy",
+   null
+  ],
+  [
+   "black",
+   false,
+   "purple",
+   "navy",
+   null
+  ],
+  [
+   "black",
+   true,
+   null,
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "black",
+   true,
+   "navy",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "black",
+   true,
+   "white",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "black",
+   true,
+   "lime",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "black",
+   true,
+   "purple",
+   "white",
+   "navy icon on a navy panel; used white (white or lime only on navy)"
+  ],
+  [
+   "#ffffff",
+   false,
+   null,
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "#ffffff",
+   false,
+   "navy",
+   "navy",
+   "white icon on a light background; used navy (lime and white are for navy panels only)"
+  ],
+  [
+   "#ffffff",
+   false,
+   "white",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "#ffffff",
+   false,
+   "lime",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "#ffffff",
+   false,
+   "purple",
+   "green",
+   "white icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "#ffffff",
+   true,
+   null,
+   "white",
+   null
+  ],
+  [
+   "#ffffff",
+   true,
+   "navy",
+   "white",
+   null
+  ],
+  [
+   "#ffffff",
+   true,
+   "white",
+   "white",
+   null
+  ],
+  [
+   "#ffffff",
+   true,
+   "lime",
+   "white",
+   null
+  ],
+  [
+   "#ffffff",
+   true,
+   "purple",
+   "white",
+   null
+  ],
+  [
+   "  Lime  ",
+   false,
+   null,
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "  Lime  ",
+   false,
+   "navy",
+   "navy",
+   "lime icon on a light background; used navy (lime and white are for navy panels only)"
+  ],
+  [
+   "  Lime  ",
+   false,
+   "white",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "  Lime  ",
+   false,
+   "lime",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "  Lime  ",
+   false,
+   "purple",
+   "green",
+   "lime icon on a light background; used green (lime and white are for navy panels only)"
+  ],
+  [
+   "  Lime  ",
+   true,
+   null,
+   "lime",
+   null
+  ],
+  [
+   "  Lime  ",
+   true,
+   "navy",
+   "lime",
+   null
+  ],
+  [
+   "  Lime  ",
+   true,
+   "white",
+   "lime",
+   null
+  ],
+  [
+   "  Lime  ",
+   true,
+   "lime",
+   "lime",
+   null
+  ],
+  [
+   "  Lime  ",
+   true,
+   "purple",
+   "lime",
+   null
+  ]
+ ],
+ "resolve": {
+  "Leaf": "leaf",
+  "lucide-leaf": "leaf",
+  "Lucide:Leaf": "leaf",
+  "leaf-icon": "leaf",
+  "bar_chart": "chart-no-axes-column-increasing",
+  "Bar Chart": "chart-no-axes-column-increasing",
+  "alert-triangle": "triangle-alert",
+  "nope": null,
+  "": null,
+  "  Droplets  ": "droplets",
+  "x-octagon": "octagon-x",
+  "LUCIDE-ICON": null
+ },
+ "suggest3": {
+  "no-such-icon": [],
+  "not-an-icon": [
+   "octagon"
+  ],
+  "leef": [
+   "leaf",
+   "beef",
+   "delete"
+  ],
+  "chart": [
+   "heart",
+   "cat",
+   "car"
+  ],
+  "alert": [
+   "wallet",
+   "tablet",
+   "trailer"
+  ],
+  "dolar-sign": [
+   "dollar-sign",
+   "badge-dollar-sign",
+   "circle-dollar-sign"
+  ],
+  "x": [
+   "x",
+   "archive-x",
+   "audio-lines-x"
+  ],
+  "user": [
+   "user",
+   "users",
+   "user-x"
+  ],
+  "arrow-right-circle": [
+   "circle-arrow-right",
+   "arrow-right-left",
+   "circle-arrow-out-up-right"
+  ],
+  "barchart": [
+   "chart-no-axes-column-increasing",
+   "chart-column-increasing",
+   "chart-column"
+  ],
+  "Bar Chart Icon": [
+   "chart-no-axes-column-increasing",
+   "chart-column-increasing",
+   "chart-column"
+  ]
+ },
+ "suggest5": {
+  "no-such-icon": [],
+  "not-an-icon": [
+   "octagon"
+  ],
+  "leef": [
+   "leaf",
+   "beef",
+   "delete"
+  ],
+  "chart": [
+   "heart",
+   "cat",
+   "car",
+   "carton",
+   "carrot"
+  ],
+  "alert": [
+   "wallet",
+   "tablet",
+   "trailer",
+   "tablets",
+   "palette"
+  ],
+  "dolar-sign": [
+   "dollar-sign",
+   "badge-dollar-sign",
+   "circle-dollar-sign",
+   "at-sign"
+  ],
+  "x": [
+   "x",
+   "archive-x",
+   "audio-lines-x",
+   "axe",
+   "axis-3d"
+  ],
+  "user": [
+   "user",
+   "users",
+   "user-x",
+   "user-round",
+   "users-round"
+  ],
+  "arrow-right-circle": [
+   "circle-arrow-right",
+   "arrow-right-left",
+   "circle-arrow-out-up-right",
+   "circle-arrow-left",
+   "circle-chevron-right"
+  ],
+  "barchart": [
+   "chart-no-axes-column-increasing",
+   "chart-column-increasing",
+   "chart-column",
+   "chart-no-axes-column",
+   "chart-area"
+  ],
+  "Bar Chart Icon": [
+   "chart-no-axes-column-increasing",
+   "chart-column-increasing",
+   "chart-column",
+   "chart-no-axes-column",
+   "chart-area"
+  ]
+ },
+ "px_for_cm": {
+  "0.1": 96,
+  "0.4": 96,
+  "0.6": 142,
+  "0.8": 189,
+  "1.0": 236,
+  "1.2": 283,
+  "2.54": 600
+ }
+}

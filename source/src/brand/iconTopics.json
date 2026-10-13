@@ -1,0 +1,619 @@
+{
+ "africa": [
+  "globe",
+  "earth",
+  "map-pin",
+  "sun",
+  "tractor",
+  "wheat"
+ ],
+ "agriculture": [
+  "wheat",
+  "sprout",
+  "tractor",
+  "leaf",
+  "carrot",
+  "apple",
+  "droplets",
+  "sun",
+  "warehouse"
+ ],
+ "analysis": [
+  "chart-line",
+  "chart-column",
+  "chart-pie",
+  "search",
+  "scan-search",
+  "calculator",
+  "microscope",
+  "table"
+ ],
+ "asia": [
+  "globe",
+  "earth",
+  "map-pin",
+  "mountain"
+ ],
+ "award": [
+  "award",
+  "trophy",
+  "medal",
+  "star",
+  "badge-check",
+  "crown"
+ ],
+ "bank": [
+  "landmark",
+  "vault",
+  "piggy-bank",
+  "banknote",
+  "credit-card",
+  "hand-coins",
+  "wallet"
+ ],
+ "biodiversity": [
+  "bird",
+  "fish",
+  "bug",
+  "turtle",
+  "flower",
+  "paw-print",
+  "squirrel",
+  "rabbit",
+  "leaf",
+  "trees"
+ ],
+ "blended finance": [
+  "layers",
+  "blend",
+  "merge",
+  "handshake",
+  "coins",
+  "scale",
+  "network",
+  "git-merge",
+  "combine"
+ ],
+ "bond": [
+  "file-text",
+  "scroll-text",
+  "receipt",
+  "landmark",
+  "badge-check",
+  "shield-check",
+  "stamp",
+  "scale",
+  "banknote"
+ ],
+ "budget": [
+  "calculator",
+  "wallet",
+  "piggy-bank",
+  "chart-pie",
+  "receipt",
+  "coins"
+ ],
+ "capital markets": [
+  "chart-candlestick",
+  "chart-line",
+  "trending-up",
+  "landmark",
+  "scale",
+  "coins"
+ ],
+ "checklist": [
+  "list-checks",
+  "clipboard-check",
+  "check",
+  "circle-check",
+  "square-check",
+  "file-check"
+ ],
+ "circular economy": [
+  "recycle",
+  "refresh-cw",
+  "repeat",
+  "infinity",
+  "leaf",
+  "package"
+ ],
+ "city": [
+  "building",
+  "building-complex",
+  "landmark",
+  "map",
+  "map-pin",
+  "route",
+  "train-front",
+  "bus",
+  "bike",
+  "house"
+ ],
+ "climate": [
+  "thermometer",
+  "thermometer-sun",
+  "cloud-sun",
+  "sun",
+  "wind",
+  "flame",
+  "snowflake",
+  "globe",
+  "leaf",
+  "earth",
+  "cloud-rain",
+  "cloud-lightning"
+ ],
+ "climate finance": [
+  "leaf",
+  "coins",
+  "globe",
+  "landmark",
+  "thermometer",
+  "trending-up"
+ ],
+ "communication": [
+  "mail",
+  "message-square",
+  "phone",
+  "megaphone",
+  "newspaper",
+  "presentation"
+ ],
+ "community": [
+  "users",
+  "users-round",
+  "heart-handshake",
+  "hand-heart",
+  "house",
+  "school",
+  "map-pin"
+ ],
+ "contact": [
+  "mail",
+  "phone",
+  "map-pin",
+  "globe",
+  "contact",
+  "message-square"
+ ],
+ "cost": [
+  "receipt",
+  "calculator",
+  "banknote",
+  "tag",
+  "coins",
+  "badge-dollar-sign"
+ ],
+ "data": [
+  "database",
+  "chart-column",
+  "chart-line",
+  "chart-pie",
+  "table",
+  "file-spreadsheet",
+  "server",
+  "layers"
+ ],
+ "decline": [
+  "trending-down",
+  "chart-line",
+  "arrow-down-right"
+ ],
+ "digital": [
+  "laptop",
+  "monitor",
+  "smartphone",
+  "cloud",
+  "wifi",
+  "database",
+  "server",
+  "globe"
+ ],
+ "drought": [
+  "sun",
+  "thermometer-sun",
+  "droplet",
+  "flame",
+  "cloud-sun",
+  "wheat"
+ ],
+ "education": [
+  "graduation-cap",
+  "book-open",
+  "school",
+  "pencil",
+  "library",
+  "notebook-pen"
+ ],
+ "energy": [
+  "zap",
+  "sun",
+  "wind",
+  "battery",
+  "plug",
+  "lightbulb",
+  "flame",
+  "fuel",
+  "factory",
+  "solar-panel"
+ ],
+ "europe": [
+  "euro",
+  "landmark",
+  "globe",
+  "earth",
+  "map-pin"
+ ],
+ "finance": [
+  "banknote",
+  "coins",
+  "landmark",
+  "wallet",
+  "piggy-bank",
+  "hand-coins",
+  "badge-dollar-sign",
+  "circle-dollar-sign",
+  "dollar-sign",
+  "euro",
+  "pound-sterling",
+  "receipt",
+  "calculator",
+  "credit-card",
+  "vault",
+  "scale",
+  "chart-line",
+  "trending-up",
+  "chart-pie",
+  "chart-column",
+  "wallet-cards"
+ ],
+ "food": [
+  "wheat",
+  "apple",
+  "carrot",
+  "utensils",
+  "soup",
+  "salad",
+  "egg",
+  "beef",
+  "fish"
+ ],
+ "forest": [
+  "trees",
+  "tree-pine",
+  "tree-deciduous",
+  "leaf",
+  "sprout",
+  "axe"
+ ],
+ "fund": [
+  "piggy-bank",
+  "vault",
+  "coins",
+  "landmark",
+  "wallet",
+  "container"
+ ],
+ "gender": [
+  "venus",
+  "mars",
+  "users-round",
+  "heart-handshake",
+  "person-standing"
+ ],
+ "global": [
+  "globe",
+  "earth",
+  "map-pin",
+  "plane",
+  "network",
+  "languages"
+ ],
+ "governance": [
+  "scale",
+  "landmark",
+  "gavel",
+  "file-check",
+  "shield-check",
+  "clipboard-check",
+  "stamp"
+ ],
+ "growth": [
+  "trending-up",
+  "sprout",
+  "chart-line",
+  "arrow-up-right",
+  "rocket"
+ ],
+ "guarantee": [
+  "shield-check",
+  "badge-check",
+  "handshake",
+  "lock",
+  "stamp",
+  "file-check"
+ ],
+ "health": [
+  "heart-pulse",
+  "stethoscope",
+  "pill",
+  "hospital",
+  "activity",
+  "syringe",
+  "cross",
+  "thermometer"
+ ],
+ "housing": [
+  "house",
+  "building-complex",
+  "key",
+  "door-open",
+  "bed-double",
+  "hammer"
+ ],
+ "impact": [
+  "target",
+  "trending-up",
+  "award",
+  "star",
+  "zap",
+  "sparkles",
+  "leaf",
+  "heart"
+ ],
+ "info": [
+  "info",
+  "circle-question-mark",
+  "lightbulb",
+  "book-open",
+  "message-square"
+ ],
+ "infrastructure": [
+  "construction",
+  "hammer",
+  "drill",
+  "factory",
+  "plug",
+  "route",
+  "bridge",
+  "hard-hat",
+  "warehouse"
+ ],
+ "innovation": [
+  "lightbulb",
+  "rocket",
+  "sparkles",
+  "zap",
+  "flask-conical",
+  "cpu",
+  "brain"
+ ],
+ "investment": [
+  "trending-up",
+  "chart-line",
+  "chart-candlestick",
+  "coins",
+  "hand-coins",
+  "piggy-bank",
+  "briefcase-business",
+  "target",
+  "badge-dollar-sign",
+  "scale",
+  "landmark"
+ ],
+ "legal": [
+  "scale",
+  "gavel",
+  "file-text",
+  "stamp",
+  "scroll-text",
+  "shield-check"
+ ],
+ "location": [
+  "map-pin",
+  "map",
+  "navigation",
+  "compass",
+  "locate",
+  "globe"
+ ],
+ "money": [
+  "banknote",
+  "coins",
+  "wallet",
+  "circle-dollar-sign",
+  "hand-coins",
+  "piggy-bank"
+ ],
+ "nature": [
+  "leaf",
+  "trees",
+  "tree-pine",
+  "sprout",
+  "flower",
+  "mountain",
+  "bird",
+  "fish",
+  "bug",
+  "turtle",
+  "squirrel",
+  "rabbit",
+  "paw-print"
+ ],
+ "ocean": [
+  "waves-horizontal",
+  "ship",
+  "anchor",
+  "fish",
+  "sailboat"
+ ],
+ "partnership": [
+  "handshake",
+  "users",
+  "network",
+  "link",
+  "heart-handshake",
+  "blend"
+ ],
+ "people": [
+  "users",
+  "user",
+  "user-round",
+  "users-round",
+  "contact",
+  "baby",
+  "person-standing",
+  "hand-heart",
+  "heart-handshake"
+ ],
+ "policy": [
+  "scroll-text",
+  "file-text",
+  "scale",
+  "landmark",
+  "gavel",
+  "book-open",
+  "clipboard-list"
+ ],
+ "process": [
+  "workflow",
+  "git-branch",
+  "route",
+  "list-checks",
+  "arrow-right",
+  "refresh-cw",
+  "repeat"
+ ],
+ "renewable": [
+  "sun",
+  "wind",
+  "zap",
+  "leaf",
+  "recycle",
+  "battery-charging",
+  "solar-panel"
+ ],
+ "report": [
+  "file-text",
+  "file-chart-column",
+  "clipboard-list",
+  "book-open",
+  "scroll-text",
+  "newspaper"
+ ],
+ "research": [
+  "search",
+  "microscope",
+  "book-open",
+  "file-search",
+  "flask-conical",
+  "library",
+  "lightbulb"
+ ],
+ "risk": [
+  "shield",
+  "shield-alert",
+  "shield-check",
+  "triangle-alert",
+  "octagon-alert",
+  "scale",
+  "gauge",
+  "flame"
+ ],
+ "security": [
+  "lock",
+  "shield",
+  "shield-check",
+  "key",
+  "fingerprint-pattern",
+  "eye"
+ ],
+ "stakeholder": [
+  "users",
+  "network",
+  "contact",
+  "handshake",
+  "message-square"
+ ],
+ "strategy": [
+  "target",
+  "compass",
+  "flag",
+  "lightbulb",
+  "route",
+  "milestone",
+  "map",
+  "telescope"
+ ],
+ "technology": [
+  "cpu",
+  "laptop",
+  "smartphone",
+  "server",
+  "cloud",
+  "code",
+  "wifi",
+  "brain"
+ ],
+ "time": [
+  "clock",
+  "calendar",
+  "hourglass",
+  "timer",
+  "rotate-ccw-clock",
+  "alarm-clock"
+ ],
+ "timeline": [
+  "calendar",
+  "calendar-days",
+  "clock",
+  "rotate-ccw-clock",
+  "milestone",
+  "route",
+  "flag"
+ ],
+ "transport": [
+  "bus",
+  "train-front",
+  "car",
+  "bike",
+  "plane",
+  "ship",
+  "truck",
+  "route"
+ ],
+ "urban": [
+  "building-complex",
+  "map-pin",
+  "route",
+  "train-front",
+  "bus",
+  "bike"
+ ],
+ "warning": [
+  "triangle-alert",
+  "octagon-alert",
+  "circle-alert",
+  "flame",
+  "shield-alert"
+ ],
+ "waste": [
+  "recycle",
+  "trash",
+  "package",
+  "container",
+  "factory"
+ ],
+ "water": [
+  "droplet",
+  "droplets",
+  "waves-horizontal",
+  "glass-water",
+  "cloud-rain",
+  "ship",
+  "anchor",
+  "fish",
+  "waves-ladder",
+  "shower-head"
+ ]
+}

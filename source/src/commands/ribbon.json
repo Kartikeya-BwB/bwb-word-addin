@@ -1,0 +1,128 @@
+{
+  "tab": { "id": "BwB.Tab", "label": "BwB" },
+  "groups": [
+    {
+      "id": "Document", "label": "Document", "icon": "file-text",
+      "controls": [
+        { "type": "button", "id": "New", "label": "New document", "icon": "file-plus-corner", "pane": "start",
+          "tip": "Start any of 17 BwB document types with the cover, contents, numbered headings, writing prompts and the disclaimer." },
+        { "type": "button", "id": "AddStyles", "label": "Add BwB styles", "icon": "swatch-book", "fn": "addStyles",
+          "tip": "Brings the BwB styles into this document and restyles Normal and the headings to the BwB format. Text is not changed." },
+        { "type": "button", "id": "Toolkit", "label": "Toolkit", "icon": "panel-right-open", "pane": "write",
+          "tip": "Opens the BwB Toolkit pane: styles, building blocks, the Pre-QA check and the brand guide." }
+      ]
+    },
+    {
+      "id": "Text", "label": "Text", "icon": "type",
+      "controls": [
+        { "type": "menu", "id": "Headings", "label": "Headings", "icon": "heading",
+          "tip": "Candara headings in navy. Headings 1 to 3 number themselves: never type the numbers.",
+          "items": [
+            { "id": "H1", "label": "Heading 1", "icon": "heading-1", "fn": "styleHeading1", "tip": "Candara 18 pt bold navy, numbered 1." },
+            { "id": "H2", "label": "Heading 2", "icon": "heading-2", "fn": "styleHeading2", "tip": "Candara 14 pt bold navy, numbered 1.1" },
+            { "id": "H3", "label": "Heading 3", "icon": "heading-3", "fn": "styleHeading3", "tip": "Candara 12 pt bold navy, numbered 1.1.1" },
+            { "id": "H4", "label": "Heading 4", "icon": "heading-4", "fn": "styleHeading4", "tip": "Candara 11 pt bold italic navy, not numbered." },
+            { "id": "H1U", "label": "Unnumbered heading 1", "icon": "heading", "fn": "styleHeading1Unnumbered",
+              "tip": "For front and back matter: Executive summary, Glossary, References, Appendices." },
+            { "id": "H2U", "label": "Unnumbered heading 2", "icon": "heading", "fn": "styleHeading2Unnumbered",
+              "tip": "A level 2 heading inside front or back matter." }
+          ] },
+        { "type": "button", "id": "Body", "label": "Body text", "icon": "pilcrow", "fn": "styleNormal",
+          "tip": "Aptos 10 pt, justified, at least 16 pt line spacing, 8 pt after." },
+        { "type": "menu", "id": "TextStyles", "label": "Text styles", "icon": "type",
+          "tip": "The lead paragraph, accent paragraph, source line and pull quote styles.",
+          "items": [
+            { "id": "Lead", "label": "Lead paragraph", "icon": "text-quote", "fn": "styleLead", "tip": "The opening paragraph of a section, slightly larger." },
+            { "id": "Accent", "label": "Accent paragraph", "icon": "square-dashed-text", "fn": "styleAccent", "tip": "A paragraph with a green rule to draw the eye." },
+            { "id": "SourceStyle", "label": "Source line", "icon": "text-align-start", "fn": "styleSource", "tip": "8 pt italic charcoal, under a figure or a box." },
+            { "id": "QuoteStyle", "label": "Pull quote", "icon": "quote", "fn": "stylePullQuote", "tip": "Candara italic navy with a lime bar. Left word for word." }
+          ] },
+        { "type": "menu", "id": "Lists", "label": "Lists", "icon": { "name": "list", "colour": "green" },
+          "tip": "BwB bullet and number styles. Green squares for body lists; no more than two bullet styles on a page.",
+          "items": [
+            { "id": "ListGreenSquare", "label": "Green square", "icon": { "name": "square", "colour": "green", "fill": true }, "fn": "listGreenSquare", "tip": "Body lists." },
+            { "id": "ListNavyCircle", "label": "Navy circle", "icon": { "name": "circle", "colour": "navy", "fill": true }, "fn": "listNavyCircle", "tip": "Secondary lists." },
+            { "id": "ListGreenCircle", "label": "Green circle", "icon": { "name": "circle", "colour": "green", "fill": true }, "fn": "listGreenCircle", "tip": "Inside callouts and tables." },
+            { "id": "ListDash", "label": "Charcoal dash", "icon": { "name": "minus", "colour": "charcoal" }, "fn": "listCharcoalDash", "tip": "Assumptions and minor items." },
+            { "id": "ListArrow", "label": "Green arrow", "icon": { "name": "chevron-right", "colour": "green" }, "fn": "listArrow", "tip": "Actions and next steps." },
+            { "id": "ListNumbered", "label": "Numbered", "icon": "list-ordered", "fn": "listNumbered", "tip": "A sequence or a ranking, in navy numerals." },
+            { "id": "ListLime", "label": "Lime on navy", "icon": { "name": "square", "colour": "lime", "fill": true, "background": "navy" }, "fn": "listLimeOnNavy", "tip": "Only inside navy panels." }
+          ] },
+        { "type": "button", "id": "Clean", "label": "Clean up wording", "icon": "sparkles", "fn": "cleanWording",
+          "tip": "Fixes house style with one right answer in the selection: UK spelling, dashes, dates, currency codes, per cent, the company name and spaces." }
+      ]
+    },
+    {
+      "id": "Insert", "label": "Insert", "icon": "square-plus",
+      "controls": [
+        { "type": "menu", "id": "Blocks", "label": "Blocks", "icon": "blocks",
+          "tip": "Callouts, notes, key figures, snapshots, pull quotes, case studies, icon grids and details tables, with grey placeholders to type over.",
+          "items": [
+            { "id": "BlockCallout", "label": "Callout", "icon": { "name": "lightbulb", "colour": "green" }, "fn": "blockCallout", "tip": "A takeaway, tip or lesson, with a green bar." },
+            { "id": "BlockNote", "label": "Note", "icon": { "name": "info", "colour": "charcoal" }, "fn": "blockNote", "tip": "A caveat or an assumption, with a charcoal bar." },
+            { "id": "BlockStats", "label": "Key figures", "icon": "hash", "fn": "blockStats", "tip": "Two to four headline numbers on a navy panel." },
+            { "id": "BlockSnapshot", "label": "Snapshot", "icon": "layout-grid", "fn": "blockSnapshot", "tip": "A navy grid of key facts to open a briefing." },
+            { "id": "BlockQuote", "label": "Pull quote", "icon": "quote", "fn": "blockQuote", "tip": "One quotation that carries a point." },
+            { "id": "BlockCase", "label": "Case study", "icon": "briefcase", "fn": "blockCase", "tip": "A titled box with a row of figures and a source." },
+            { "id": "BlockGrid", "label": "Icon grid", "icon": "grid-2x2", "fn": "blockGrid", "tip": "Services, workstreams or principles, each with an icon." },
+            { "id": "BlockDetails", "label": "Details table", "icon": "table-properties", "fn": "blockDetails", "tip": "Label and value pairs, such as a project summary." }
+          ] },
+        { "type": "menu", "id": "Tables", "label": "Table", "icon": "table",
+          "tip": "BwB data tables: navy header row repeated on each page, figures right-aligned, caption below.",
+          "items": [
+            { "id": "TableNew", "label": "New BwB table", "icon": "table", "fn": "tableInsert", "tip": "Four columns and four rows with a caption placeholder. More options in the pane." },
+            { "id": "TableFormat", "label": "Format table at cursor", "icon": "paintbrush", "fn": "tableFormat", "tip": "Applies BwB Standard, repeats the header row, right-aligns figures and styles a total row." },
+            { "id": "CaptionTable", "label": "Table caption", "icon": "captions", "fn": "captionTable", "tip": "A numbered caption to place below a table." },
+            { "id": "CaptionFigure", "label": "Figure caption", "icon": "image", "fn": "captionFigure", "tip": "A numbered caption to place below a figure or chart." },
+            { "id": "SourceLine", "label": "Source line", "icon": "text-align-start", "fn": "sourceLine", "tip": "Source: ... in 8 pt italic charcoal." }
+          ] },
+        { "type": "menu", "id": "Harvey", "label": "Harvey balls", "icon": { "harvey": 3 },
+          "tip": "Score options against criteria in a table. Inserted at the cursor in navy.",
+          "items": [
+            { "id": "Harvey0", "label": "Empty", "icon": { "harvey": 0 }, "fn": "harvey0", "tip": "0 per cent." },
+            { "id": "Harvey1", "label": "Quarter", "icon": { "harvey": 1 }, "fn": "harvey1", "tip": "25 per cent." },
+            { "id": "Harvey2", "label": "Half", "icon": { "harvey": 2 }, "fn": "harvey2", "tip": "50 per cent." },
+            { "id": "Harvey3", "label": "Three quarters", "icon": { "harvey": 3 }, "fn": "harvey3", "tip": "75 per cent." },
+            { "id": "Harvey4", "label": "Full", "icon": { "harvey": 4 }, "fn": "harvey4", "tip": "100 per cent." }
+          ] },
+        { "type": "button", "id": "Icons", "label": "Icons", "icon": "shapes", "pane": "insert/icons",
+          "tip": "Search 1,866 Lucide icons and insert them in the BwB colours and sizes." },
+        { "type": "menu", "id": "Parts", "label": "Document parts", "icon": "book-open-text",
+          "tip": "Contents, the BwB disclaimer, the EU acknowledgement and page breaks.",
+          "items": [
+            { "id": "PartContents", "label": "Contents", "icon": "table-of-contents", "fn": "partContents", "tip": "A table of contents for Headings 1 and 2, then a page break." },
+            { "id": "PartDisclaimer", "label": "Disclaimer", "icon": "scale", "fn": "partDisclaimer", "tip": "The standard BwB disclaimer on its own page at the end." },
+            { "id": "PartEu", "label": "EU acknowledgement", "icon": "award", "fn": "partEu", "tip": "Funding statement and disclaimer for EU-funded work." },
+            { "id": "PartBreak", "label": "Page break", "icon": "separator-horizontal", "fn": "partPageBreak", "tip": "Start the next part on a new page." }
+          ] }
+      ]
+    },
+    {
+      "id": "Review", "label": "Review", "icon": "shield-check",
+      "controls": [
+        { "type": "button", "id": "Check", "label": "Pre-QA check", "icon": { "name": "shield-check", "colour": "green" }, "pane": "check",
+          "tip": "Checks the document against the BwB format, house style and the QA checklist, with one-click fixes." },
+        { "type": "menu", "id": "Sticker", "label": "Sticker", "icon": "sticker",
+          "tip": "A status label in the page header, such as Draft or For discussion. Remove it before the final version.",
+          "items": [
+            { "id": "StickerDraft", "label": "Draft", "icon": "sticker", "fn": "stickerDraft", "tip": "DRAFT in the page header." },
+            { "id": "StickerDiscussion", "label": "For discussion", "icon": "sticker", "fn": "stickerForDiscussion", "tip": "FOR DISCUSSION in the page header." },
+            { "id": "StickerPreliminary", "label": "Preliminary", "icon": "sticker", "fn": "stickerPreliminary", "tip": "PRELIMINARY in the page header." },
+            { "id": "StickerIllustrative", "label": "Illustrative", "icon": "sticker", "fn": "stickerIllustrative", "tip": "ILLUSTRATIVE in the page header." },
+            { "id": "StickerConfidential", "label": "Confidential", "icon": "sticker", "fn": "stickerConfidential", "tip": "CONFIDENTIAL in the page header." },
+            { "id": "StickerRestricted", "label": "Not for distribution", "icon": "sticker", "fn": "stickerNotForDistribution", "tip": "NOT FOR DISTRIBUTION in the page header." },
+            { "id": "StickerRemove", "label": "Remove sticker", "icon": "eraser", "fn": "stickerRemove", "tip": "Removes the sticker from every header." }
+          ] },
+        { "type": "button", "id": "Fields", "label": "Update fields", "icon": "refresh-cw", "fn": "updateAllFields",
+          "tip": "Refreshes the contents, caption numbers, cross-references and page totals." }
+      ]
+    },
+    {
+      "id": "Brand", "label": "Brand", "icon": "palette",
+      "controls": [
+        { "type": "button", "id": "BrandGuide", "label": "Brand guide", "icon": "palette", "pane": "brand",
+          "tip": "BwB colours, type, house style, document furniture and icon rules." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "meta": {"title": "Icon Rules", "format": "report", "date": "4 May 2026", "toc": false, "disclaimer": false},
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Colour substitution {icon:palette}"},
+    {"type": "stats", "items": [
+      {"value": "USD 5m {icon:coins}", "label": "Inline icon in a value", "icon": "banknote", "icon_colour": "green"},
+      {"value": "7", "label": "Charcoal on navy", "icon": "users", "icon_colour": "charcoal"},
+      {"value": "9", "label": "Lime requested", "icon": "leaf", "icon_colour": "lime"}]},
+    {"type": "snapshot", "items": [{"icon": "map-pin", "icon_colour": "navy", "eyebrow": "REGION", "value": "Africa {icon:globe}"}]},
+    {"type": "icon_grid", "variant": "navy", "hero": 5, "columns": 4, "items": [
+      {"icon": "sprout", "title": "Grow", "text": "Build the pipeline."},
+      {"icon": "coins", "title": "Fund", "text": "Mobilise capital.", "icon_colour": "green"},
+      {"icon": "scale", "title": "Govern", "text": "Set the rules."},
+      {"icon": "users", "title": "Include", "text": "Share the benefit."},
+      {"icon": "globe", "title": "Reach", "text": "Work across regions."}]},
+    {"type": "icon_grid", "variant": "light", "items": [
+      {"icon": "leaf", "icon_colour": "white", "title": "White on light"},
+      {"icon": "not-an-icon", "title": "Unknown icon"},
+      {"icon": "bar-chart", "title": "Old name"}]},
+    {"type": "callout", "icon": "lightbulb", "text": "Icon without a title."},
+    {"type": "callout", "icon": "info", "title": "Charcoal callout", "variant": "charcoal", "text": "With an icon."},
+    {"type": "case_study", "title": "Bond {icon:landmark}", "icon": "landmark", "meta": "Africa", "body": "Body text {icon:leaf:green}.",
+     "stats": [{"value": "USD 1m", "label": "Raised"}]},
+    {"type": "table", "header": ["A", "B", "C", "D", "E", "F"], "rows": [["{icon:leaf:green} a", "b", "c", "d", "e", "f"]],
+     "caption": "Icon in a six-column table."},
+    {"type": "bullets", "style": "lime-navy", "items": ["Lime bullet {icon:check:lime}"]},
+    {"type": "heading", "level": 3, "text": "Level three {icon:leaf:green}"},
+    {"type": "heading", "level": 4, "text": "Level four {icon:leaf:green}"}
+  ]
+}

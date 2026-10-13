@@ -1,41 +1,46 @@
-# BwB Word Add-in — Deployment Guide
+# Deploying the BwB Toolkit
 
-## Step 1: Create the GitHub repo
-1. Go to github.com and create a new repo called `bwb-word-addin`
-2. Make it **Public** (required for GitHub Pages free hosting)
+## Where it lives
 
-## Step 2: Upload these files
-Upload everything in this `dist/` folder to the repo root.
-The simplest way: drag-and-drop all files into the GitHub web interface.
+GitHub Pages serves the root of the `main` branch at `https://kartikeya-bwb.github.io/bwb-word-addin/`. The files
+at the root are build output; the source is in `source/`. The add-in's manifest, the file Word installs, is at
+`https://kartikeya-bwb.github.io/bwb-word-addin/manifest.xml`.
 
-## Step 3: Enable GitHub Pages
-1. Go to repo Settings → Pages
-2. Source: **Deploy from a branch**
-3. Branch: **main**, folder: **/ (root)**
-4. Save. GitHub will give you a URL like:
-   `https://YOUR-USERNAME.github.io/bwb-word-addin/`
+## Publishing a new version
 
-## Step 4: Update the manifest
-Open `manifest.xml` and replace every instance of:
-  `YOUR-GITHUB-USERNAME`
-with your actual GitHub username. Then re-upload the updated manifest.xml.
+1. In `source/`, run `npm ci`, `npm test`, then `npm run deploy`. This builds the add-in and copies it to the
+   repository root.
+2. Commit and merge to `main`. GitHub Pages updates within a few minutes.
+3. Run `npm run check-live` in `source/`. It confirms that every page, template and icon the manifest points at
+   answers.
 
-## Step 5: Sideload in Word (per user, once)
-### Windows:
-1. Copy `manifest.xml` to a shared network folder or local folder
-2. In Word: File → Options → Trust Center → Trust Center Settings
-   → Trusted Add-in Catalogs → add the folder path → restart Word
-3. Insert → My Add-ins → Shared Folder → BwB Document Assistant
+Word picks up changes to the pane and the ribbon commands the next time the add-in loads. A change to the ribbon
+itself (a new button, say) changes `manifest.xml`; Word reads it again within a day, or at once if the add-in is
+removed and added again.
 
-### Mac:
-1. Copy `manifest.xml` to:
-   `~/Library/Containers/com.microsoft.Word/Data/Documents/wef/`
-2. Restart Word → Insert → My Add-ins → BwB Document Assistant
+## Installing it in Word
 
-### Word Online (any browser):
-1. Insert → Add-ins → Upload My Add-in → upload manifest.xml
+### For everyone at BwB (recommended)
 
-## Step 6: IT deployment (optional — suppresses per-user setup)
-If you have M365 Admin access (ask Lesley):
-- Admin Centre → Settings → Integrated Apps → Upload custom apps
-- Upload manifest.xml — it deploys to all BwB users automatically
+A Microsoft 365 administrator deploys it once and it appears for everyone chosen, on Windows, Mac and the web:
+
+1. Microsoft 365 admin centre, Settings, Integrated apps, Upload custom apps.
+2. Choose "Office Add-in", then give the manifest URL above (or upload `manifest.xml`).
+3. Assign it to everyone or to a group, and finish. It can take up to 24 hours to appear.
+
+### For one person, to try it
+
+- **Word on the web:** Insert, Add-ins, then My Add-ins, Upload My Add-in, and choose `manifest.xml`.
+- **Windows:** put `manifest.xml` in a shared network folder. In Word, File, Options, Trust Center, Trust Center
+  Settings, Trusted Add-in Catalogs: add the folder's path, tick "Show in Menu" and restart Word. Then Insert,
+  My Add-ins, Shared Folder, BwB Toolkit.
+- **Mac:** copy `manifest.xml` to `~/Library/Containers/com.microsoft.Word/Data/Documents/wef/` (create the `wef`
+  folder if needed), restart Word, then Insert, Add-ins, My Add-ins.
+
+Once installed, the **BwB** tab appears on the ribbon. The manifest asks for it to sit after Home; Word versions that do not support tab positions put it at the end.
+
+## Moving from version 1
+
+Version 2 has a new add-in ID, so Word treats it as a separate add-in from version 1 ("BwB Document Assistant").
+Install the BwB Toolkit, then remove version 1 (in the admin centre, or from My Add-ins). Until version 1 is
+removed, its button opens the new pane, because both are served from the same address.

@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "Memo With Details",
+    "subtitle": "The subtitle wins over the tagline",
+    "tagline": "Not shown",
+    "format": "memo",
+    "meta_left": "Investment team  ·  12 June 2026",
+    "details": {"To": "Board", "From": "BwB", "Date": "12 June 2026"},
+    "numbering": "all",
+    "h1_page_break": true
+  },
+  "blocks": [
+    {"type": "heading", "level": 2, "text": "A level two heading before any level one"},
+    {"type": "paragraph", "text": "Numbering is set to all."},
+    {"type": "heading", "level": 1, "text": "First chapter"},
+    {"type": "paragraph", "text": "Level one headings start new pages in this memo."},
+    {"type": "heading", "level": 1, "text": "Second chapter"},
+    {"type": "heading", "level": 3, "text": "A level three heading"},
+    {"type": "paragraph", "text": "The memo ends with the standard disclaimer."},
+    {"type": "page_break"}
+  ]
+}

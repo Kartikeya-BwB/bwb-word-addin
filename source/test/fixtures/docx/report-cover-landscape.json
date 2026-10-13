@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "A **Bold** Title",
+    "tagline": "A tagline with an icon {icon:leaf} on the cover",
+    "format": "report",
+    "date": "3 April 2026",
+    "meta_left": "Prepared for an example client",
+    "cover_image": "media/cover-landscape.jpg",
+    "toc": false,
+    "numbering": "none"
+  },
+  "blocks": [
+    {"type": "heading", "level": 1, "text": "Introduction"},
+    {"type": "paragraph", "text": "A landscape cover photograph is cropped at the sides."},
+    {"type": "heading", "level": 2, "text": "Details"},
+    {"type": "paragraph", "text": "Numbering is off, so no heading carries a number."}
+  ]
+}
