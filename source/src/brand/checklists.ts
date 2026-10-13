@@ -33,7 +33,7 @@ export const AUTHOR_SELF_CHECK: ChecklistItem[] = [
   { id: 'logos', text: 'Third-party logo permissions documented' },
   { id: 'links', text: 'Hyperlinks work' },
   { id: 'title', text: 'Title and authorship correct', auto: 'properties' },
-  { id: 'placeholders', text: 'No placeholders ("TBC", "[insert]"), highlights or text from another client', auto: 'placeholders' },
+  { id: 'placeholders', text: 'No placeholders (“TBC”, “[insert]”), highlights or text from another client', auto: 'placeholders' },
   { id: 'ai-review', text: 'AI review skill run' },
   { id: 'ai-use', text: 'AI use disclosed; no unedited AI text sent for review' },
 ]

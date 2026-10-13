@@ -71,12 +71,12 @@ export const MIN_TEXT_PT = 8
 /** House style used for checks and for the guidance shown in the task pane. */
 export const WRITING_RULES: Array<{ rule: string; example: string }> = [
   { rule: 'UK spelling', example: 'organisation, programme, analyse, colour, behaviour, modelling, centre' },
-  { rule: 'No em dashes and no spaced en dashes', example: 'Use a comma, a colon or a full stop. Ranges read "2022 to 2025"' },
+  { rule: 'No em dashes and no spaced en dashes', example: 'Use a comma, a colon or a full stop. Ranges read “2022 to 2025”' },
   { rule: 'Dates as D Month YYYY', example: '5 October 2026. No ordinals, no US order, no abbreviated months in prose' },
   { rule: 'Currency as an ISO code, then a space', example: 'GBP 5m, USD 250m, EUR 1.2bn. Not £, $ or €' },
-  { rule: '"per cent" in prose', example: 'Use the % sign in tables and statistics' },
-  { rule: 'The company name', example: '"Bankers without Boundaries" (lower-case "without") and "BwB"' },
+  { rule: '“per cent” in prose', example: 'Use the % sign in tables and statistics' },
+  { rule: 'The company name', example: '“Bankers without Boundaries” (lower-case “without”) and “BwB”' },
   { rule: 'Typographic quotation marks', example: 'Single for a term, double for speech' },
   { rule: 'Sentence case for headings', example: 'Titles are in title case' },
-  { rule: 'Plain, sober wording', example: 'No filler such as "touch base", "circle back", "going forward"' },
+  { rule: 'Plain, sober wording', example: 'No filler such as “touch base”, “circle back”, “going forward”' },
 ]
