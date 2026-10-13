@@ -1,0 +1,36 @@
+/* The Tools tab: rows of tool buttons, the navigator outline and the symbols palette. Colours come from the
+   tokens in src/taskpane/theme.css. */
+
+.tool-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tool-row > .btn { flex: 1 1 auto; }
+.tool-label { font-size: 11.5px; font-weight: 600; color: var(--charcoal); margin: 4px 0 4px; }
+.tool-unavailable { display: inline-flex; flex-direction: column; gap: 2px; flex: 1 1 100%; }
+.tool-unavailable .btn { width: 100%; }
+
+.cursor-status { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 6px 8px; margin-bottom: 8px; background: var(--off-white); border: 1px solid var(--light-grey); font-size: 12px; color: var(--charcoal); }
+.cursor-status strong { color: var(--navy); }
+.cursor-status .grow { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.outline { list-style: none; margin: 0 0 8px; padding: 0; border: 1px solid var(--light-grey); max-height: 360px; overflow-y: auto; }
+.outline li { display: flex; align-items: stretch; border-bottom: 1px solid var(--light-grey); }
+.outline li:last-child { border-bottom: 0; }
+.outline-item { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; padding: 5px 8px; border: 0; background: var(--white); color: var(--navy); text-align: left; cursor: pointer; font-size: 12px; }
+.outline-item:hover { background: var(--off-white); }
+.outline-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.outline-item svg { flex-shrink: 0; color: var(--green-text); }
+.outline-item.heading.level-1 { font-weight: 700; }
+.outline-item.level-2 { padding-left: 20px; }
+.outline-item.level-3 { padding-left: 32px; }
+.outline-item.level-4 { padding-left: 44px; }
+.outline-item.level-5 { padding-left: 56px; }
+.outline-ref { border: 0; border-left: 1px solid var(--light-grey); background: var(--white); color: var(--charcoal); padding: 0 8px; font-size: 11px; cursor: pointer; }
+.outline-ref:hover { color: var(--navy); background: var(--off-white); }
+.outline-ref[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+.symbol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; margin-bottom: 8px; }
+.symbol-btn { height: 34px; border: 1px solid var(--light-grey); background: var(--white); color: var(--navy); font-size: 16px; cursor: pointer; }
+.symbol-btn:hover { border-color: var(--navy); background: var(--off-white); }
+.symbol-btn.wide { grid-column: span 3; font-size: 12px; }
+
+.review-state { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; font-size: 12px; color: var(--charcoal); }
+.review-state strong { color: var(--navy); }

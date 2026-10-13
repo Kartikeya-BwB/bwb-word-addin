@@ -3,7 +3,8 @@ import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import wordRibbon from '../src/commands/ribbon-word.json'
 import pptRibbon from '../src/commands/ribbon-powerpoint.json'
-import { HANDLERS } from '../src/commands/handlers.ts'
+import { HANDLERS, HANDLER_SETS } from '../src/commands/handlers.ts'
+import { tabsFor } from '../src/ui/tabSets.tsx'
 import { createModel, para } from './fakeWord/model.ts'
 import { installFakeWord, uninstallFakeWord } from './fakeWord/install.ts'
 
@@ -13,8 +14,8 @@ interface Entry { id: string; label: string; tip: string; fn?: string; pane?: st
 interface Ribbon { groups: Array<{ id: string; icon: unknown; controls: Entry[] }> }
 
 const RIBBONS: Array<{ host: string; ribbon: Ribbon; tabs: string[] }> = [
-  { host: 'Word', ribbon: wordRibbon as Ribbon, tabs: ['start', 'write', 'insert', 'tools', 'check', 'brand'] },
-  { host: 'PowerPoint', ribbon: pptRibbon as Ribbon, tabs: ['slides', 'arrange', 'insert', 'check', 'brand'] },
+  { host: 'Word', ribbon: wordRibbon as Ribbon, tabs: tabsFor('word').map((t) => t.id) },
+  { host: 'PowerPoint', ribbon: pptRibbon as Ribbon, tabs: tabsFor('powerpoint').map((t) => t.id) },
 ]
 const entriesOf = (r: Ribbon): Entry[] => r.groups.flatMap((g) => g.controls).flatMap((c) => [c, ...(c.items ?? [])])
 
@@ -23,6 +24,8 @@ describe('the ribbon definitions', () => {
     const fns = RIBBONS.flatMap(({ ribbon }) => entriesOf(ribbon).flatMap((e) => (e.fn ? [e.fn] : [])))
     expect(new Set(fns).size).toBe(fns.length)
     expect([...fns].sort()).toEqual(Object.keys(HANDLERS).sort())
+    const sizes = Object.values(HANDLER_SETS).map((set) => Object.keys(set).length)
+    expect(sizes.reduce((a, b) => a + b, 0), 'a handler name is used in two sets').toBe(Object.keys(HANDLERS).length)
   })
 
   it.each(RIBBONS)('$host: opens the pane only at tabs that exist', ({ ribbon, tabs }) => {

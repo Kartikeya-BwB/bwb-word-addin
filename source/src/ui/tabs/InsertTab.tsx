@@ -8,11 +8,12 @@ import { LIBRARY } from '../../brand/library.ts'
 import { insertBlocks } from '../../word/insert.ts'
 import { HARVEY_BALLS, insertHarveyBall, insertPageBreak } from '../../word/marks.ts'
 import { insertAbbreviations, insertContents, insertDisclaimer, insertEuAcknowledgement } from '../../word/parts.ts'
+import { ChartBuilder } from '../charts/ChartBuilder.tsx'
 import { Disclosure, Section, Tile } from '../components.tsx'
 import { useAction } from '../useAction.ts'
+import { IconBrowser } from '../library/IconBrowser.tsx'
 import { ImagePicker } from '../library/ImagePicker.tsx'
 import { LogoPanel } from '../library/LogoPanel.tsx'
-import { IconPicker } from './IconPicker.tsx'
 import { CalloutForm, KeyFiguresForm, PullQuoteForm, SnapshotForm } from './PanelForms.tsx'
 import { CaptionForm, DataTableForm, FormatTable, SourceAndFootnote } from './TableForms.tsx'
 
@@ -105,12 +106,18 @@ export function InsertTab() {
         </div>
       </Section>
 
+      <Section id="charts" title="Charts"
+        intro="Column, bar, line, waterfall, Mekko, Gantt, donut and Harvey ball tables in the BwB colours, inserted as a sharp picture with a numbered caption.">
+        <ChartBuilder />
+      </Section>
+
       <Section id="photos" title="Photos" intro="The BwB photo library: sectors, themes, markets, and the team. Double-click a photo to insert it.">
         <ImagePicker />
       </Section>
 
-      <Section id="icons" title="Icons" intro="1,866 Lucide icons in the BwB colours and sizes. Double-click an icon to insert it.">
-        <IconPicker />
+      <Section id="icons" title="Icons, flags and maps"
+        intro="Lucide (the BwB set), the BwB sectors, Tabler, flags and maps in the brand colours and sizes. Double-click to insert.">
+        <IconBrowser />
       </Section>
 
       <Section title="Logo">

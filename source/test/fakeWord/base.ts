@@ -70,3 +70,12 @@ export abstract class FakeCollection<T extends FakeObject> extends FakeObject {
     if (rest) this.cached.forEach((item) => item.markLoaded(rest))
   }
 }
+
+/** An Office.js ClientResult: its value is filled in at the next sync. */
+export function clientResult<T>(context: Ctx, initial: T, compute: () => T): { value: T } {
+  const result = { value: initial }
+  context.queue(() => {
+    result.value = compute()
+  })
+  return result
+}

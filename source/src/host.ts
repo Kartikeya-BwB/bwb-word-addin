@@ -12,7 +12,8 @@ export function currentHost(): Host {
   } catch {
     // Office.context is not ready outside Office.
   }
-  return new URLSearchParams(window.location.search).get('host') === 'powerpoint' ? 'powerpoint' : 'word'
+  const search = typeof window === 'undefined' ? '' : window.location.search
+  return new URLSearchParams(search).get('host') === 'powerpoint' ? 'powerpoint' : 'word'
 }
 
 /** True when Office is present and reports this host. A missing host (the test fakes) counts as Word. */

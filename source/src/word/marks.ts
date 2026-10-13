@@ -1,7 +1,7 @@
 // Small insertions at the cursor: Harvey balls, page breaks, pictures (icons and logos).
 
 import { runWord } from './run.ts'
-import { toBase64 } from './newDocument.ts'
+import { toBase64 } from '../media/base64.ts'
 
 export const HARVEY_BALLS = [
   { glyph: '○', label: 'Empty (0 per cent)' },

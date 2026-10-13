@@ -4,6 +4,7 @@
 import type { DocType } from '../brand/docTypes.ts'
 import type { ImageEntry } from '../brand/images.ts'
 import { euAcknowledgementBlocks } from '../brand/eu.ts'
+import { toBase64 } from '../media/base64.ts'
 import type { Block, Content } from './docxApi.ts'
 import { buildDocx } from './docxApi.ts'
 import { createIconRenderer } from './iconRenderer.ts'
@@ -34,14 +35,7 @@ async function fetchBytes(url: string): Promise<Uint8Array> {
   return new Uint8Array(await response.arrayBuffer())
 }
 
-export function toBase64(bytes: Uint8Array): string {
-  let binary = ''
-  const chunk = 0x8000
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunk))
-  }
-  return btoa(binary)
-}
+export { toBase64 }
 
 export function contentFor(request: NewDocumentRequest): Content {
   const { type } = request

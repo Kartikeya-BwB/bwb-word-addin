@@ -2,8 +2,9 @@
 // the cursor; PowerPoint places them on the current slide, centred unless a position is given.
 
 import { currentHost } from '../host.ts'
+import { hasPowerPoint, supportsPpt } from '../ppt/run.ts'
 import { insertPicture } from '../word/marks.ts'
-import { toBase64 } from '../word/newDocument.ts'
+import { toBase64 } from './base64.ts'
 import { UserFacingError } from '../word/run.ts'
 
 const PT_PER_CM = 72 / 2.54
@@ -17,6 +18,8 @@ export interface PictureRequest {
   /** PowerPoint only: top-left corner on the slide, in points. */
   left?: number
   top?: number
+  /** PowerPoint only: tags for the new shape, such as BWB_CHART, so the add-in can find it again. */
+  tags?: Record<string, string>
 }
 
 /** A 16:9 slide in points, the size of the BwB slide template. */
@@ -31,6 +34,29 @@ function setSelectedImage(base64: string, options: Office.SetSelectedDataOptions
   })
 }
 
+/**
+ * PowerPoint selects what setSelectedDataAsync placed, but the call takes no alt text. Give the new shape its alt
+ * text and tags, so the deck check does not flag the add-in's own pictures. The picture is in either way: if this
+ * fails, the author can still add alt text by hand.
+ */
+async function labelPlacedShape(altText: string, tags: Record<string, string> = {}): Promise<void> {
+  if (!hasPowerPoint() || !supportsPpt('1.5')) return
+  try {
+    await PowerPoint.run(async (context) => {
+      const shapes = context.presentation.getSelectedShapes()
+      shapes.load('items/id')
+      await context.sync()
+      const [shape] = shapes.items
+      if (!shape || shapes.items.length !== 1) return
+      if (supportsPpt('1.10')) shape.altTextDescription = altText
+      for (const [key, value] of Object.entries(tags)) shape.tags.add(key, value)
+      await context.sync()
+    })
+  } catch {
+    // Alt text is a courtesy here; the insert itself succeeded.
+  }
+}
+
 export async function insertPictureHere(request: PictureRequest): Promise<void> {
   if (currentHost() === 'word') {
     await insertPicture(request.bytes, request.widthPt / PT_PER_CM, request.heightPt / PT_PER_CM, request.altText)
@@ -43,6 +69,7 @@ export async function insertPictureHere(request: PictureRequest): Promise<void> 
     imageLeft: request.left ?? (SLIDE.width - request.widthPt) / 2,
     imageTop: request.top ?? (SLIDE.height - request.heightPt) / 2,
   })
+  await labelPlacedShape(request.altText, request.tags)
 }
 
 export const cmToPt = (cm: number): number => cm * PT_PER_CM
@@ -54,6 +81,7 @@ export interface SvgRequest {
   altText: string
   left?: number
   top?: number
+  tags?: Record<string, string>
 }
 
 /**
@@ -85,4 +113,5 @@ export async function insertSvgHere(request: SvgRequest): Promise<void> {
       else reject(new UserFacingError(`PowerPoint did not insert the graphic (${result.error.message}).`))
     })
   })
+  await labelPlacedShape(request.altText, request.tags)
 }

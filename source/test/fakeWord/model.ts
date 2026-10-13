@@ -20,6 +20,21 @@ export interface FakeParagraph {
   font: FakeFont
   alignment?: string
   table?: FakeTable
+  /** The paragraph as WordprocessingML (a w:p element) for getOoxml, when a test needs breaks, fields or bookmarks. */
+  ooxml?: string
+}
+
+/** An inline picture. Sizes are in points, as Office.js gives them. */
+export interface FakePicture {
+  altTextTitle: string
+  altTextDescription: string
+  /** Default 300 by 200 points. */
+  width?: number
+  height?: number
+  /** Word keeps the proportions of a picture by default. */
+  lockAspectRatio?: boolean
+  /** The paragraph that holds the picture. */
+  paragraph?: FakeParagraph
 }
 
 export interface FakeTable {
@@ -30,6 +45,23 @@ export interface FakeTable {
   options?: Record<string, boolean>
   /** Horizontal alignment set on cells, keyed "row,column". */
   alignments?: Record<string, string>
+  /** Table.alignment: Left, Centered or Right. */
+  alignment?: string
+  /** Layout calls made on the table: distributeColumns, autoFitWindow, autoFitBehavior:Content. */
+  actions?: string[]
+  /** Column widths set on cells in points, keyed "row,column". */
+  widths?: Record<string, number>
+  /** Pictures in cells, keyed "row,column". */
+  pictures?: Record<string, number>
+  /** Rows made bold through TableRow.font. */
+  boldRows?: number[]
+}
+
+/** A bookmark: a span of one paragraph's text. */
+export interface FakeBookmark {
+  paragraph: FakeParagraph
+  start: number
+  end: number
 }
 
 export interface FakeControl {
@@ -53,7 +85,7 @@ export interface FakeSection {
 export interface FakeModel {
   paragraphs: FakeParagraph[]
   tables: FakeTable[]
-  pictures: Array<{ altTextTitle: string; altTextDescription: string }>
+  pictures: FakePicture[]
   controls: FakeControl[]
   sections: FakeSection[]
   styles: Set<string>
@@ -76,6 +108,23 @@ export interface FakeModel {
   styleUpdates: Array<{ name: string; font?: unknown; paragraph?: unknown }>
   /** Emulates Word leaving an empty paragraph after inserted content is deleted at the end. */
   ooxmlQuirk?: boolean
+  /** WordApiDesktop version; when unset, isSetSupported answers every set from apiVersion. */
+  desktopApiVersion?: number
+  /** Office.context.platform, such as PC or OfficeOnline. */
+  platform?: string
+  /** Document.changeTrackingMode; default Off. */
+  changeTrackingMode?: string
+  /** A selection inside one paragraph, from start to end. Without it the selection is the selection paragraphs. */
+  selectionRange?: { paragraph: FakeParagraph; start: number; end: number }
+  /** Pictures inside the selection; default none. */
+  selectedPictures?: FakePicture[]
+  bookmarks?: Map<string, FakeBookmark>
+  /** Text of the comments inserted with insertComment. */
+  notes?: string[]
+  /** acceptAll, rejectAll and the desktop calls that act on every revision or comment, in order. */
+  reviewActions?: string[]
+  /** Handlers added with Office.context.document.addHandlerAsync. */
+  handlers?: Array<{ type: string; handler: () => void }>
 }
 
 export const font = (over: Partial<FakeFont> = {}): FakeFont => ({

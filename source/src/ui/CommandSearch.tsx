@@ -3,7 +3,6 @@ import type { KeyboardEvent } from 'react'
 import { Search } from 'lucide-react'
 import type { Tool } from '../commands/catalogue.ts'
 import { searchTools, toolsFor } from '../commands/catalogue.ts'
-import { HANDLERS } from '../commands/handlers.ts'
 import type { Host } from '../host.ts'
 import { useAction } from './useAction.ts'
 
@@ -34,10 +33,15 @@ export function CommandSearch({ host }: { host: Host }) {
       window.location.hash = `#${tool.pane}`
       return
     }
-    const handler = tool.fn ? HANDLERS[tool.fn] : undefined
-    if (handler) void run(`tool:${tool.id}`, async () => {
-      await handler()
-      return `${tool.label}: done.`
+    const fn = tool.fn
+    if (!fn) return
+    // The handlers load on first use, so the pane opens without every tool's code.
+    void run(`tool:${tool.id}`, async () => {
+      const { HANDLERS } = await import('../commands/handlers.ts')
+      const handler = HANDLERS[fn]
+      if (!handler) return `${tool.label} is on the ribbon only.`
+      const message = await handler()
+      return typeof message === 'string' && message ? message : `${tool.label}: done.`
     })
   }
 

@@ -1640,6 +1640,26 @@ xsi:type="TaskPaneApp">
 <bt:Image size="32" resid="Ico75.32"/>
 <bt:Image size="80" resid="Ico75.80"/>
 </Icon>
+<Control xsi:type="Button" id="BwBP.NewDeck">
+<Label resid="L.P.NewDeck"/>
+<Supertip>
+<Title resid="L.P.NewDeck"/>
+<Description resid="T.P.NewDeck"/>
+</Supertip>
+<Icon>
+<bt:Image size="16" resid="Ico7.16"/>
+<bt:Image size="20" resid="Ico7.20"/>
+<bt:Image size="24" resid="Ico7.24"/>
+<bt:Image size="32" resid="Ico7.32"/>
+<bt:Image size="40" resid="Ico7.40"/>
+<bt:Image size="48" resid="Ico7.48"/>
+<bt:Image size="64" resid="Ico7.64"/>
+<bt:Image size="80" resid="Ico7.80"/>
+</Icon>
+<Action xsi:type="ExecuteFunction">
+<FunctionName>pptNewDeck</FunctionName>
+</Action>
+</Control>
 <Control xsi:type="Button" id="BwBP.SlideLibrary">
 <Label resid="L.P.SlideLibrary"/>
 <Supertip>
@@ -3895,6 +3915,7 @@ xsi:type="TaskPaneApp">
 <bt:String id="L.W.BrandGuide" DefaultValue="Brand guide"/>
 <bt:String id="L.W.Tab" DefaultValue="BwB"/>
 <bt:String id="L.P.G.Slides" DefaultValue="Slides"/>
+<bt:String id="L.P.NewDeck" DefaultValue="New BwB deck"/>
 <bt:String id="L.P.SlideLibrary" DefaultValue="Slide library"/>
 <bt:String id="L.P.AgendaInsert" DefaultValue="Insert agenda slide"/>
 <bt:String id="L.P.TrackersAdd" DefaultValue="Add section trackers"/>
@@ -4053,16 +4074,16 @@ xsi:type="TaskPaneApp">
 <bt:String id="T.W.Icons" DefaultValue="Search 1,866 Lucide icons and insert them in the BwB colours and sizes."/>
 <bt:String id="T.W.Photos" DefaultValue="The BwB photo library: sectors, themes, markets and the team, ready to insert."/>
 <bt:String id="T.W.Chart" DefaultValue="Build a chart in the BwB style from figures pasted from Excel, and insert it with its caption."/>
-<bt:String id="T.W.PicFitWidth" DefaultValue="Sets the selected pictures (or all, if none are selected) to the full text width, keeping their proportions."/>
+<bt:String id="T.W.PicFitWidth" DefaultValue="Sets the selected pictures, or every figure if none are selected, to the full text width, keeping their proportions."/>
 <bt:String id="T.W.PicSameWidth" DefaultValue="Gives every selected picture the width of the first one."/>
-<bt:String id="T.W.PicCentre" DefaultValue="Centres the paragraphs holding the selected pictures."/>
+<bt:String id="T.W.PicCentre" DefaultValue="Centres the selected pictures on their lines, or every figure if none are selected."/>
 <bt:String id="T.W.PicCaption" DefaultValue="Adds a numbered figure caption below the selected picture."/>
 <bt:String id="T.W.PicAltText" DefaultValue="Fills empty alt text from the caption under each picture."/>
 <bt:String id="T.W.PictureTools" DefaultValue="Size and place pictures the BwB way: full text width, matching widths, centred, with a caption."/>
 <bt:String id="T.W.TblDistribute" DefaultValue="Makes the columns of the table at the cursor the same width."/>
 <bt:String id="T.W.TblFitWindow" DefaultValue="Stretches the table at the cursor to the full text width."/>
 <bt:String id="T.W.TblCentre" DefaultValue="Centres the table at the cursor between the margins."/>
-<bt:String id="T.W.TblTotal" DefaultValue="Adds a total row that sums every column of figures."/>
+<bt:String id="T.W.TblTotal" DefaultValue="Adds a total row that sums every column of figures that adds up."/>
 <bt:String id="T.W.TblEmptyRows" DefaultValue="Deletes rows with no text from the table at the cursor."/>
 <bt:String id="T.W.TextToTable" DefaultValue="Turns selected lines separated by tabs, commas or semicolons into a BwB table."/>
 <bt:String id="T.W.TableToText" DefaultValue="Turns the table at the cursor into tab-separated lines of text."/>
@@ -4094,6 +4115,7 @@ xsi:type="TaskPaneApp">
 <bt:String id="T.W.Fields" DefaultValue="Refreshes the contents, caption numbers, cross-references and page totals."/>
 <bt:String id="T.W.BrandGuide" DefaultValue="BwB colours, type, house style, document furniture and icon rules."/>
 <bt:String id="GetStarted.W" DefaultValue="Open the BwB tab to start a document from 17 BwB types, apply BwB styles, blocks and power tools, and run the Pre-QA check before sending."/>
+<bt:String id="T.P.NewDeck" DefaultValue="Opens a new presentation on the BwB template, with the BwB layouts, colours and fonts and a title slide to start from."/>
 <bt:String id="T.P.SlideLibrary" DefaultValue="BwB slides ready to use: title, agenda, divider, key figures, process, matrix, timeline, team and more."/>
 <bt:String id="T.P.AgendaInsert" DefaultValue="Adds an agenda slide listing the deck's sections, after the current slide."/>
 <bt:String id="T.P.TrackersAdd" DefaultValue="Adds a tracker to the top of every slide, with its section highlighted."/>

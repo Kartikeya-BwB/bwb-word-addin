@@ -4,61 +4,13 @@ import { Ctx, FakeCollection, FakeObject } from './base.ts'
 import type { FakeModel, FakePart } from './model.ts'
 import type { Container } from './objects.ts'
 import {
-  ControlCollection, NullTableObj, ParagraphCollection, ParagraphObj, RangeCollection, RangeObj, TableCollection, TableObj,
-  insertOoxmlAt, partContainer,
+  ControlCollection, ParagraphCollection, ParagraphObj, RangeCollection, RangeObj, TableCollection, insertOoxmlAt, partContainer,
 } from './objects.ts'
 import { para } from './model.ts'
-
-class Simple extends FakeObject {}
-
-class CountCollection extends FakeCollection<Simple> {
-  constructor(context: Ctx, private readonly count: () => number) {
-    super(context)
-  }
-  protected make(): Simple[] {
-    return Array.from({ length: this.count() }, () => new Simple(this.context))
-  }
-}
-
-class FieldObj extends FakeObject {
-  constructor(context: Ctx, private readonly data: { code: string; updates: number }) {
-    super(context)
-  }
-  get code(): string { this.need('code'); return this.data.code }
-  updateResult(): void { this.context.queue(() => (this.data.updates += 1)) }
-}
-
-class FieldCollection extends FakeCollection<FieldObj> {
-  constructor(context: Ctx, private readonly model: FakeModel) {
-    super(context)
-  }
-  protected make(): FieldObj[] {
-    return this.model.fields.map((f) => new FieldObj(this.context, f))
-  }
-}
-
-interface PictureData {
-  altTextTitle: string
-  altTextDescription: string
-}
-
-class PictureObj extends FakeObject {
-  constructor(context: Ctx, private readonly model: FakeModel, private readonly data: PictureData) {
-    super(context)
-  }
-  get altTextTitle(): string { this.need('altTextTitle'); return this.data.altTextTitle }
-  get altTextDescription(): string { this.need('altTextDescription'); return this.data.altTextDescription }
-  select(): void { this.context.queue(() => this.model.selected.push(`picture:${this.data.altTextTitle}`)) }
-}
-
-class PictureCollection extends FakeCollection<PictureObj> {
-  constructor(context: Ctx, private readonly model: FakeModel, private readonly list: () => PictureData[]) {
-    super(context)
-  }
-  protected make(): PictureObj[] {
-    return this.list().map((p) => new PictureObj(this.context, this.model, p))
-  }
-}
+import { PictureCollection } from './pictures.ts'
+import { BookmarkRangeObj } from './ranges.ts'
+import { CommentCollection, FieldCollection, TrackedChangeCollection, documentReview } from './review.ts'
+import { SelectionObj } from './selection.ts'
 
 class BodyObj extends FakeObject {
   constructor(context: Ctx, private readonly container: Container, private readonly part?: FakePart) {
@@ -71,7 +23,7 @@ class BodyObj extends FakeObject {
   get inlinePictures(): PictureCollection {
     const part = this.part
     const model = this.container.model
-    return new PictureCollection(this.context, model, () =>
+    return new PictureCollection(this.context, this.container, () =>
       part ? Array.from({ length: part.pictures }, () => ({ altTextTitle: 'logo', altTextDescription: '' })) : model.pictures,
     )
   }
@@ -87,8 +39,14 @@ class BodyObj extends FakeObject {
       }),
     )
   }
-  getComments(): CountCollection { return new CountCollection(this.context, () => this.container.model.comments) }
-  getTrackedChanges(): CountCollection { return new CountCollection(this.context, () => this.container.model.trackedChanges) }
+  getComments(): CommentCollection { return new CommentCollection(this.context, this.container.model) }
+  getTrackedChanges(): TrackedChangeCollection { return new TrackedChangeCollection(this.context, this.container.model) }
+  getRange(location = 'Whole'): RangeObj {
+    const list = this.container.list
+    const p = location === 'End' ? list[list.length - 1] : list[0]
+    const at = location === 'End' ? (p?.text.length ?? 0) : 0
+    return new RangeObj(this.context, this.container, p ?? null, at, location === 'Whole' ? (p?.text.length ?? 0) : at)
+  }
   insertOoxml(ooxml: string, location: string): RangeObj {
     return insertOoxmlAt(this.context, this.container, null, ooxml, location)
   }
@@ -198,30 +156,37 @@ class SectionCollection extends FakeCollection<SectionObj> {
   }
 }
 
+class DocumentObj extends FakeObject {
+  readonly body: BodyObj
+  readonly sections: SectionCollection
+  readonly properties: PropertiesObj
+  private readonly selection: SelectionObj
+  constructor(context: Ctx, private readonly model: FakeModel) {
+    super(context)
+    const container: Container = { model, list: model.paragraphs, controls: model.controls }
+    this.body = new BodyObj(context, container)
+    this.sections = new SectionCollection(context, model)
+    this.properties = new PropertiesObj(context, model)
+    this.selection = new SelectionObj(context, container, model)
+    Object.assign(this, documentReview(context, model))
+  }
+  getSelection(): SelectionObj { return this.selection }
+  getStyles(): { getByNameOrNullObject: (name: string) => StyleObj } {
+    return { getByNameOrNullObject: (name: string) => new StyleObj(this.context, this.model, name) }
+  }
+  get changeTrackingMode(): string { this.need('changeTrackingMode'); return this.model.changeTrackingMode ?? 'Off' }
+  set changeTrackingMode(v: string) { this.context.queue(() => (this.model.changeTrackingMode = v)) }
+  getBookmarkRangeOrNullObject(name: string): BookmarkRangeObj { return new BookmarkRangeObj(this.context, this.model, name) }
+}
+
 export function installFakeWord(model: FakeModel): { runs: () => number } {
   let runs = 0
-  const body = (ctx: Ctx): BodyObj => new BodyObj(ctx, { model, list: model.paragraphs, controls: model.controls })
   const run = async <T>(fn: (context: unknown) => Promise<T>): Promise<T> => {
     runs += 1
     const ctx = new Ctx()
-    const container: Container = { model, list: model.paragraphs, controls: model.controls }
-    const selection = Object.assign(new RangeObj(ctx, container, null, 0, 0), {
-      get paragraphs() { return new ParagraphCollection(ctx, container, () => model.selection) },
-      get parentTableOrNullObject() {
-        return model.selectionTable ? new TableObj(ctx, container, model.selectionTable) : new NullTableObj(ctx)
-      },
-      insertFootnote: (text: string) => ctx.queue(() => model.footnotes.push(text)),
-    })
-    Object.defineProperty(selection, 'text', { get: () => model.selectedText })
     const context = {
       sync: () => ctx.sync(),
-      document: {
-        body: body(ctx),
-        sections: new SectionCollection(ctx, model),
-        properties: new PropertiesObj(ctx, model),
-        getSelection: () => selection,
-        getStyles: () => ({ getByNameOrNullObject: (name: string) => new StyleObj(ctx, model, name) }),
-      },
+      document: new DocumentObj(ctx, model),
       application: { createDocument: (b64: string) => ({ open: () => ctx.queue(() => model.created.push(b64)) }) },
     }
     const result = await fn(context)
@@ -232,14 +197,28 @@ export function installFakeWord(model: FakeModel): { runs: () => number } {
   g.Word = { run }
   g.Office = {
     AsyncResultStatus: { Succeeded: 'succeeded', Failed: 'failed' },
+    EventType: { DocumentSelectionChanged: 'documentSelectionChanged' },
+    PlatformType: { PC: 'PC', OfficeOnline: 'OfficeOnline', Mac: 'Mac', iOS: 'iOS', Android: 'Android', Universal: 'Universal' },
     context: {
-      requirements: { isSetSupported: (_set: string, version: string) => Number(version) <= model.apiVersion },
+      get platform() { return model.platform },
+      requirements: {
+        isSetSupported: (set: string, version: string) =>
+          Number(version) <= (set === 'WordApiDesktop' && model.desktopApiVersion !== undefined ? model.desktopApiVersion : model.apiVersion),
+      },
       document: {
         get url() { return model.url },
         settings: {
           get: (k: string) => model.settings.get(k),
           set: (k: string, v: unknown) => model.settings.set(k, v),
           saveAsync: (cb: (r: { status: string }) => void) => cb({ status: 'succeeded' }),
+        },
+        addHandlerAsync: (type: string, handler: () => void, cb?: (r: { status: string }) => void) => {
+          model.handlers = [...(model.handlers ?? []), { type, handler }]
+          cb?.({ status: 'succeeded' })
+        },
+        removeHandlerAsync: (type: string, options?: { handler?: () => void }, cb?: (r: { status: string }) => void) => {
+          model.handlers = (model.handlers ?? []).filter((h) => h.type !== type || (options?.handler && h.handler !== options.handler))
+          cb?.({ status: 'succeeded' })
         },
       },
     },

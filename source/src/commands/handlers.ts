@@ -1,5 +1,6 @@
-// What each ribbon button does when it acts at once (ExecuteFunction). The names are the FunctionName values in
-// ribbon.json; a test checks the two lists match. Each handler does the same as its task pane button.
+// What each ribbon button does when it acts at once (ExecuteFunction), in Word and PowerPoint. The names are the "fn"
+// values in ribbon-word.json and ribbon-powerpoint.json; a test checks the lists match. Each handler does the same as
+// its task pane button.
 
 import { defaultTableBlocks, findLibraryBlock } from '../brand/library.ts'
 import type { ListStyle, ParagraphStyle } from '../brand/styles.ts'
@@ -11,6 +12,10 @@ import { insertBlocks } from '../word/insert.ts'
 import { HARVEY_BALLS, insertHarveyBall, insertPageBreak } from '../word/marks.ts'
 import { insertContents, insertDisclaimer, insertEuAcknowledgement } from '../word/parts.ts'
 import { supports } from '../word/run.ts'
+import { PPT_HANDLERS } from '../ppt/handlers.ts'
+import { createBwbDeck } from '../ppt/newDeck.ts'
+import { PPT_SLIDE_HANDLERS } from '../ppt/slides/handlers.ts'
+import { WORD_TOOL_HANDLERS } from '../word/tools/handlers.ts'
 import type { Sticker } from '../word/stickers.ts'
 import { setSticker } from '../word/stickers.ts'
 import { addBwbStyles, applyListStyle, applyParagraphStyle, restyleBuiltInStyles } from '../word/styles.ts'
@@ -50,7 +55,7 @@ const harvey = (i: number): Handler => {
 
 const sticker = (label: Sticker | null): Handler => () => setSticker(label)
 
-export const HANDLERS: Record<string, Handler> = {
+const WORD_HANDLERS: Record<string, Handler> = {
   addStyles: async () => {
     await addBwbStyles()
     if (supports('1.5')) await restyleBuiltInStyles()
@@ -114,3 +119,14 @@ export const HANDLERS: Record<string, Handler> = {
 
   updateAllFields: () => updateFields(),
 }
+
+/** Each app's handler sets, kept apart so a test can check that no name is used twice. */
+export const HANDLER_SETS: Record<string, Record<string, Handler>> = {
+  word: WORD_HANDLERS,
+  wordTools: WORD_TOOL_HANDLERS,
+  powerpoint: PPT_HANDLERS,
+  powerpointSlides: PPT_SLIDE_HANDLERS,
+  powerpointStart: { pptNewDeck: () => createBwbDeck() },
+}
+
+export const HANDLERS: Record<string, Handler> = Object.assign({}, ...Object.values(HANDLER_SETS))

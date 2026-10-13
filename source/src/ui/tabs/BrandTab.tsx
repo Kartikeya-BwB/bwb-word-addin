@@ -2,10 +2,13 @@ import { Copy, Paintbrush } from 'lucide-react'
 import { ICON_SIZES_CM } from '../../brand/icons.ts'
 import type { ColourName } from '../../brand/tokens.ts'
 import { PALETTE, TYPE_SCALE, WRITING_RULES } from '../../brand/tokens.ts'
+import { currentHost } from '../../host.ts'
 import { colourSelection } from '../../word/marks.ts'
 import { Button, Section } from '../components.tsx'
 import { useNotify } from '../toast.tsx'
 import { useAction } from '../useAction.ts'
+import { SlideBrandSections, SlideColourActions } from './BrandSlides.tsx'
+import { RuleTable } from './RuleTable.tsx'
 
 /** Colours BwB allows for text on a white page, which the swatches can apply to the selection. */
 const TEXT_COLOURS = new Set<ColourName>(['navy', 'charcoal', 'black'])
@@ -31,6 +34,7 @@ const FURNITURE: Array<[string, string]> = [
 export function BrandTab() {
   const { busy, run } = useAction()
   const notify = useNotify()
+  const slides = currentHost() === 'powerpoint'
 
   const copy = async (text: string): Promise<void> => {
     try {
@@ -43,7 +47,9 @@ export function BrandTab() {
 
   return (
     <>
-      <Section title="Colours" intro="Lime only on navy. Green text only at 18 pt and above. Body text is black.">
+      <Section title="Colours" intro={slides
+        ? 'Lime only on navy. Green text only at 18 pt and above. The buttons fill the selected shapes or colour their text.'
+        : 'Lime only on navy. Green text only at 18 pt and above. Body text is black.'}>
         <div className="tiles">
           {PALETTE.map((c) => (
             <div key={c.key} className="swatch-row">
@@ -54,7 +60,8 @@ export function BrandTab() {
                 <div className="tile-hint"><strong>Text:</strong> {c.textRule}</div>
               </div>
               <div className="swatch-actions">
-                {TEXT_COLOURS.has(c.key) && (
+                {slides && <SlideColourActions colour={c.key} name={c.name} />}
+                {!slides && TEXT_COLOURS.has(c.key) && (
                   <Button small title={`Colour the selected text ${c.name.toLowerCase()}`} aria-label={`Colour the selected text ${c.name.toLowerCase()}`}
                     busy={busy === c.key} onClick={() => void run(c.key, async () => {
                       await colourSelection(c.hex)
@@ -72,7 +79,7 @@ export function BrandTab() {
         </div>
       </Section>
 
-      <Section title="Type" intro="Candara for headings, Aptos for everything else. Nothing below 8 pt.">
+      {!slides && <Section title="Type" intro="Candara for headings, Aptos for everything else. Nothing below 8 pt.">
         <table className="mini-table">
           <tbody>
             {TYPE_SCALE.map((t) => (
@@ -86,9 +93,11 @@ export function BrandTab() {
             ))}
           </tbody>
         </table>
-      </Section>
+      </Section>}
 
-      <Section title="House style" intro="The Check tab finds these, and Clean up on the Write tab fixes the ones with one right answer.">
+      <Section title="House style" intro={slides
+        ? 'The Check tab finds these, and Clean up wording on the ribbon fixes the ones with one right answer.'
+        : 'The Check tab finds these, and Clean up on the Write tab fixes the ones with one right answer.'}>
         <table className="mini-table">
           <tbody>
             {WRITING_RULES.map((w) => (
@@ -101,34 +110,20 @@ export function BrandTab() {
         </table>
       </Section>
 
-      <Section title="Document furniture">
-        <table className="mini-table">
-          <tbody>
-            {FURNITURE.map(([k, v]) => (
-              <tr key={k}>
-                <th scope="row">{k}</th>
-                <td>{v}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Section>
-
-      <Section title="Icons">
-        <table className="mini-table">
-          <tbody>
-            {ICON_RULES.map(([k, v]) => (
-              <tr key={k}>
-                <th scope="row">{k}</th>
-                <td>{v}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Section>
+      {slides ? <SlideBrandSections /> : (
+        <>
+          <Section title="Document furniture">
+            <RuleTable rows={FURNITURE} />
+          </Section>
+          <Section title="Icons">
+            <RuleTable rows={ICON_RULES} />
+          </Section>
+        </>
+      )}
 
       <p className="muted small">
-        Source: the BwB document format (v1.1.0) and the BwB Style Guide. Where a client template applies, it overrides BwB house style.
+        Source: the BwB document format (v1.1.0), the BwB slide template and the BwB Style Guide. Where a client template applies, it overrides
+        BwB house style.
       </p>
     </>
   )

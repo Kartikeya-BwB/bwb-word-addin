@@ -486,7 +486,7 @@
               "label": "Fit to text width",
               "icon": "move-horizontal",
               "fn": "wordPicturesFitWidth",
-              "tip": "Sets the selected pictures (or all, if none are selected) to the full text width, keeping their proportions."
+              "tip": "Sets the selected pictures, or every figure if none are selected, to the full text width, keeping their proportions."
             },
             {
               "id": "PicSameWidth",
@@ -500,7 +500,7 @@
               "label": "Centre on the line",
               "icon": "text-align-center",
               "fn": "wordPicturesCentre",
-              "tip": "Centres the paragraphs holding the selected pictures."
+              "tip": "Centres the selected pictures on their lines, or every figure if none are selected."
             },
             {
               "id": "PicCaption",
@@ -551,7 +551,7 @@
               "label": "Add a total row",
               "icon": "sigma",
               "fn": "wordTableAddTotal",
-              "tip": "Adds a total row that sums every column of figures."
+              "tip": "Adds a total row that sums every column of figures that adds up."
             },
             {
               "id": "TblEmptyRows",

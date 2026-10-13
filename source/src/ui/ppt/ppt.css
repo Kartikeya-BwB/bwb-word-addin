@@ -1,0 +1,46 @@
+/* PowerPoint pane: the arrange tools and the slide elements. Colours come from the theme tokens in theme.css. */
+
+:root {
+  /* Tracker dots only: amber is outside the BwB palette, red is the theme's danger colour. */
+  --rag-green: var(--green);
+  --rag-amber: #f2a900;
+  --rag-red: var(--danger);
+}
+
+.selection-bar { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border-left: 3px solid var(--green); background: var(--off-white); margin-bottom: 14px; }
+.selection-bar strong { font-family: var(--font-heading); font-size: 14px; }
+.selection-bar .anchor { font-size: 12px; color: var(--charcoal); }
+.selection-bar .anchor b { color: var(--navy); }
+
+.segmented { display: flex; border: 1px solid var(--charcoal-20); margin-bottom: 8px; background: var(--white); }
+.segmented button { flex: 1; min-width: 0; border: 0; border-right: 1px solid var(--charcoal-20); background: transparent; color: var(--navy); padding: 6px 2px; font-size: 11px; font-weight: 600; cursor: pointer; }
+.segmented button:last-child { border-right: 0; }
+.segmented button:hover { background: var(--off-white); }
+.segmented button[aria-pressed='true'] { background: var(--navy); color: var(--white); }
+.segmented button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 8px; }
+.tool-grid.four { grid-template-columns: repeat(4, 1fr); }
+.tool-grid .btn { flex-direction: column; gap: 3px; min-height: 46px; padding: 5px 3px; font-size: 10.5px; line-height: 1.2; text-align: center; }
+
+.cm-fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.cm-fields .field { margin-bottom: 6px; }
+.field-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: end; }
+
+.nudge-pad { display: grid; grid-template-columns: repeat(3, 36px); grid-template-rows: repeat(2, 32px); gap: 3px; }
+.nudge-pad .btn { min-height: 0; padding: 0; }
+.nudge-pad .up { grid-column: 2; grid-row: 1; }
+.nudge-pad .left { grid-column: 1; grid-row: 2; }
+.nudge-pad .down { grid-column: 2; grid-row: 2; }
+.nudge-pad .right { grid-column: 3; grid-row: 2; }
+
+.mark-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.mark-row .btn { width: 44px; height: 40px; min-height: 0; padding: 0; }
+.mark-row .btn.status-on-track { color: var(--green); }
+.mark-row .btn.status-other { color: var(--charcoal); }
+.rag-dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; }
+.rag-dot.green { background: var(--rag-green); }
+.rag-dot.amber { background: var(--rag-amber); }
+.rag-dot.red { background: var(--rag-red); }
+
+.needs-update { font-size: 11px; color: var(--amber-text); margin: -4px 0 8px; }

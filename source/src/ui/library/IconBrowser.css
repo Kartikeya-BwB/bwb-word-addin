@@ -1,0 +1,42 @@
+/* The icon browser: library switcher, a virtual grid that stays fast with thousands of icons, and the chosen item.
+   Colours come from the tokens in src/taskpane/theme.css. */
+
+.ib-tabs { display: flex; flex-wrap: wrap; margin-bottom: 8px; border-bottom: 2px solid var(--light-grey); }
+.ib-tab { border: 0; border-bottom: 2px solid transparent; margin-bottom: -2px; background: transparent; padding: 6px 8px; font-size: 12px; font-weight: 600; color: var(--charcoal); cursor: pointer; }
+.ib-tab:hover { color: var(--navy); }
+.ib-tab[aria-pressed='true'] { color: var(--navy); border-bottom-color: var(--green); }
+
+.ib-count { margin: -2px 0 6px; }
+
+.ib-grid { position: relative; max-height: 288px; overflow-y: auto; margin-bottom: 10px; }
+.ib-grid-space { position: relative; }
+.ib-grid-rows { position: absolute; left: 0; right: 0; display: grid; }
+.ib-cell { display: flex; align-items: center; justify-content: center; border: 1px solid var(--light-grey); background: var(--white); cursor: pointer; overflow: hidden; }
+.ib-cell:hover, .ib-cell[aria-selected='true'] { border-color: var(--navy); background: var(--off-white); }
+.ib-cell[aria-selected='true'] { outline: 2px solid var(--green); outline-offset: -2px; }
+.ib-grid.on-navy .ib-cell { background: var(--navy); border-color: var(--navy-2); }
+.ib-grid.on-navy .ib-cell[aria-selected='true'] { outline-color: var(--lime); }
+
+.ib-flag { display: block; height: auto; box-shadow: 0 0 0 1px var(--light-grey); }
+.ib-flag.round { border-radius: 50%; }
+.ib-map {
+  display: block;
+  mask-size: contain; mask-repeat: no-repeat; mask-position: center;
+  -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+}
+.ib-c-green { background: var(--green); }
+.ib-c-navy { background: var(--navy); }
+.ib-c-charcoal { background: var(--charcoal); }
+.ib-c-lightGrey { background: var(--light-grey); }
+.ib-c-white { background: var(--white); }
+.ib-c-lime { background: var(--lime); }
+
+.ib-detail { display: flex; align-items: center; gap: 10px; padding: 8px; margin-bottom: 8px; border: 1px solid var(--light-grey); background: var(--off-white); }
+.ib-detail-mark { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--white); border: 1px solid var(--light-grey); }
+.ib-detail.on-navy .ib-detail-mark { background: var(--navy); border-color: var(--navy); }
+.ib-detail-text { display: flex; flex-direction: column; min-width: 0; }
+.ib-detail-text strong { color: var(--navy); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ib-detail-text span { font-size: 11px; color: var(--charcoal); }
+
+.ib-actions { justify-content: space-between; margin-top: 6px; }
+.ib-offscreen { position: fixed; left: -9999px; top: 0; opacity: 0; }

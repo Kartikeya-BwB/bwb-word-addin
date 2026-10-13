@@ -1,0 +1,35 @@
+/* The Slides and Deck check tabs in PowerPoint. Colours come from the tokens in src/taskpane/theme.css. */
+
+/* Slide library */
+.slide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; max-height: 420px; overflow-y: auto; }
+.slide-cell { display: flex; flex-direction: column; gap: 3px; padding: 3px; border: 1px solid var(--light-grey); background: var(--white); cursor: pointer; text-align: left; }
+.slide-cell img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: var(--off-white); border: 1px solid var(--light-grey); }
+.slide-cell span { font-size: 10.5px; color: var(--charcoal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.slide-cell:hover, .slide-cell[aria-selected='true'] { border-color: var(--navy); background: var(--off-white); }
+.slide-cell[aria-selected='true'] { outline: 2px solid var(--green); outline-offset: -2px; }
+.slide-description { margin: 0 0 8px; }
+
+/* Storyline */
+.story-list { list-style: none; margin: 10px 0; padding: 0; border: 1px solid var(--light-grey); max-height: 380px; overflow-y: auto; }
+.story-section { padding: 6px 10px 3px; background: var(--off-white); color: var(--green-text); font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
+.story-item { display: flex; align-items: flex-start; gap: 8px; width: 100%; padding: 6px 10px; border: 0; border-bottom: 1px solid var(--light-grey); background: var(--white); color: var(--navy); text-align: left; cursor: pointer; }
+.story-list li:last-child .story-item { border-bottom: 0; }
+.story-item:hover { background: var(--off-white); }
+.story-item[disabled] { cursor: default; }
+.story-item[aria-current='true'] { box-shadow: inset 3px 0 0 var(--green); }
+.story-num { flex: 0 0 22px; color: var(--charcoal); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.story-title { flex: 1; min-width: 0; }
+.story-title.untitled { color: var(--charcoal); font-style: italic; }
+
+/* Sections and trackers */
+.section-list { margin: 8px 0 10px; border-top: 1px solid var(--light-grey); }
+.section-row { display: flex; align-items: flex-end; gap: 8px; padding-top: 6px; border-bottom: 1px solid var(--light-grey); }
+.section-num { flex: 0 0 22px; padding-bottom: 15px; color: var(--green-text); font-family: var(--font-heading); font-weight: 700; }
+.section-actions { display: flex; gap: 4px; padding-bottom: 9px; }
+.tracker-preview { margin: 0 0 8px; padding: 6px 8px; background: var(--off-white); border-left: 2px solid var(--charcoal-20); color: var(--charcoal); font-size: 10.5px; }
+.tracker-preview strong { color: var(--navy); }
+
+/* Deck check */
+.finding-slide { flex-shrink: 0; color: var(--charcoal); font-size: 10.5px; white-space: nowrap; }
+.finding.fix-group { background: var(--off-white); }
+.deck-limit { margin: -4px 0 8px; }

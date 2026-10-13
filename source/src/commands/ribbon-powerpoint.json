@@ -11,6 +11,14 @@
       "controls": [
         {
           "type": "button",
+          "id": "NewDeck",
+          "label": "New BwB deck",
+          "icon": "file-plus-corner",
+          "fn": "pptNewDeck",
+          "tip": "Opens a new presentation on the BwB template, with the BwB layouts, colours and fonts and a title slide to start from."
+        },
+        {
+          "type": "button",
           "id": "SlideLibrary",
           "label": "Slide library",
           "icon": "layout-template",

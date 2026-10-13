@@ -1,5 +1,6 @@
 // The function file behind the ribbon's ExecuteFunction buttons. A ribbon command has no pane to show a message
-// in, so a failure opens a small dialog; Word keeps this page alive until event.completed() is called.
+// in, so a failure opens a small dialog; Office keeps this page alive until event.completed() is called. One page
+// serves Word and PowerPoint: each app only calls the names its own ribbon uses.
 
 import { errorMessage } from '../word/run.ts'
 import { HANDLERS } from './handlers.ts'
