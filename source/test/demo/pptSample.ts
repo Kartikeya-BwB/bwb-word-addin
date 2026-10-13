@@ -72,7 +72,7 @@ function optionsSlide(): FakeSlide {
 
 function termsSlide(): FakeSlide {
   return slide([
-    textBox('Organization of the facility — key terms', { name: 'Heading', left: 44, top: 34, width: 860, height: 50, font: { name: 'Calibri', size: 28, bold: true, color: NAVY } }),
+    textBox('Organization of the facility \u2014 key terms', { name: 'Heading', left: 44, top: 34, width: 860, height: 50, font: { name: 'Calibri', size: 28, bold: true, color: NAVY } }),
     tableShape([
       ['Term', 'Guarantee facility', 'Resilience bond', 'Insurance pool'],
       ['Size', 'USD 150m', 'USD 200m', 'USD 50m'],

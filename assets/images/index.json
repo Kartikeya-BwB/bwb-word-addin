@@ -1,0 +1,625 @@
+{
+ "note": "BwB image library. Source files come from the BwB website repository (public/); scripts/make-image-library.py converts them for Word and PowerPoint. Licence: team and event photos are BwB's own; check the licence of the other photos before using them outside BwB documents.",
+ "categories": [
+  {
+   "id": "sectors",
+   "label": "Sectors"
+  },
+  {
+   "id": "themes",
+   "label": "Themes and heroes"
+  },
+  {
+   "id": "team",
+   "label": "Team and events"
+  },
+  {
+   "id": "markets",
+   "label": "Markets and finance"
+  }
+ ],
+ "images": [
+  {
+   "id": "sector-sovereign",
+   "title": "Sustainable sovereign",
+   "category": "sectors",
+   "tags": [
+    "sovereign",
+    "government",
+    "ministry",
+    "public finance",
+    "debt",
+    "building",
+    "door",
+    "institution"
+   ],
+   "file": "assets/images/sector-sovereign.jpg",
+   "thumb": "assets/images/thumbs/sector-sovereign.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 198999
+  },
+  {
+   "id": "sector-urban",
+   "title": "Urban finance",
+   "category": "sectors",
+   "tags": [
+    "urban",
+    "city",
+    "bridge",
+    "infrastructure",
+    "municipal",
+    "waterfront"
+   ],
+   "file": "assets/images/sector-urban.jpg",
+   "thumb": "assets/images/thumbs/sector-urban.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 206219
+  },
+  {
+   "id": "sector-education",
+   "title": "Education finance",
+   "category": "sectors",
+   "tags": [
+    "education",
+    "book",
+    "learning",
+    "school",
+    "knowledge"
+   ],
+   "file": "assets/images/sector-education.jpg",
+   "thumb": "assets/images/thumbs/sector-education.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 204717
+  },
+  {
+   "id": "sector-built",
+   "title": "Built environment",
+   "category": "sectors",
+   "tags": [
+    "buildings",
+    "built environment",
+    "architecture",
+    "real estate",
+    "retrofit",
+    "glass"
+   ],
+   "file": "assets/images/sector-built.jpg",
+   "thumb": "assets/images/thumbs/sector-built.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 133109
+  },
+  {
+   "id": "sector-energy",
+   "title": "Energy finance",
+   "category": "sectors",
+   "tags": [
+    "energy",
+    "power",
+    "pylon",
+    "grid",
+    "electricity",
+    "transmission"
+   ],
+   "file": "assets/images/sector-energy.jpg",
+   "thumb": "assets/images/thumbs/sector-energy.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 149616
+  },
+  {
+   "id": "sector-blue",
+   "title": "Blue economy",
+   "category": "sectors",
+   "tags": [
+    "ocean",
+    "blue economy",
+    "sea",
+    "marine",
+    "water",
+    "underwater"
+   ],
+   "file": "assets/images/sector-blue.jpg",
+   "thumb": "assets/images/thumbs/sector-blue.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 245401
+  },
+  {
+   "id": "sector-mobility",
+   "title": "Mobility finance",
+   "category": "sectors",
+   "tags": [
+    "mobility",
+    "transport",
+    "electric vehicle",
+    "charging",
+    "bus",
+    "ev"
+   ],
+   "file": "assets/images/sector-mobility.jpg",
+   "thumb": "assets/images/thumbs/sector-mobility.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 148086
+  },
+  {
+   "id": "sector-circular",
+   "title": "Circular economy",
+   "category": "sectors",
+   "tags": [
+    "circular economy",
+    "recycling",
+    "glass",
+    "waste",
+    "materials",
+    "bottle"
+   ],
+   "file": "assets/images/sector-circular.jpg",
+   "thumb": "assets/images/thumbs/sector-circular.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 180279
+  },
+  {
+   "id": "sector-biodiversity",
+   "title": "Biodiversity and nature-based solutions",
+   "category": "sectors",
+   "tags": [
+    "biodiversity",
+    "nature",
+    "mangrove",
+    "nature-based solutions",
+    "coast",
+    "tree",
+    "water"
+   ],
+   "file": "assets/images/sector-biodiversity.jpg",
+   "thumb": "assets/images/thumbs/sector-biodiversity.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 228815
+  },
+  {
+   "id": "sector-carbon",
+   "title": "Carbon and forestry",
+   "category": "sectors",
+   "tags": [
+    "carbon",
+    "forest",
+    "forestry",
+    "trees",
+    "canopy",
+    "nature"
+   ],
+   "file": "assets/images/sector-carbon.jpg",
+   "thumb": "assets/images/thumbs/sector-carbon.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 534295
+  },
+  {
+   "id": "sector-climate-security",
+   "title": "Climate security",
+   "category": "sectors",
+   "tags": [
+    "climate security",
+    "drought",
+    "dam",
+    "water stress",
+    "reservoir",
+    "adaptation",
+    "resilience"
+   ],
+   "file": "assets/images/sector-climate-security.jpg",
+   "thumb": "assets/images/thumbs/sector-climate-security.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 270003
+  },
+  {
+   "id": "sector-gender",
+   "title": "Gender and inclusive finance",
+   "category": "sectors",
+   "tags": [
+    "gender",
+    "inclusion",
+    "women",
+    "people",
+    "meeting",
+    "community"
+   ],
+   "file": "assets/images/sector-gender.jpg",
+   "thumb": "assets/images/thumbs/sector-gender.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 175833
+  },
+  {
+   "id": "sector-food",
+   "title": "Food and agriculture",
+   "category": "sectors",
+   "tags": [
+    "agriculture",
+    "food",
+    "farming",
+    "irrigation",
+    "drought",
+    "land",
+    "soil"
+   ],
+   "file": "assets/images/sector-food.jpg",
+   "thumb": "assets/images/thumbs/sector-food.jpg",
+   "width": 1672,
+   "height": 941,
+   "bytes": 254588
+  },
+  {
+   "id": "hero-delta",
+   "title": "River delta at dusk",
+   "category": "themes",
+   "tags": [
+    "delta",
+    "river",
+    "water",
+    "landscape",
+    "aerial",
+    "climate",
+    "dark",
+    "cover"
+   ],
+   "file": "assets/images/hero-delta.jpg",
+   "thumb": "assets/images/thumbs/hero-delta.jpg",
+   "width": 2000,
+   "height": 1116,
+   "bytes": 287021
+  },
+  {
+   "id": "hero-solar-woman",
+   "title": "Solar farm at dusk",
+   "category": "themes",
+   "tags": [
+    "solar",
+    "energy",
+    "renewables",
+    "person",
+    "africa",
+    "dusk",
+    "people",
+    "cover"
+   ],
+   "file": "assets/images/hero-solar-woman.jpg",
+   "thumb": "assets/images/thumbs/hero-solar-woman.jpg",
+   "width": 1376,
+   "height": 768,
+   "bytes": 145230
+  },
+  {
+   "id": "hub-africa",
+   "title": "Kilimanjaro savannah",
+   "category": "themes",
+   "tags": [
+    "africa",
+    "kilimanjaro",
+    "landscape",
+    "savannah",
+    "mountain",
+    "hub",
+    "nature"
+   ],
+   "file": "assets/images/hub-africa.jpg",
+   "thumb": "assets/images/thumbs/hub-africa.jpg",
+   "width": 900,
+   "height": 602,
+   "bytes": 89792
+  },
+  {
+   "id": "hub-city",
+   "title": "City river at night",
+   "category": "themes",
+   "tags": [
+    "city",
+    "urban",
+    "river",
+    "night",
+    "skyline",
+    "hub",
+    "climate city capital"
+   ],
+   "file": "assets/images/hub-city.jpg",
+   "thumb": "assets/images/thumbs/hub-city.jpg",
+   "width": 900,
+   "height": 720,
+   "bytes": 123048
+  },
+  {
+   "id": "markets-bonds",
+   "title": "Bond market screen",
+   "category": "markets",
+   "tags": [
+    "bonds",
+    "capital markets",
+    "trading",
+    "chart",
+    "finance",
+    "screen",
+    "market"
+   ],
+   "file": "assets/images/markets-bonds.jpg",
+   "thumb": "assets/images/thumbs/markets-bonds.jpg",
+   "width": 1920,
+   "height": 1280,
+   "bytes": 147229
+  },
+  {
+   "id": "markets-funds",
+   "title": "Fund advisory",
+   "category": "markets",
+   "tags": [
+    "fund",
+    "money",
+    "euro",
+    "calculator",
+    "advisory",
+    "finance",
+    "cash",
+    "budget"
+   ],
+   "file": "assets/images/markets-funds.jpg",
+   "thumb": "assets/images/thumbs/markets-funds.jpg",
+   "width": 1920,
+   "height": 1280,
+   "bytes": 355048
+  },
+  {
+   "id": "team-retreat-group",
+   "title": "BwB team, group photo outdoors",
+   "category": "team",
+   "tags": [
+    "team",
+    "group",
+    "people",
+    "retreat",
+    "outdoors",
+    "staff"
+   ],
+   "file": "assets/images/team-retreat-group.jpg",
+   "thumb": "assets/images/thumbs/team-retreat-group.jpg",
+   "width": 1920,
+   "height": 1280,
+   "bytes": 662532
+  },
+  {
+   "id": "team-retreat-steps",
+   "title": "BwB team on the steps",
+   "category": "team",
+   "tags": [
+    "team",
+    "group",
+    "people",
+    "retreat",
+    "building",
+    "staff"
+   ],
+   "file": "assets/images/team-retreat-steps.jpg",
+   "thumb": "assets/images/thumbs/team-retreat-steps.jpg",
+   "width": 1920,
+   "height": 1278,
+   "bytes": 674174
+  },
+  {
+   "id": "team-discussion",
+   "title": "Colleagues in discussion",
+   "category": "team",
+   "tags": [
+    "team",
+    "people",
+    "discussion",
+    "collaboration",
+    "smiling",
+    "colleagues"
+   ],
+   "file": "assets/images/team-discussion.jpg",
+   "thumb": "assets/images/thumbs/team-discussion.jpg",
+   "width": 1920,
+   "height": 1279,
+   "bytes": 215576
+  },
+  {
+   "id": "team-laptop",
+   "title": "Reviewing work on a laptop",
+   "category": "team",
+   "tags": [
+    "team",
+    "people",
+    "laptop",
+    "review",
+    "collaboration",
+    "work"
+   ],
+   "file": "assets/images/team-laptop.jpg",
+   "thumb": "assets/images/thumbs/team-laptop.jpg",
+   "width": 1920,
+   "height": 1280,
+   "bytes": 207282
+  },
+  {
+   "id": "team-workshop",
+   "title": "Workshop session",
+   "category": "team",
+   "tags": [
+    "team",
+    "people",
+    "workshop",
+    "meeting",
+    "listening",
+    "event"
+   ],
+   "file": "assets/images/team-workshop.jpg",
+   "thumb": "assets/images/thumbs/team-workshop.jpg",
+   "width": 1920,
+   "height": 1280,
+   "bytes": 205929
+  },
+  {
+   "id": "team-meeting-table",
+   "title": "Meeting at a table",
+   "category": "team",
+   "tags": [
+    "meeting",
+    "people",
+    "client",
+    "discussion",
+    "table",
+    "office"
+   ],
+   "file": "assets/images/team-meeting-table.jpg",
+   "thumb": "assets/images/thumbs/team-meeting-table.jpg",
+   "width": 2000,
+   "height": 1331,
+   "bytes": 228700
+  },
+  {
+   "id": "team-interview",
+   "title": "One-to-one conversation",
+   "category": "team",
+   "tags": [
+    "meeting",
+    "conversation",
+    "people",
+    "interview",
+    "partner",
+    "office"
+   ],
+   "file": "assets/images/team-interview.jpg",
+   "thumb": "assets/images/thumbs/team-interview.jpg",
+   "width": 1920,
+   "height": 1278,
+   "bytes": 228087
+  },
+  {
+   "id": "team-boardroom",
+   "title": "Boardroom session",
+   "category": "team",
+   "tags": [
+    "meeting",
+    "boardroom",
+    "people",
+    "presentation",
+    "event"
+   ],
+   "file": "assets/images/team-boardroom.jpg",
+   "thumb": "assets/images/thumbs/team-boardroom.jpg",
+   "width": 2000,
+   "height": 1331,
+   "bytes": 159755
+  },
+  {
+   "id": "team-small-meeting",
+   "title": "Small meeting room",
+   "category": "team",
+   "tags": [
+    "meeting",
+    "office",
+    "people",
+    "window",
+    "event"
+   ],
+   "file": "assets/images/team-small-meeting.jpg",
+   "thumb": "assets/images/thumbs/team-small-meeting.jpg",
+   "width": 1278,
+   "height": 1920,
+   "bytes": 261650
+  },
+  {
+   "id": "team-corridor",
+   "title": "Conversation in a corridor",
+   "category": "team",
+   "tags": [
+    "people",
+    "conversation",
+    "corridor",
+    "networking",
+    "event"
+   ],
+   "file": "assets/images/team-corridor.jpg",
+   "thumb": "assets/images/thumbs/team-corridor.jpg",
+   "width": 1331,
+   "height": 2000,
+   "bytes": 241853
+  },
+  {
+   "id": "team-breakout",
+   "title": "Breakout group",
+   "category": "team",
+   "tags": [
+    "team",
+    "workshop",
+    "breakout",
+    "group",
+    "laptops",
+    "event"
+   ],
+   "file": "assets/images/team-breakout.jpg",
+   "thumb": "assets/images/thumbs/team-breakout.jpg",
+   "width": 1440,
+   "height": 1920,
+   "bytes": 516073
+  },
+  {
+   "id": "team-celebration",
+   "title": "Team celebration",
+   "category": "team",
+   "tags": [
+    "team",
+    "people",
+    "celebration",
+    "event",
+    "culture"
+   ],
+   "file": "assets/images/team-celebration.jpg",
+   "thumb": "assets/images/thumbs/team-celebration.jpg",
+   "width": 1174,
+   "height": 659,
+   "bytes": 171805
+  },
+  {
+   "id": "team-brand-jacket",
+   "title": "BwB branded jacket",
+   "category": "team",
+   "tags": [
+    "brand",
+    "jacket",
+    "logo",
+    "detail",
+    "merchandise"
+   ],
+   "file": "assets/images/team-brand-jacket.jpg",
+   "thumb": "assets/images/thumbs/team-brand-jacket.jpg",
+   "width": 1331,
+   "height": 2000,
+   "bytes": 220407
+  },
+  {
+   "id": "cover-water",
+   "title": "Harbour from above (report cover)",
+   "category": "themes",
+   "tags": [
+    "cover",
+    "water",
+    "aerial",
+    "harbour",
+    "port",
+    "sea"
+   ],
+   "file": "templates/bwb-cover.jpg",
+   "thumb": "assets/images/thumbs/cover-water.jpg",
+   "width": 1400,
+   "height": 1563,
+   "bytes": 445214
+  }
+ ]
+}

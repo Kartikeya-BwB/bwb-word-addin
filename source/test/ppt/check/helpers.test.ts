@@ -52,6 +52,13 @@ describe('splitting slide text', () => {
     expect(mergeSpans([{ start: 10, length: 5 }, { start: 0, length: 3 }, { start: 3, length: 2 }, { start: 12, length: 10 }, { start: 30, length: 0 }]))
       .toEqual([{ start: 0, length: 5 }, { start: 10, length: 12 }])
   })
+
+  it('merges words with only spaces between them, given the text, but not across lines or other words', () => {
+    const t = 'Small  print\rnext line and more'
+    const words = [{ start: 0, length: 5 }, { start: 7, length: 5 }, { start: 13, length: 4 }, { start: 27, length: 4 }]
+    expect(mergeSpans(words, t)).toEqual([{ start: 0, length: 12 }, { start: 13, length: 4 }, { start: 27, length: 4 }])
+    expect(mergeSpans(words)).toEqual(words)
+  })
 })
 
 describe('the slide palette', () => {

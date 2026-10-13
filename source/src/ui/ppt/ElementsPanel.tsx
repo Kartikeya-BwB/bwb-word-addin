@@ -8,8 +8,8 @@ import { hasPowerPoint, supportsPpt, updateMessage } from '../../ppt/run.ts'
 import type { RagColour } from '../../ppt/specs.ts'
 import type { Quarters, StatusKind } from '../../ppt/svg.ts'
 import { HARVEY_LABELS, STATUS_MARKS } from '../../ppt/svg.ts'
-import { HARVEY_BALLS } from '../../word/marks.ts'
 import { Button, Notice, Section, Tile } from '../components.tsx'
+import { HarveyIcon } from '../HarveyIcon.tsx'
 import { useAction } from '../useAction.ts'
 import './ppt.css'
 
@@ -61,7 +61,7 @@ export function ElementsPanel() {
           {QUARTERS.map((q) => (
             <button key={q} type="button" className="btn harvey" title={HARVEY_LABELS[q]} aria-label={HARVEY_LABELS[q]} disabled={off}
               onClick={() => void run(`harvey-${q}`, () => insertHarveyBall(q))}>
-              {HARVEY_BALLS[q]?.glyph}
+              <HarveyIcon quarters={q} />
             </button>
           ))}
         </div>

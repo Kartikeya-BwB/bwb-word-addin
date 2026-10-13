@@ -52,6 +52,6 @@ describe('the pane in each app', () => {
 
   it('never uses an em dash or an exclamation mark in the copy', () => {
     installFakePowerPoint(createPresentation())
-    for (const component of [SlidesPanel, SlideInsertTab, BrandTab]) expect(render(component)).not.toMatch(/[—!]/)
+    for (const component of [SlidesPanel, SlideInsertTab, BrandTab]) expect(render(component)).not.toMatch(/[\u2014!]/)
   })
 })

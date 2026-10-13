@@ -253,7 +253,7 @@ export function SlidesTab({ stickers }: { stickers?: ReactNode }) {
       return `${plural(o.entries.length, 'slide')} read.`
     })
 
-  const tooOld = unavailableReason(NEEDS.read, 'The slide tools')
+  const tooOld = unavailableReason(NEEDS.read, 'The Slides tab')
   return (
     <>
       {tooOld && <Notice kind="warn">{tooOld}</Notice>}

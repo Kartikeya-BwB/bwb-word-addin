@@ -34,8 +34,8 @@ const REFERENCES: Array<Option<Reference>> = [
 const AXES: Array<Option<Axis>> = [{ value: 'horizontal', label: 'Left to right' }, { value: 'vertical', label: 'Top to bottom' }]
 const SPACINGS: Array<Option<'gaps' | 'centres'>> = [{ value: 'gaps', label: 'Equal gaps' }, { value: 'centres', label: 'Equal centres' }]
 const EXTENTS: Array<Option<Extent>> = [
-  { value: 'selection', label: 'Between the outer shapes' }, { value: 'margins', label: 'Across the margins' },
-  { value: 'content', label: 'Across the content area' }, { value: 'slide', label: 'Across the slide' },
+  { value: 'selection', label: 'Outer shapes' }, { value: 'margins', label: 'Margins' },
+  { value: 'content', label: 'Content area' }, { value: 'slide', label: 'Whole slide' },
 ]
 const SOURCES: Array<Option<SizeSource>> = [
   { value: 'anchor', label: 'The anchor' }, { value: 'largest', label: 'The largest' }, { value: 'smallest', label: 'The smallest' },

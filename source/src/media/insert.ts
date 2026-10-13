@@ -39,15 +39,16 @@ function setSelectedImage(base64: string, options: Office.SetSelectedDataOptions
  * text and tags, so the deck check does not flag the add-in's own pictures. The picture is in either way: if this
  * fails, the author can still add alt text by hand.
  */
-async function labelPlacedShape(altText: string, tags: Record<string, string> = {}): Promise<void> {
+async function labelPlacedShape(altText: string, tags: Record<string, string> = {}, at: { left: number; top: number }): Promise<void> {
   if (!hasPowerPoint() || !supportsPpt('1.5')) return
   try {
     await PowerPoint.run(async (context) => {
       const shapes = context.presentation.getSelectedShapes()
-      shapes.load('items/id')
+      shapes.load('items/id,items/left,items/top')
       await context.sync()
       const [shape] = shapes.items
-      if (!shape || shapes.items.length !== 1) return
+      // Only the shape just placed: never relabel something else that happens to be selected.
+      if (!shape || shapes.items.length !== 1 || Math.abs(shape.left - at.left) > 2 || Math.abs(shape.top - at.top) > 2) return
       if (supportsPpt('1.10')) shape.altTextDescription = altText
       for (const [key, value] of Object.entries(tags)) shape.tags.add(key, value)
       await context.sync()
@@ -63,13 +64,14 @@ export async function insertPictureHere(request: PictureRequest): Promise<void> 
     return
   }
   if (typeof Office === 'undefined') throw new UserFacingError('Open this in PowerPoint to use it.')
+  const at = { left: request.left ?? (SLIDE.width - request.widthPt) / 2, top: request.top ?? (SLIDE.height - request.heightPt) / 2 }
   await setSelectedImage(toBase64(request.bytes), {
     imageWidth: request.widthPt,
     imageHeight: request.heightPt,
-    imageLeft: request.left ?? (SLIDE.width - request.widthPt) / 2,
-    imageTop: request.top ?? (SLIDE.height - request.heightPt) / 2,
+    imageLeft: at.left,
+    imageTop: at.top,
   })
-  await labelPlacedShape(request.altText, request.tags)
+  await labelPlacedShape(request.altText, request.tags, at)
 }
 
 export const cmToPt = (cm: number): number => cm * PT_PER_CM
@@ -101,17 +103,18 @@ export async function insertSvgHere(request: SvgRequest): Promise<void> {
     return
   }
   if (typeof Office === 'undefined') throw new UserFacingError('Open this in PowerPoint to use it.')
+  const at = { left: request.left ?? (SLIDE.width - request.widthPt) / 2, top: request.top ?? (SLIDE.height - request.heightPt) / 2 }
   await new Promise<void>((resolve, reject) => {
     Office.context.document.setSelectedDataAsync(request.svg, {
       coercionType: Office.CoercionType.XmlSvg,
       imageWidth: request.widthPt,
       imageHeight: request.heightPt,
-      imageLeft: request.left ?? (SLIDE.width - request.widthPt) / 2,
-      imageTop: request.top ?? (SLIDE.height - request.heightPt) / 2,
+      imageLeft: at.left,
+      imageTop: at.top,
     }, (result) => {
       if (result.status === Office.AsyncResultStatus.Succeeded) resolve()
       else reject(new UserFacingError(`PowerPoint did not insert the graphic (${result.error.message}).`))
     })
   })
-  await labelPlacedShape(request.altText, request.tags)
+  await labelPlacedShape(request.altText, request.tags, at)
 }

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { insertPictureHere, insertSvgHere } from '../../src/media/insert.ts'
-import { createPresentation, findShape, installFakePowerPoint, slide, uninstallFakePowerPoint } from '../fakePpt/index.ts'
+import { createPresentation, findShape, installFakePowerPoint, slide, textBox, uninstallFakePowerPoint } from '../fakePpt/index.ts'
 
 afterEach(uninstallFakePowerPoint)
 
@@ -45,5 +45,23 @@ describe('placing pictures on a slide', () => {
     installFakePowerPoint(model)
     await expect(insertPictureHere({ bytes: new Uint8Array([1]), widthPt: 50, heightPt: 50, altText: 'Logo' }))
       .rejects.toThrow('PowerPoint did not insert the picture (The slide is locked).')
+  })
+})
+
+describe('labelling what was placed', () => {
+  it('leaves a selected shape alone when PowerPoint did not select the new picture', async () => {
+    const title = textBox('Title', { id: 'title', left: 40, top: 28, altTextDescription: 'Original' })
+    const model = createPresentation([slide([title], { id: 's1' })])
+    installFakePowerPoint(model)
+    const g = globalThis as unknown as { Office: { context: { document: { setSelectedDataAsync: (...a: unknown[]) => void } } } }
+    const place = g.Office.context.document.setSelectedDataAsync
+    g.Office.context.document.setSelectedDataAsync = (...args: unknown[]) => {
+      place(...args)
+      // As if PowerPoint kept the old selection instead of selecting the new picture.
+      model.selection = { slideIds: ['s1'], shapeIds: ['title'], textRange: null }
+    }
+    await insertPictureHere({ bytes: new Uint8Array([1]), widthPt: 100, heightPt: 100, altText: 'Logo', tags: { BWB_ELEMENT: 'logo' } })
+    expect(title.altTextDescription).toBe('Original')
+    expect(title.tags.size).toBe(0)
   })
 })

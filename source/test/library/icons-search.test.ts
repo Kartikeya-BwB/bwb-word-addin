@@ -5,7 +5,7 @@ import type { IconIndex } from '../../src/brand/icons.ts'
 import { ICON_SIZES_CM, resolveIcon, searchIcons } from '../../src/brand/icons.ts'
 import type { FlagJson, IconEntry, Library, MapJson, TablerJson } from '../../src/brand/iconLibraries.ts'
 import {
-  LIBRARIES, SECTORS, altTextFor, boxFor, coloursFor, copyTextFor, flagLibrary, fold, lucideLibrary, mapLibrary, searchLibraries,
+  LIBRARIES, SECTORS, altTextFor, boxFor, browseOrder, coloursFor, copyTextFor, flagLibrary, fold, lucideLibrary, mapLibrary, searchLibraries,
   sectorLibrary, sizesFor, tablerLibrary,
 } from '../../src/brand/iconLibraries.ts'
 
@@ -150,5 +150,21 @@ describe('colours, sizes and labels', () => {
   it('lists the libraries with Lucide first and a licence line for each', () => {
     expect(LIBRARIES.map((l) => l.id)).toEqual(['lucide', 'sectors', 'tabler', 'flags', 'maps'])
     for (const library of LIBRARIES) expect(library.licence, library.id).toMatch(/(ISC|MIT) licence/)
+  })
+})
+
+describe('browseOrder', () => {
+  it('opens Lucide on the BwB topics, and still lists every icon once', () => {
+    const order = browseOrder(lucide)
+    expect(order).toHaveLength(lucide.entries.length)
+    expect(new Set(keys(order)).size).toBe(order.length)
+    const topical = new Set(Object.values(lucide.topics).flat())
+    expect(order.slice(0, 24).every((e) => topical.has(e.id))).toBe(true)
+    expect(order[0]?.id).toBe(Object.values(lucide.topics)[0]?.[0])
+  })
+
+  it('keeps the given order for libraries without topics', () => {
+    expect(keys(browseOrder(tabler))).toEqual(keys(tabler.entries))
+    expect(keys(browseOrder(flags))).toEqual(keys(flags.entries))
   })
 })

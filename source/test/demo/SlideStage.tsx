@@ -113,7 +113,7 @@ function ShapeView({ model, shape: s, interactive, onPick }: { model: FakePresen
       : <rect x={s.left} y={s.top} width={s.width} height={s.height} fill="#E8E9E6" />
   } else body = <>{outline(s)}{text(s)}</>
   return (
-    <g transform={transform} data-shape={s.id} onMouseDown={interactive ? (e) => onPick(e, s.id) : undefined} style={interactive ? { cursor: 'move' } : undefined}>
+    <g transform={transform} data-shape={s.id} data-name={s.name} onMouseDown={interactive ? (e) => onPick(e, s.id) : undefined} style={interactive ? { cursor: 'move' } : undefined}>
       {/* A clear frame, so a shape with no fill can still be clicked. */}
       {interactive && <rect x={b.left} y={b.top} width={Math.max(b.width, 4)} height={Math.max(b.height, 4)} fill="transparent" />}
       {body}

@@ -45,7 +45,7 @@ function fontFindings(snapshot: DeckSnapshot): DeckFinding[] {
         out.push({
           id: `brand:font:${shapeKey(slide, shape)}:${font}`, rule: 'brand/font', group: 'brand', severity: 'minor',
           title: `Text in ${font}`, detail: 'BwB slides use Candara for titles and Aptos for text.', ...base(slide, shape, spans[0]),
-          fix: { kind: 'font', slideId: slide.id, path: shape.path, expectedText: shape.text ?? '', spans: mergeSpans(spans), font: target },
+          fix: { kind: 'font', slideId: slide.id, path: shape.path, expectedText: shape.text ?? '', spans: mergeSpans(spans, shape.text ?? ''), font: target },
           fixLabel: `Change to ${target}`,
         })
       }
@@ -81,7 +81,7 @@ function colourFinding(slide: SlideInfo, shape: ShapeInfo, kind: ColourKind, hex
       : 'Use the BwB palette: navy, green, charcoal, the greys and off-white; lime only on navy.',
     ...base(slide, shape, spans[0]),
     fix: kind === 'text'
-      ? { ...ref, kind: 'text-colour', expectedText: shape.text ?? '', spans: mergeSpans(spans), colour: replacement.hex }
+      ? { ...ref, kind: 'text-colour', expectedText: shape.text ?? '', spans: mergeSpans(spans, shape.text ?? ''), colour: replacement.hex }
       : { ...ref, kind: kind === 'fill' ? 'fill-colour' : 'line-colour', colour: replacement.hex },
     fixLabel: `Change to ${name}`,
   }
@@ -108,7 +108,7 @@ function colourFindings(snapshot: DeckSnapshot): DeckFinding[] {
           id: `brand:lime:${shapeKey(slide, shape)}`, rule: 'brand/lime-on-light', group: 'brand', severity: 'minor',
           title: 'Lime text on a light background', detail: 'Lime is for navy backgrounds only; it fails contrast on white and the greys.',
           ...base(slide, shape, lime[0]),
-          fix: { kind: 'text-colour', slideId: slide.id, path: shape.path, expectedText: shape.text ?? '', spans: mergeSpans(lime), colour: COLOURS.navy },
+          fix: { kind: 'text-colour', slideId: slide.id, path: shape.path, expectedText: shape.text ?? '', spans: mergeSpans(lime, shape.text ?? ''), colour: COLOURS.navy },
           fixLabel: 'Change to Navy',
         })
       }
@@ -142,7 +142,7 @@ function smallTextFindings(snapshot: DeckSnapshot): DeckFinding[] {
       const small = visibleRuns(shape).filter((r) => r.font.size !== null && r.font.size < min)
       if (!small.length) continue
       const smallest = Math.min(...small.map((r) => r.font.size ?? min))
-      const spans = mergeSpans(small.map((r) => ({ start: r.start, length: r.length })))
+      const spans = mergeSpans(small.map((r) => ({ start: r.start, length: r.length })), shape.text ?? '')
       out.push({
         id: `brand:small:${shapeKey(slide, shape)}`, rule: 'brand/small-text', group: 'brand', severity: 'minor',
         title: `Text at ${points(smallest)}`,

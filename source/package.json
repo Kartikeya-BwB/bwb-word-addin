@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "assets": "node scripts/make-icon-index.mjs && node scripts/make-ribbon-icons.mjs && node scripts/make-manifest.mjs",
+    "icons": "node scripts/make-icon-libraries.mjs",
+    "slides": "python3 scripts/make-slide-library.py",
+    "images": "python3 scripts/make-image-library.py",
     "dev": "npm run assets && vite",
     "demo": "vite --open /demo.html",
     "build": "npm run assets && tsc --noEmit && vite build",

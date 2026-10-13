@@ -5,7 +5,7 @@ import { useDeferredValue, useEffect, useId, useLayoutEffect, useMemo, useRef, u
 import type { KeyboardEvent, ReactNode } from 'react'
 import type { EntryKind, FlagShape, IconEntry, Library, LibraryColour, LibraryId } from '../../brand/iconLibraries.ts'
 import {
-  LIBRARIES, altTextFor, boxFor, coloursFor, copyTextFor, flagUrl, iconSvgFor, loadLibrary, searchLibraries, sizesFor, strokeSvg,
+  LIBRARIES, altTextFor, boxFor, browseOrder, coloursFor, copyTextFor, flagUrl, iconSvgFor, loadLibrary, searchLibraries, sizesFor, strokeSvg,
 } from '../../brand/iconLibraries.ts'
 import type { Host } from '../../host.ts'
 import { currentHost } from '../../host.ts'
@@ -218,7 +218,7 @@ export function IconBrowser({ host = currentHost() }: { host?: Host }) {
     const open = wanted.split(' ').filter(Boolean).flatMap((id) => libraries[id as LibraryId] ?? [])
     const inGroup = (e: IconEntry): boolean => !group || e.group === group
     if (search) return searchLibraries(open, search).filter(inGroup)
-    return tab === 'all' ? [] : (open[0]?.entries ?? []).filter(inGroup)
+    return tab === 'all' || !open[0] ? [] : browseOrder(open[0]).filter(inGroup)
   }, [libraries, wanted, search, group, tab])
 
   const groups = tab === 'flags' || tab === 'maps'

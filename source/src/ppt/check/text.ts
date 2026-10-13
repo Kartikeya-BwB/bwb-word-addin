@@ -56,13 +56,17 @@ export function shorten(text: string, max: number): string {
   return `${(space > max / 2 ? cut.slice(0, space) : cut).replace(/[\s,;:.]+$/, '')}…`
 }
 
-/** Merges touching or overlapping spans and sorts them, so a fix sets each stretch once. */
-export function mergeSpans(spans: Span[]): Span[] {
+/**
+ * Merges touching or overlapping spans and sorts them, so a fix sets each stretch once. Given the text, spans with
+ * only spaces between them merge too: words read one by one leave the spaces between them out.
+ */
+export function mergeSpans(spans: Span[], text?: string): Span[] {
   const sorted = [...spans].filter((s) => s.length > 0).sort((a, b) => a.start - b.start)
   const out: Span[] = []
+  const spaces = (from: number, to: number): boolean => text !== undefined && /^[ \t\u00A0]*$/.test(text.slice(from, to))
   for (const s of sorted) {
     const last = out[out.length - 1]
-    if (last && s.start <= last.start + last.length) {
+    if (last && (s.start <= last.start + last.length || spaces(last.start + last.length, s.start))) {
       last.length = Math.max(last.length, s.start + s.length - last.start)
     } else {
       out.push({ ...s })

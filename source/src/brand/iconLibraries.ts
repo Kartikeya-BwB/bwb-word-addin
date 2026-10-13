@@ -244,6 +244,14 @@ function scoreEntry({ search }: IconEntry, q: string, words: string[], topic: nu
   return matched ? matched * 1000 + score - name.length * 0.01 : 0
 }
 
+/** A library's entries for browsing with no search: the icons for BwB topics first, in topic order, then the rest. */
+export function browseOrder(library: Library): IconEntry[] {
+  const byId = new Map(library.entries.map((e) => [e.id, e]))
+  const first = [...new Set(Object.values(library.topics).flat())].flatMap((id) => byId.get(id) ?? [])
+  const seen = new Set(first.map((e) => e.id))
+  return [...first, ...library.entries.filter((e) => !seen.has(e.id))]
+}
+
 /** Ranks entries across libraries: whole and partial name matches, tags, then BwB topics. Ties keep library order. */
 export function searchLibraries(libraries: readonly Library[], query: string, limit = 300): IconEntry[] {
   const { q, words } = queryWords(query)

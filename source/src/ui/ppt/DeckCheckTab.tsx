@@ -113,9 +113,9 @@ export function DeckCheckTab() {
     void run('check', async () => {
       const r = await check()
       const open = r.counts.blocker + r.counts.major + r.counts.minor + r.counts.copyedit
-      return r.ready
-        ? `Check complete: no blocker or major items${open ? `, ${open} smaller ones` : ''}.`
-        : `Check complete: ${r.counts.blocker + r.counts.major} items to resolve before QA.`
+      const serious = r.counts.blocker + r.counts.major
+      if (r.ready) return `Check complete: no blocker or major items${open ? `, ${open === 1 ? 'one smaller one' : `${open} smaller ones`}` : ''}.`
+      return `Check complete: ${serious === 1 ? 'one item' : `${serious} items`} to resolve before QA.`
     })
 
   const actions: Actions = {

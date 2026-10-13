@@ -16,7 +16,10 @@ export interface FakePowerPointHandle {
 }
 
 export interface InstallOptions {
-  /** Overrides model.apiVersion: the newest PowerPointApi set this PowerPoint supports. */
+  /**
+   * Overrides model.apiVersion: the newest PowerPointApi set this PowerPoint supports. It is written into the model,
+   * so installing the same deck again without it keeps this version.
+   */
   apiVersion?: string
 }
 

@@ -10,6 +10,7 @@ import { HARVEY_BALLS, insertHarveyBall, insertPageBreak } from '../../word/mark
 import { insertAbbreviations, insertContents, insertDisclaimer, insertEuAcknowledgement } from '../../word/parts.ts'
 import { ChartBuilder } from '../charts/ChartBuilder.tsx'
 import { Disclosure, Section, Tile } from '../components.tsx'
+import { HarveyIcon } from '../HarveyIcon.tsx'
 import { useAction } from '../useAction.ts'
 import { IconBrowser } from '../library/IconBrowser.tsx'
 import { ImagePicker } from '../library/ImagePicker.tsx'
@@ -95,12 +96,12 @@ export function InsertTab() {
 
       <Section title="Harvey balls" intro="Score options against criteria in a table. Inserted at the cursor in navy.">
         <div className="row">
-          {HARVEY_BALLS.map((h) => (
+          {HARVEY_BALLS.map((h, quarters) => (
             <button key={h.glyph} type="button" className="btn harvey" title={h.label} aria-label={`Harvey ball: ${h.label}`} disabled={working}
               onClick={() => void run(`harvey-${h.glyph}`, async () => {
                 await insertHarveyBall(h.glyph)
               })}>
-              {h.glyph}
+              <HarveyIcon quarters={quarters} />
             </button>
           ))}
         </div>

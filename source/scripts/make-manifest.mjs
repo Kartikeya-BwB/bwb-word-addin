@@ -20,7 +20,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 function check(text, max, what) {
   if (text.length > max) throw new Error(`${what} is ${text.length} characters; the limit is ${max}: ${text}`)
-  if (/—/.test(text)) throw new Error(`${what} has an em dash: ${text}`)
+  if (/\u2014/.test(text)) throw new Error(`${what} has an em dash: ${text}`)
   return text
 }
 
