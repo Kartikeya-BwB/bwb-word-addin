@@ -89,6 +89,8 @@ export function normaliseColour(value: string): string {
 export interface FrameSource {
   model: FakePresentation
   shape: () => FakeShape
+  /** The shape's proxy, for TextFrame.getParentShape(). */
+  owner?: () => FakeObject
 }
 
 function frameOf(source: FrameSource): FakeTextFrame {
@@ -124,6 +126,24 @@ export class FontObj extends FakeObject {
   set italic(v: boolean | null) { this.set('italic', v) }
   get underline(): string | null { return this.get('underline') }
   set underline(v: string | null) { this.set('underline', v) }
+  /** PowerPointApi 1.8: true, false, or null for text that is partly superscript. */
+  get superscript(): boolean | null {
+    this.need('superscript')
+    const s = this.span()
+    const copy: FakeTextFrame = { ...s.frame, runs: s.frame.runs.map((r) => ({ text: r.text, font: { ...r.font } })) }
+    const values = s.end > s.start ? runsBetween(copy, s.start, s.end).map((r) => r.font.superscript ?? false) : [fontAt(s.frame, s.start).superscript ?? false]
+    return values.every((v) => v === values[0]) ? values[0] ?? false : null
+  }
+  set superscript(v: boolean | null) {
+    this.context.gate('1.8', 'ShapeFont.superscript')
+    this.write(() => {
+      const s = this.span()
+      writeFont(s.frame, s.start, s.end, { superscript: v === true })
+    })
+  }
+  protected override versionFor(path: string): string | undefined {
+    return path === 'superscript' ? '1.8' : undefined
+  }
 }
 
 /** Bullets for the whole frame: the fake keeps one visible flag per text frame (bulletVisible). */
@@ -282,5 +302,13 @@ export class TextFrameObj extends FakeObject {
       const f = this.frame()
       f.runs = [{ text: '', font: { ...fontAt(f, 0) } }]
     })
+  }
+
+  /** PowerPointApi 1.5: the shape that holds this text frame. */
+  getParentShape(): FakeObject {
+    this.context.gate('1.5', 'TextFrame.getParentShape')
+    const owner = this.source.owner?.()
+    if (!owner) throw new FakeOfficeError('GeneralException', 'This text frame has no parent shape in the fake')
+    return owner
   }
 }

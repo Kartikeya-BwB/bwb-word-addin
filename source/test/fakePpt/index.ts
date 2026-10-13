@@ -80,8 +80,13 @@
  *   AsyncResultStatus, and PowerPoint enums (PowerPoint.ShapeZOrder.bringToFront is 'BringToFront').
  * - Events: fireSelectionChanged(deck) calls every DocumentSelectionChanged handler and awaits what they return;
  *   clickShapes(deck, ids) selects and fires. Selection changes made through the API do not fire the event.
+ * - Added for the slide tools and the Pre-QA check (extras.ts): font.superscript (1.8, FakeFont.superscript, missing
+ *   reads as false); slide, layout and master backgrounds (1.10: FakeSlide/FakeLayout/FakeMaster.background, with
+ *   fill.type, fill.getSolidFillOrNullObject().color and isMasterBackgroundFollowed; missing follows the master, and
+ *   a master's is solid white); Slide.hyperlinks (1.6: FakeSlide.hyperlinks with address and screenTip, type and
+ *   getLinkedShapeOrNullObject at 1.10); TextFrame.getParentShape (1.5), also from getSelectedTextRange().
  *
- * Not modelled: paragraph-level formatting (alignment and bullets are per frame), bullet styles, hyperlinks,
+ * Not modelled: paragraph-level formatting (alignment and bullets are per frame), bullet styles, text hyperlinks,
  * adjustments, charts, custom XML, and the formatting of table cells beyond recording it.
  */
 

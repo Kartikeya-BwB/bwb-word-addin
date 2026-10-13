@@ -42,7 +42,7 @@ function messyDeck(): FakePresentation {
   ])
 }
 
-describe('the deck check on a messy deck', () => {
+describe('the Pre-QA check on a messy deck', () => {
   it('finds the problems, fixes the safe ones in one go, and leaves the rest for the author', async () => {
     const deck = messyDeck()
     installFakePowerPoint(deck)

@@ -1,11 +1,14 @@
 // Fake presentation, slides, layouts, masters and page setup.
 
 import { Ctx, FakeClientResult, FakeCollection, FakeObject, FakeOfficeError } from './base.ts'
-import type { FakeLayout, FakeMaster, FakePresentation, FakeShape, FakeSlide } from './model.ts'
+import type { FakeBackground, FakeLayout, FakeMaster, FakePresentation, FakeShape, FakeSlide } from './model.ts'
 import { nextId, slide as slideData } from './model.ts'
 import { allShapes, findShape, findSlide, selectedShapes } from './queries.ts'
-import { ShapeCollectionObj, ShapeScopedCollectionObj, TagCollectionObj } from './shapes.ts'
+import { ShapeCollectionObj, ShapeObj, ShapeScopedCollectionObj, TagCollectionObj } from './shapes.ts'
 import { TextRangeObj } from './text.ts'
+import { BackgroundObj, HyperlinkCollectionObj, effectiveBackground } from './extras.ts'
+
+const WHITE_BACKGROUND: FakeBackground = { type: 'Solid', color: '#FFFFFF', followsMaster: false }
 
 /** A fresh copy of a layout placeholder, with its own id and text, for a slide added with that layout. */
 function copyShape(s: FakeShape): FakeShape {
@@ -21,7 +24,7 @@ function copyShape(s: FakeShape): FakeShape {
 }
 
 class SlideLayoutObj extends FakeObject {
-  constructor(context: Ctx, private readonly layout: () => FakeLayout | undefined) {
+  constructor(context: Ctx, private readonly layout: () => FakeLayout | undefined, private readonly master: () => FakeMaster | undefined = () => undefined) {
     super(context)
   }
   private data(): FakeLayout {
@@ -34,6 +37,13 @@ class SlideLayoutObj extends FakeObject {
   get id(): string { this.need('id'); return this.data().id }
   get name(): string { this.need('name'); return this.data().name }
   get type(): string { this.need('type'); return this.data().type }
+  get background(): BackgroundObj {
+    this.context.gate('1.10', 'SlideLayout.background')
+    return new BackgroundObj(this.context, () => this.data().background, () => {
+      const own = this.data().background
+      return own && !own.followsMaster ? own : this.master()?.background ?? WHITE_BACKGROUND
+    })
+  }
 }
 
 class SlideLayoutCollectionObj extends FakeCollection<SlideLayoutObj> {
@@ -41,9 +51,9 @@ class SlideLayoutCollectionObj extends FakeCollection<SlideLayoutObj> {
     super(context)
   }
   protected source(): object[] { return this.master().layouts }
-  protected wrap(data: object): SlideLayoutObj { return new SlideLayoutObj(this.context, () => data as FakeLayout) }
-  getItem(id: string): SlideLayoutObj { return new SlideLayoutObj(this.context, () => this.master().layouts.find((l) => l.id === id)) }
-  getItemAt(index: number): SlideLayoutObj { return new SlideLayoutObj(this.context, () => this.master().layouts[index]) }
+  protected wrap(data: object): SlideLayoutObj { return new SlideLayoutObj(this.context, () => data as FakeLayout, () => this.master()) }
+  getItem(id: string): SlideLayoutObj { return new SlideLayoutObj(this.context, () => this.master().layouts.find((l) => l.id === id), () => this.master()) }
+  getItemAt(index: number): SlideLayoutObj { return new SlideLayoutObj(this.context, () => this.master().layouts[index], () => this.master()) }
   getCount(): FakeClientResult<number> { return new FakeClientResult(this.context, () => this.master().layouts.length) }
 }
 
@@ -60,6 +70,10 @@ class SlideMasterObj extends FakeObject {
   get id(): string { this.need('id'); return this.data().id }
   get name(): string { this.need('name'); return this.data().name }
   get layouts(): SlideLayoutCollectionObj { return new SlideLayoutCollectionObj(this.context, () => this.data()) }
+  get background(): BackgroundObj {
+    this.context.gate('1.10', 'SlideMaster.background')
+    return new BackgroundObj(this.context, () => undefined, () => this.data().background ?? WHITE_BACKGROUND)
+  }
   protected override onLoaded(head: string, rest: string): void {
     if (head === 'layouts') this.layouts.markLoaded(rest || '*')
   }
@@ -96,8 +110,16 @@ export class SlideObj extends FakeObject {
   get index(): number { this.need('index'); return this.model.slides.indexOf(this.data()) }
   get shapes(): ShapeCollectionObj { return (this.shapesObj ??= new ShapeCollectionObj(this.context, this.model, () => this.data())) }
   get tags(): TagCollectionObj { return (this.tagsObj ??= new TagCollectionObj(this.context, () => this.data().tags)) }
+  get background(): BackgroundObj {
+    this.context.gate('1.10', 'Slide.background')
+    return new BackgroundObj(this.context, () => this.data().background, () => effectiveBackground(this.model, this.data()))
+  }
+  get hyperlinks(): HyperlinkCollectionObj {
+    this.context.gate('1.6', 'Slide.hyperlinks')
+    return new HyperlinkCollectionObj(this.context, this.model, () => this.data())
+  }
   get layout(): SlideLayoutObj {
-    return new SlideLayoutObj(this.context, () => this.model.masters.flatMap((m) => m.layouts).find((l) => l.id === this.data().layoutId))
+    return new SlideLayoutObj(this.context, () => this.model.masters.flatMap((m) => m.layouts).find((l) => l.id === this.data().layoutId), () => this.model.masters.find((m) => m.id === this.data().masterId))
   }
   get slideMaster(): SlideMasterObj { return new SlideMasterObj(this.context, () => this.model.masters.find((m) => m.id === this.data().masterId)) }
 
@@ -247,7 +269,7 @@ export class PresentationObj extends FakeObject {
     const t = this.model.selection.textRange
     const shape = t ? findShape(this.model, t.shapeId) : undefined
     if (!t || !shape) return new NullTextRangeObj(this.context, nullable)
-    return new TextRangeObj(this.context, { model: this.model, shape: () => shape }, t.start, t.length)
+    return new TextRangeObj(this.context, { model: this.model, shape: () => shape, owner: () => new ShapeObj(this.context, this.model, shape) }, t.start, t.length)
   }
   getSelectedTextRange(): TextRangeObj | NullTextRangeObj { return this.selectedText(false) }
   getSelectedTextRangeOrNullObject(): TextRangeObj | NullTextRangeObj { return this.selectedText(true) }

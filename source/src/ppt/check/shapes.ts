@@ -1,5 +1,5 @@
 // What a shape or slide is, from its type, placeholder, tags, name and position: titles, sources, BwB furniture,
-// pictures, and title, agenda and divider slides. The deck check, storyline and sections all decide the same way.
+// pictures, and title, agenda and divider slides. The Pre-QA check, storyline and sections all decide the same way.
 
 import { SOURCE_AREA, TAGS } from '../../brand/slideGrid.ts'
 import { oneLine } from './text.ts'
@@ -148,6 +148,18 @@ export function slideTitle(slide: SlideInfo): SlideTitle | null {
     .filter((s) => hasText(s) && !isBwbFurniture(s) && !isFooterShape(s) && !isSourceShape(s))
     .sort(topFirst)[0]
   return text ? { text: oneLine(text.text ?? ''), shape: text, fromPlaceholder: false } : null
+}
+
+/** A placeholder with nothing in it: no text, or (where PowerPoint can say) no picture, chart or table. */
+export function isEmptyPlaceholder(s: ShapeInfo, knowsContents: boolean): boolean {
+  if (s.type !== 'Placeholder' || s.placeholder === null) return false
+  if (TEXT_PLACEHOLDERS.has(s.placeholder)) return s.text !== null && !hasText(s) && !(s.contains !== null && NON_TEXT_CONTENT.has(s.contains))
+  return knowsContents && s.placeholder !== 'Unsupported' && s.contains === null
+}
+
+/** A slide with nothing on it: no shapes, or only empty placeholders and footers. */
+export function isEmptySlide(slide: SlideInfo, knowsContents: boolean): boolean {
+  return slide.shapes.every((s) => s.level > 0 || isFooterShape(s) || isEmptyPlaceholder(s, knowsContents))
 }
 
 /** Every shape with text that the author wrote: not furniture, not footers. */

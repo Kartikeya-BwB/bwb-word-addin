@@ -1,7 +1,9 @@
 // Layout: shapes off the slide, empty placeholders and text boxes, and titles that jump from slide to slide.
 
 import { TITLE_AREA } from '../../brand/slideGrid.ts'
-import { FOOTER_PLACEHOLDERS, NON_TEXT_CONTENT, TEXT_PLACEHOLDERS, TITLE_PLACEHOLDERS, hasText, isBwbFurniture, isPicture, slideKind } from './shapes.ts'
+import {
+  FOOTER_PLACEHOLDERS, NON_TEXT_CONTENT, TEXT_PLACEHOLDERS, TITLE_PLACEHOLDERS, hasText, isBwbFurniture, isEmptySlide, isPicture, slideKind,
+} from './shapes.ts'
 import { points } from './text.ts'
 import type { Box, DeckFinding, DeckSnapshot, ShapeInfo, SlideInfo } from './types.ts'
 import { onShape, shapeExcerpt, shapeKey } from './util.ts'
@@ -55,6 +57,8 @@ function offSlideFindings(snapshot: DeckSnapshot): DeckFinding[] {
 function emptyFindings(snapshot: DeckSnapshot): DeckFinding[] {
   const out: DeckFinding[] = []
   for (const slide of snapshot.slides) {
+    // An empty slide is one finding (in the slide rules), not one for each of its placeholders.
+    if (isEmptySlide(slide, snapshot.can.placeholders)) continue
     for (const shape of slide.shapes) {
       const where = { slide: slide.index + 1, location: onShape(slide, shape), excerpt: shape.name }
       const ref = { slideId: slide.id, path: shape.path }

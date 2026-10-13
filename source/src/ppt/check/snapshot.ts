@@ -1,4 +1,4 @@
-// Reads the presentation for the deck check, the storyline and the sections in a few batched syncs, however long the
+// Reads the presentation for the Pre-QA check, the storyline and the sections in a few batched syncs, however long the
 // deck: the slides; their shapes, tags and layouts; each shape's placeholder type, text, font, fill, outline and alt
 // text; the shapes inside groups, a level at a time; and, where a shape mixes formatting, its paragraphs and then its
 // words, read one piece at a time with getSubstring because a TextRange has no runs.
@@ -7,6 +7,7 @@ import { SLIDE } from '../../brand/slideGrid.ts'
 import { NEEDS, syncEach } from '../slides/office.ts'
 import { requirePpt, runPpt, supportsPpt } from '../run.ts'
 import { MEDIA_PLACEHOLDERS, NON_TEXT_CONTENT, needsAltText, placeholderFromName } from './shapes.ts'
+import { readBackgrounds, readLinks, readMarkers } from './snapshotExtras.ts'
 import { hexColour, splitParagraphs, splitWords } from './text.ts'
 import type { DeckSnapshot, FontInfo, ShapeInfo, SlideInfo, Span } from './types.ts'
 
@@ -20,6 +21,8 @@ const MAX_PIECES = 5000
 export interface ReadOptions {
   /** Fonts, colours, fills, outlines and alt text as well as text and tags. The slide tools need only text and tags. */
   formatting?: boolean
+  /** Superscript footnote markers (API 1.8). Read with formatting unless set. */
+  markers?: boolean
   /** Read only these slides (their index is still their place in the deck). */
   slideIds?: string[]
   /** Read only the current slide. */
@@ -40,6 +43,7 @@ interface Job {
   fill: PowerPoint.ShapeFill | null
   line: PowerPoint.ShapeLineFormat | null
   alt: boolean
+  visible: boolean
 }
 
 interface SlideJob {
@@ -80,13 +84,13 @@ function newJob(shape: PowerPoint.Shape, parent: string[], level: number): Job {
     id: shape.id, path: [...parent, shape.id], level, name: shape.name ?? '', type,
     placeholder: type === 'Placeholder' ? placeholderFromName(shape.name ?? '') : null, contains: null,
     left: shape.left, top: shape.top, width: shape.width, height: shape.height,
-    tags: {}, text: null, font: null, pieces: [], fill: null, line: null, alt: null,
+    tags: {}, text: null, font: null, pieces: [], fill: null, line: null, alt: null, visible: null, markers: [],
   }
-  return { shape, info, members: [], tags: null, placeholder: null, group: null, range: null, font: null, fill: null, line: null, alt: false }
+  return { shape, info, members: [], tags: null, placeholder: null, group: null, range: null, font: null, fill: null, line: null, alt: false, visible: false }
 }
 
 function clear(job: Job): void {
-  Object.assign(job, { tags: null, placeholder: null, group: null, range: null, font: null, fill: null, line: null, alt: false })
+  Object.assign(job, { tags: null, placeholder: null, group: null, range: null, font: null, fill: null, line: null, alt: false, visible: false })
 }
 
 /** Shapes with text to read: not pictures or charts, and not placeholders made to hold them. */
@@ -134,7 +138,7 @@ function queueContent(job: Job, can: Can): void {
     job.font = job.range ? job.range.font : null
     job.font?.load(FONT_PROPS)
     job.fill = shape.fill
-    job.fill.load('type,foregroundColor')
+    job.fill.load('type,foregroundColor,transparency')
   }
   if (text || info.type === 'Line') {
     job.line = shape.lineFormat
@@ -144,15 +148,23 @@ function queueContent(job: Job, can: Can): void {
     shape.load('altTextTitle,altTextDescription,isDecorative')
     job.alt = true
   }
+  if (can.hidden) {
+    shape.load('visible')
+    job.visible = true
+  }
 }
 
 function takeContent(job: Job): void {
   const { info, shape } = job
   if (job.range) info.text = job.range.text ?? ''
   if (job.font) info.font = fontInfo(job.font)
-  if (job.fill) info.fill = { type: String(job.fill.type), colour: hexColour(job.fill.foregroundColor) }
+  if (job.fill) {
+    const transparency = typeof job.fill.transparency === 'number' ? job.fill.transparency : 0
+    info.fill = { type: String(job.fill.type), colour: hexColour(job.fill.foregroundColor), ...(transparency > 0 ? { transparency } : {}) }
+  }
   if (job.line) info.line = { visible: job.line.visible === true, colour: hexColour(job.line.color) }
   if (job.alt) info.alt = { title: shape.altTextTitle ?? '', description: shape.altTextDescription ?? '', decorative: shape.isDecorative === true }
+  if (job.visible) info.visible = shape.visible !== false
 }
 
 /** Splits mixed text into paragraphs, and paragraphs that still mix formatting into words. Returns false if capped. */
@@ -213,6 +225,10 @@ export async function readDeck(context: PowerPoint.RequestContext, options: Read
     altText: formatting && supportsPpt(NEEDS.export),
     pageSize: supportsPpt(NEEDS.export),
     selection: supportsPpt(NEEDS.current),
+    hidden: formatting && supportsPpt(NEEDS.export),
+    background: formatting && supportsPpt(NEEDS.export),
+    links: formatting && supportsPpt(NEEDS.links),
+    markers: (options.markers ?? formatting) && supportsPpt(NEEDS.move),
   }
   const presentation = context.presentation
   const slides = presentation.slides
@@ -228,7 +244,7 @@ export async function readDeck(context: PowerPoint.RequestContext, options: Read
   const slideJobs: SlideJob[] = slides.items
     .map((slide, index): SlideJob => ({
       slide, shapes: null, tags: null, layout: null, top: [],
-      info: { id: slide.id, index, tags: {}, layout: null, shapes: [] },
+      info: { id: slide.id, index, tags: {}, layout: null, shapes: [], background: null, links: [] },
     }))
     .filter((s) => !wanted || wanted.has(s.info.id))
   const failedSlides = await syncEach(context, slideJobs, (s) => {
@@ -256,7 +272,12 @@ export async function readDeck(context: PowerPoint.RequestContext, options: Read
     level.forEach((job) => (failedContent.has(job) ? clear(job) : takeContent(job)))
     level = level.flatMap((job) => job.members)
   }
-  const complete = can.formatting ? await readPieces(context, all) : true
+  const piecesRead = can.formatting ? await readPieces(context, all) : true
+  const read = slideJobs.filter((s) => !failedSlides.has(s))
+  if (can.background) await readBackgrounds(context, read)
+  if (can.links) await readLinks(context, read, supportsPpt(NEEDS.export))
+  const markersRead = can.markers ? await readMarkers(context, all) : true
+  const complete = piecesRead && markersRead
 
   for (const s of slideJobs) s.info.shapes = flatten(s.top)
   return {

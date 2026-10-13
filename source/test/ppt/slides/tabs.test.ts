@@ -38,15 +38,15 @@ describe('the Slides tab', () => {
   })
 })
 
-describe('the Deck check tab', () => {
+describe('the Pre-QA check tab', () => {
   it('renders the check and the QA note, with nothing run yet', () => {
     const html = deckCheckTab()
-    for (const text of ['Deck check', 'Run the check', 'Send to QA', 'Copy QA note']) expect(html, text).toContain(text)
+    for (const text of ['Pre-QA check', 'Run the check', 'Send to QA', 'Copy QA note']) expect(html, text).toContain(text)
     expect(html).not.toMatch(/[\u2014!]/)
   })
 
   it('says plainly when this PowerPoint is too old to check the deck', () => {
     installFakePowerPoint(createPresentation(), { apiVersion: '1.3' })
-    expect(deckCheckTab()).toContain('The deck check needs a newer PowerPoint.')
+    expect(deckCheckTab()).toContain('The Pre-QA check needs a newer PowerPoint.')
   })
 })

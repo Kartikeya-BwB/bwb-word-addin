@@ -13,6 +13,25 @@ export interface FakeFont {
   bold: boolean | null
   italic: boolean | null
   underline: string | null
+  /** PowerPointApi 1.8. Missing reads as false. */
+  superscript?: boolean
+}
+
+/** A slide, layout or master background (PowerPointApi 1.10). */
+export interface FakeBackground {
+  /** Solid, Gradient, PictureOrTexture, Pattern or Unsupported. */
+  type: string
+  /** '#RRGGBB' for a solid fill. */
+  color: string
+  /** Slides and layouts: whether the background follows the master's. Masters ignore it. */
+  followsMaster: boolean
+}
+
+/** A hyperlink on a slide (PowerPointApi 1.6): on a shape when shapeId is set, else on text. */
+export interface FakeHyperlink {
+  address: string
+  screenTip?: string
+  shapeId?: string
 }
 
 /** A stretch of text with one font. A text frame's text is its runs joined. */
@@ -42,6 +61,8 @@ export interface FakeFill {
   /** '#RRGGBB', upper case. */
   foregroundColor: string
   transparency: number
+  /** The base64 picture given to setImage (PowerPointApi 1.8), with type PictureAndTexture. */
+  image?: string
 }
 
 export interface FakeLine {
@@ -59,6 +80,12 @@ export interface FakeTable {
   options: Record<string, unknown>
   /** Formatting written through table cells (PowerPointApi 1.9), keyed "row,column". */
   cells: Record<string, Record<string, unknown>>
+  /** Column widths in points, once read or set through table.columns (1.9); equal shares of the width until then. */
+  columnWidths?: number[]
+  /** Row heights in points, once set through table.rows (1.9). */
+  rowHeights?: number[]
+  /** What was set through table.styleSettings (1.9): style, areRowsBanded and so on. */
+  styleSettings?: Record<string, unknown>
 }
 
 export interface FakeShape {
@@ -92,6 +119,8 @@ export interface FakeShape {
   table?: FakeTable
   altTextTitle: string
   altTextDescription: string
+  /** Adjustment values (PowerPointApi 1.10), such as a rounded rectangle's corner rounding. None when missing. */
+  adjustments?: number[]
 }
 
 export interface FakeLayout {
@@ -100,12 +129,16 @@ export interface FakeLayout {
   type: string
   /** Copied onto a slide added with this layout. */
   placeholders: FakeShape[]
+  /** Missing: follows the master. */
+  background?: FakeBackground
 }
 
 export interface FakeMaster {
   id: string
   name: string
   layouts: FakeLayout[]
+  /** Missing: solid white. */
+  background?: FakeBackground
 }
 
 export interface FakeSlide {
@@ -115,6 +148,10 @@ export interface FakeSlide {
   tags: Map<string, string>
   layoutId: string
   masterId: string
+  /** Missing: follows the master (through the layout). */
+  background?: FakeBackground
+  /** Missing: none. */
+  hyperlinks?: FakeHyperlink[]
 }
 
 export interface FakeSelection {

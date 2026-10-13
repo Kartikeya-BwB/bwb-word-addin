@@ -261,7 +261,7 @@ export function SlidesTab({ stickers }: { stickers?: ReactNode }) {
       <Storyline outline={outline} busy={busy} act={act} onRead={onRead} />
       <Sections outline={outline} busy={busy} act={act} />
       <Section id="stickers" title="Stickers" intro="Status labels such as Draft or For discussion at the top right of the selected slides.">
-        {stickers ?? <p className="muted small">Use Sticker on the BwB ribbon tab. The deck check lists any left on slides.</p>}
+        {stickers ?? <p className="muted small">Use Sticker on the BwB ribbon tab. The Pre-QA check lists any left on slides.</p>}
       </Section>
       <CopyToNewDeck />
     </>

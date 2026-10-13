@@ -1,4 +1,4 @@
-// The deck check works on a snapshot of the presentation, so every rule is a pure function that can be tested
+// The PowerPoint Pre-QA check works on a snapshot of the presentation, so every rule is a pure function that can be tested
 // without PowerPoint. Severities are the BwB QA vocabulary the Word check uses: Blocker, Major, Minor, Copyedit.
 
 import type { Severity } from '../../check/types.ts'
@@ -47,10 +47,27 @@ export interface ShapeInfo {
   font: FontInfo | null
   /** Where the whole text mixes formatting: uniform stretches, by paragraph and then by word. */
   pieces: TextPiece[]
-  fill: { type: string; colour: string | null } | null
+  /** A transparency above 0 is set only when PowerPoint reports one. */
+  fill: { type: string; colour: string | null; transparency?: number } | null
   line: { visible: boolean; colour: string | null } | null
   /** Null where it was not read: not a picture, or PowerPoint is older than API 1.10. */
   alt: { title: string; description: string; decorative: boolean } | null
+  /** False for a shape hidden on the slide; null where PowerPoint cannot say (API 1.10). */
+  visible: boolean | null
+  /** Footnote markers: superscript numbers in the text (API 1.8). Empty where not read. */
+  markers: FootnoteMarker[]
+}
+
+export interface FootnoteMarker {
+  start: number
+  length: number
+  number: number
+}
+
+export interface SlideLink {
+  address: string
+  /** The linked shape where PowerPoint says (API 1.10); null for a link on text. */
+  shapeId: string | null
 }
 
 export interface SlideInfo {
@@ -62,6 +79,10 @@ export interface SlideInfo {
   layout: string | null
   /** Every shape, groups before the shapes inside them. */
   shapes: ShapeInfo[]
+  /** The background colour the slide shows where it is a solid fill PowerPoint reports (API 1.10); else null. */
+  background: string | null
+  /** The slide's hyperlinks (API 1.6). */
+  links: SlideLink[]
 }
 
 export interface DeckSnapshot {
@@ -78,6 +99,13 @@ export interface DeckSnapshot {
     altText: boolean
     pageSize: boolean
     selection: boolean
+    /** Shape visibility and slide backgrounds (API 1.10). */
+    hidden: boolean
+    background: boolean
+    /** Slide hyperlinks (API 1.6). */
+    links: boolean
+    /** Superscript footnote markers (API 1.8). */
+    markers: boolean
   }
   /** True when some text mixed so much formatting that part of it was not read piece by piece. */
   partial: boolean
@@ -125,6 +153,8 @@ export type DeckFix =
   | (ShapeRef & { kind: 'delete-shape'; from: Box })
   | { kind: 'delete-tagged'; tag: string; text?: string }
   | { kind: 'update-trackers' }
+  | { kind: 'delete-slide'; slideId: string }
+  | { kind: 'remove-unused-footnotes'; slideId: string }
   | { kind: 'batch'; fixes: DeckFix[] }
 
 export type ShapeFix = Extract<DeckFix, ShapeRef>

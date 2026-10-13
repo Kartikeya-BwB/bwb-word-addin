@@ -3,10 +3,13 @@
 // sourceInChart is set.
 
 import { describeChart } from './alt.ts'
+import type { Annotations } from './annotate.ts'
 import type { ChartType } from './catalogue.ts'
+import type { ClassMethod } from './classes.ts'
 import type { NumberFormat } from './format.ts'
 import type { ChartContext } from './frame.ts'
 import { LABELS_DROPPED, LABELS_TO_AXIS, defaultFontPt } from './frame.ts'
+import type { RegionId, WorldMap } from './geo.ts'
 import type { Grid } from './grid.ts'
 import { MIN_FONT_PT } from './measure.ts'
 import { toSeriesTable } from './data.ts'
@@ -66,6 +69,53 @@ export interface ChartSpec {
   /** For the caption, or drawn at the bottom left when sourceInChart is set. */
   source?: string
   sourceInChart?: boolean
+  /** Combination charts: the data series (by position in the data) drawn as lines; by default the last one. */
+  lineSeries?: number[]
+  /** Combination charts: the lines get a value axis of their own on the right. */
+  secondAxis?: boolean
+  /** Number format for the right-hand axis and the lines on it. */
+  format2?: NumberFormat
+  /** Axis titles: x along the bottom, y on the left, y2 on the right. Absent titles come from the data headings. */
+  axisTitles?: AxisTitles
+  /** Scatter and bubble charts: draw the axis titles; default on. */
+  showAxisTitles?: boolean
+  /** Scatter and bubble charts: quadrant lines and labels. */
+  quadrants?: Quadrants
+  /** Column, bar and line charts: growth arrows, differences, average and target lines, an axis break. */
+  annotations?: Annotations
+  /** Stacked columns and bars: totals beyond each stack; default on when data labels are on. */
+  totals?: boolean
+  /** Data maps: region, classes and how values are grouped. */
+  map?: MapOptions
+}
+
+export interface AxisTitles {
+  x?: string
+  y?: string
+  y2?: string
+}
+
+export interface Quadrants {
+  /** Where the vertical line crosses the x axis: a value, or the median of the points. */
+  x?: number | 'median'
+  /** Where the horizontal line crosses the y axis. */
+  y?: number | 'median'
+  /** Labels for the top left, top right, bottom left and bottom right quadrants. */
+  labels?: string[]
+}
+
+export interface MapOptions {
+  region?: RegionId
+  /** Number of classes for values, 3 to 5; default 4. */
+  classes?: number
+  method?: ClassMethod
+  /** Values shade by class, text values are groups; default works it out from the data. */
+  mode?: 'auto' | 'values' | 'categories'
+}
+
+/** Data a renderer needs beyond the spec, loaded once by the caller: the world map for data maps. */
+export interface ChartResources {
+  world?: WorldMap
 }
 
 export interface RenderedChart {

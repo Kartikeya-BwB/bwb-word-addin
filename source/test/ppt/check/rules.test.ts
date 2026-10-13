@@ -6,7 +6,7 @@ import { sendFindings } from '../../../src/ppt/check/rulesSend.ts'
 import { slideFindings } from '../../../src/ppt/check/rulesSlides.ts'
 import { wordingFindings } from '../../../src/ppt/check/rulesWording.ts'
 import type { DeckFinding, DeckSnapshot } from '../../../src/ppt/check/types.ts'
-import { body, deck, font, picture, shape, slide, source, text, title } from './build.ts'
+import { body, can, deck, font, picture, shape, slide, source, text, title } from './build.ts'
 
 const rules = (findings: DeckFinding[]): string[] => findings.map((f) => f.rule)
 const one = (findings: DeckFinding[], rule: string): DeckFinding | undefined => findings.find((f) => f.rule === rule)
@@ -58,7 +58,7 @@ describe('brand: fonts', () => {
 
   it('checks nothing when the snapshot holds no formatting', () => {
     const snap = deck([slide([text('Arial', { font: font({ name: 'Arial', size: 6, colour: 'FF0000' }) })])], {
-      can: { formatting: false, placeholders: true, groups: true, altText: false, pageSize: true, selection: true },
+      can: can({ formatting: false, altText: false, hidden: false, background: false, links: false, markers: false }),
     })
     expect(brandFindings(snap)).toEqual([])
   })
@@ -176,7 +176,7 @@ describe('layout', () => {
 
   it('needs placeholder contents from PowerPoint before calling a picture placeholder empty', () => {
     const snap = deck([slide([shape({ type: 'Placeholder', placeholder: 'Picture', text: null })])], {
-      can: { formatting: true, placeholders: false, groups: false, altText: false, pageSize: false, selection: true },
+      can: can({ placeholders: false, groups: false, altText: false, pageSize: false }),
     })
     expect(layoutFindings(snap)).toEqual([])
   })

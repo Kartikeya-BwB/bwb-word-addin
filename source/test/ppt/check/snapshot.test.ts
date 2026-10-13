@@ -35,7 +35,9 @@ describe('reading the deck', () => {
       ['s2', 1, 'Title and Content', { BWB_SECTION: 'Context' }],
     ])
     expect([snap.width, snap.height, snap.selected, snap.partial]).toEqual([720, 540, ['s2'], false])
-    expect(snap.can).toEqual({ formatting: true, placeholders: true, groups: true, altText: true, pageSize: true, selection: true })
+    expect(snap.can).toEqual({
+      formatting: true, placeholders: true, groups: true, altText: true, pageSize: true, selection: true, hidden: true, background: true, links: true, markers: true,
+    })
 
     const shapes = snap.slides[1]?.shapes ?? []
     expect(shapes.map((s) => [s.id, s.type, s.placeholder])).toEqual([
@@ -113,7 +115,7 @@ describe('reading the deck', () => {
     const large = installFakePowerPoint(deck(30))
     await takeDeckSnapshot()
     expect(large.syncs()).toBe(few)
-    expect(few).toBeLessThanOrEqual(8)
+    expect(few).toBeLessThanOrEqual(10)
   })
 
   it('reads alt text on graphics such as icons, and whether a shape is decorative', async () => {
@@ -133,7 +135,9 @@ describe('reading the deck on older PowerPoint', () => {
     deck.slides[1]?.shapes.push(group([textBox('Inside'), textBox('Also')], { id: 'g' }))
     installFakePowerPoint(deck, { apiVersion: '1.5' })
     const snap = await takeDeckSnapshot()
-    expect(snap.can).toEqual({ formatting: true, placeholders: false, groups: false, altText: false, pageSize: false, selection: true })
+    expect(snap.can).toEqual({
+      formatting: true, placeholders: false, groups: false, altText: false, pageSize: false, selection: true, hidden: false, background: false, links: false, markers: false,
+    })
     expect([snap.width, snap.height]).toEqual([960, 540])
     const shapes = snap.slides[1]?.shapes ?? []
     expect(shapes.map((s) => s.placeholder).slice(0, 2)).toEqual(['Title', 'Body'])

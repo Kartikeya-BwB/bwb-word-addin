@@ -13,7 +13,7 @@ export function shape(over: Partial<ShapeInfo> = {}): ShapeInfo {
     path: [id], level: 0, name: `TextBox ${id}`, type: 'TextBox', placeholder: null, contains: null,
     left: CONTENT_AREA.left, top: CONTENT_AREA.top, width: 400, height: 100,
     tags: {}, text: '', font: font(), pieces: [],
-    fill: { type: 'NoFill', colour: null }, line: { visible: false, colour: null }, alt: null,
+    fill: { type: 'NoFill', colour: null }, line: { visible: false, colour: null }, alt: null, visible: true, markers: [],
     ...over, id,
   }
 }
@@ -42,7 +42,15 @@ export function picture(over: Partial<ShapeInfo> = {}): ShapeInfo {
 }
 
 export function slide(shapes: ShapeInfo[], over: Partial<SlideInfo> = {}): SlideInfo {
-  return { id: '', index: 0, tags: {}, layout: 'Title and Content', shapes, ...over }
+  return { id: '', index: 0, tags: {}, layout: 'Title and Content', shapes, background: null, links: [], ...over }
+}
+
+/** What a snapshot could read: everything, except what `over` turns off. */
+export function can(over: Partial<DeckSnapshot['can']> = {}): DeckSnapshot['can'] {
+  return {
+    formatting: true, placeholders: true, groups: true, altText: true, pageSize: true, selection: true,
+    hidden: true, background: true, links: true, markers: true, ...over,
+  }
 }
 
 /** A deck from slides, numbering them and giving each an id like PowerPoint's ("256#1000"). */
@@ -50,7 +58,7 @@ export function deck(slides: SlideInfo[], over: Partial<DeckSnapshot> = {}): Dec
   return {
     slides: slides.map((s, index) => ({ ...s, index, id: s.id || `${256 + index}#${1000 + index}` })),
     width: 960, height: 540, selected: [],
-    can: { formatting: true, placeholders: true, groups: true, altText: true, pageSize: true, selection: true },
+    can: can(),
     partial: false,
     ...over,
   }

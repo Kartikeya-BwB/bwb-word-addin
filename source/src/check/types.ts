@@ -36,6 +36,8 @@ export interface TableInfo {
   firstCell: string
   after: NeighbourParagraph | null
   before: NeighbourParagraph | null
+  /** Cell text by row (Table.values, WordApi 1.3), for the arithmetic and consistency checks. */
+  values?: string[][]
 }
 
 export interface PictureInfo {
@@ -69,6 +71,13 @@ export interface RunFormatting {
   pictures: number
 }
 
+/** Chemical formulas written with digits (CO2, CH4) in one paragraph, by whether the digits are set as subscript. */
+export interface FormulaFormatting {
+  paragraph: number | null
+  subscript: number
+  plain: number
+}
+
 export interface DocSnapshot {
   paragraphs: ParagraphInfo[]
   tables: TableInfo[]
@@ -80,6 +89,8 @@ export interface DocSnapshot {
   comments: number | null
   trackedChanges: number | null
   formatting: RunFormatting[] | null
+  /** Formulas with digits, from the same deep scan; absent or null when it did not run. */
+  formulas?: FormulaFormatting[] | null
   info: DocInfo
   fileName: string | null
   bwbStyles: boolean | null

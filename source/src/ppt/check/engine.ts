@@ -1,4 +1,5 @@
-// Runs every deck rule over a snapshot and summarises the result, as the Word check's engine does for documents.
+// The PowerPoint Pre-QA check: runs every deck rule over a snapshot and summarises the result, as the Word check's
+// engine does for documents.
 
 import type { Severity } from '../../check/types.ts'
 import { SEVERITIES } from '../../check/types.ts'
@@ -75,7 +76,7 @@ export function deckQaNote(report: DeckReport, title: string, date: Date = new D
   const c = report.counts
   const open = report.findings.filter((f) => !f.advisory && (f.severity === 'blocker' || f.severity === 'major'))
   const lines = [
-    `BwB deck check: ${title || 'untitled deck'}, ${day}`,
+    `BwB Pre-QA check: ${title || 'untitled deck'}, ${day}`,
     `${report.stats.slides} slides, ${report.stats.words.toLocaleString('en-GB')} words, ${report.stats.pictures} pictures`,
     `Open items: ${c.blocker} blocker, ${c.major} major, ${c.minor} minor, ${c.copyedit} copyedit`,
     report.ready ? 'No blocker or major items: ready for peer review and QA.' : 'Not ready yet. Major items:',

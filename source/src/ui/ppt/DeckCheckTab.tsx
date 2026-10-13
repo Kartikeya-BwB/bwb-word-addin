@@ -93,7 +93,7 @@ function FindingGroup({ id, label, findings, actions }: { id: DeckGroup; label: 
 
 const plural = (n: number, one: string, many = `${one}s`): string => `${n} ${n === 1 ? one : many}`
 
-/** The deck check: the PowerPoint counterpart of the Word Pre-QA check. */
+/** The Pre-QA check for decks: the PowerPoint counterpart of the Word Check tab. */
 export function DeckCheckTab() {
   const { busy, run } = useAction()
   const notify = useNotify()
@@ -152,11 +152,11 @@ export function DeckCheckTab() {
     }
   }
 
-  const tooOld = unavailableReason(NEEDS.read, 'The deck check')
+  const tooOld = unavailableReason(NEEDS.read, 'The Pre-QA check')
   const bulk = report ? deckBulkFixes(report.findings) : []
   return (
     <>
-      <Section title="Deck check" weight="act"
+      <Section title="Pre-QA check" weight="act"
         intro="Checks every slide against the BwB slide format and house style before the deck goes to QA. Nothing changes until you choose Fix.">
         {tooOld && <Notice kind="warn">{tooOld}</Notice>}
         <Button variant="primary" block disabled={Boolean(tooOld)} busy={busy === 'check'} onClick={runCheck}>

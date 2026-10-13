@@ -33,6 +33,14 @@ export interface AcronymEntry {
   uses: number
   status: AcronymStatus
 }
+/** One place an acronym is spelled out: in the text, or as a row of a two-column abbreviations table. */
+export interface AcronymDefinition { definition: string; at: AcronymUse; table: boolean }
+/** The entries, with every use and every definition of each acronym, keyed by the acronym as written. */
+export interface AcronymAnalysis {
+  entries: AcronymEntry[]
+  uses: ReadonlyMap<string, readonly AcronymUse[]>
+  definitions: ReadonlyMap<string, readonly AcronymDefinition[]>
+}
 
 const COMMON = new Set(['UK', 'US', 'EU', 'UN', 'BWB']) // compared upper-cased
 // Chemical formulas that look like acronyms in climate texts.
@@ -57,7 +65,7 @@ const SENTENCE_END = /[.;:!?]$/
 
 interface Token { text: string; start: number; end: number }
 interface Candidate { key: string; start: number; end: number }
-interface Definition { key: string; definition: string; at: AcronymUse }
+interface Definition { key: string; definition: string; at: AcronymUse; table?: boolean }
 
 // ------------------------------------------------------------------------------------------- candidates
 function shape(s: string): boolean {
@@ -246,7 +254,7 @@ function tableRowDefinition(
   const last = words[words.length - 1]
   if (!first || !last || !spells(words, lettersOf(key))) return null
   const start = cell.text.indexOf(token)
-  return { key, definition: next.text.slice(first.start, last.end), at: { paragraph, start, end: start + token.length } }
+  return { key, definition: next.text.slice(first.start, last.end), at: { paragraph, start, end: start + token.length }, table: true }
 }
 
 // ------------------------------------------------------------------------------------------- analysis
@@ -258,8 +266,26 @@ const inside = (a: AcronymUse, b: AcronymUse): boolean =>
 
 /** Every acronym in the document, sorted alphabetically. */
 export function analyseAcronyms(paragraphs: AcronymInputParagraph[]): AcronymEntry[] {
+  return acronymAnalysis(paragraphs).entries.slice()
+}
+
+let memo: { input: AcronymInputParagraph[]; result: AcronymAnalysis } | null = null
+
+const sameInput = (a: readonly AcronymInputParagraph[], b: readonly AcronymInputParagraph[]): boolean =>
+  a.length === b.length && a.every((p, i) => {
+    const q = b[i]
+    return q !== undefined && p.text === q.text && !p.isHeading === !q.isHeading && !p.inTable === !q.inTable
+  })
+
+/**
+ * The analysis behind analyseAcronyms, with every use and definition. The last result is kept, so checks that ask
+ * about the same paragraphs one after another share one pass over the document.
+ */
+export function acronymAnalysis(paragraphs: AcronymInputParagraph[]): AcronymAnalysis {
+  if (memo && sameInput(memo.input, paragraphs)) return memo.result
   const uses = new Map<string, AcronymUse[]>()
   const defs = new Map<string, Definition>()
+  const allDefs = new Map<string, AcronymDefinition[]>()
   paragraphs.forEach((p, i) => {
     for (const c of candidates(p.text)) {
       const list = uses.get(c.key) ?? []
@@ -268,8 +294,18 @@ export function analyseAcronyms(paragraphs: AcronymInputParagraph[]): AcronymEnt
     }
     if (p.isHeading) return
     const found = [tableRowDefinition(p, paragraphs[i + 1], i), ...definitions(p.text, i)]
-    for (const d of found) if (d && !defs.has(d.key)) defs.set(d.key, d)
+    for (const d of found) {
+      if (!d) continue
+      if (!defs.has(d.key)) defs.set(d.key, d)
+      allDefs.set(d.key, [...(allDefs.get(d.key) ?? []), { definition: d.definition, at: d.at, table: d.table === true }])
+    }
   })
+  const result: AcronymAnalysis = { entries: entriesOf(uses, defs), uses, definitions: allDefs }
+  memo = { input: paragraphs.map((p) => ({ ...p })), result }
+  return result
+}
+
+function entriesOf(uses: ReadonlyMap<string, AcronymUse[]>, defs: ReadonlyMap<string, Definition>): AcronymEntry[] {
   const out: AcronymEntry[] = []
   for (const [acronym, list] of uses) {
     const firstUse = list[0]

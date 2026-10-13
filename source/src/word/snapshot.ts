@@ -1,6 +1,7 @@
 // Reads everything the Pre-QA check needs from the open document in a few batched calls.
 
-import type { ControlInfo, DocSnapshot, HeaderFooterInfo, ParagraphInfo, PictureInfo, RunFormatting, TableInfo } from '../check/types.ts'
+import type { ControlInfo, DocSnapshot, FormulaFormatting, HeaderFooterInfo, ParagraphInfo, PictureInfo, RunFormatting, TableInfo } from '../check/types.ts'
+import { scanFormulaFormatting } from '../check/formulas.ts'
 import { scanRunFormatting } from '../check/runFormatting.ts'
 import { hasBwbStyles } from './styles.ts'
 import { documentFileName, readDocInfo } from './properties.ts'
@@ -40,7 +41,7 @@ export async function takeSnapshot(options: { deepScan?: boolean } = {}): Promis
     const paragraphs = body.paragraphs
     paragraphs.load(PARAGRAPH_PROPS)
     const tables = body.tables
-    tables.load('items/style,items/rowCount')
+    tables.load('items/style,items/rowCount,items/values')
     const pictures = body.inlinePictures
     pictures.load('items/altTextTitle,items/altTextDescription')
     const controls = body.contentControls
@@ -90,6 +91,7 @@ export async function takeSnapshot(options: { deepScan?: boolean } = {}): Promis
       firstCell: firstCells[index] && !firstCells[index].isNullObject ? firstCells[index].value : '',
       after: after[index] ? neighbour(after[index]) : null,
       before: before[index] ? neighbour(before[index]) : null,
+      values: t.values,
     }))
     const pictureInfo: PictureInfo[] = pictures.items.map((p, index) => ({
       index,
@@ -136,6 +138,7 @@ export async function takeSnapshot(options: { deepScan?: boolean } = {}): Promis
     : null
 
   let formatting: RunFormatting[] | null = null
+  let formulas: FormulaFormatting[] | null = null
   if (options.deepScan !== false) {
     try {
       const ooxml = await runWord(async (context) => {
@@ -143,13 +146,17 @@ export async function takeSnapshot(options: { deepScan?: boolean } = {}): Promis
         await context.sync()
         return result.value
       })
-      const scanned = scanRunFormatting(ooxml, parseXml)
+      // Parsed once for both scans.
+      const parsed = parseXml(ooxml)
+      const scanned = scanRunFormatting(ooxml, () => parsed)
       if (scanned) {
         const trusted = scanned.counted === core.paragraphInfo.length
         formatting = scanned.paragraphs.map((f) => (trusted ? f : { ...f, paragraph: null }))
+        formulas = scanFormulaFormatting(parsed, trusted)
       }
     } catch {
       formatting = null
+      formulas = null
     }
   }
 
@@ -163,6 +170,7 @@ export async function takeSnapshot(options: { deepScan?: boolean } = {}): Promis
     comments,
     trackedChanges,
     formatting,
+    formulas,
     info,
     fileName: documentFileName(),
     bwbStyles,

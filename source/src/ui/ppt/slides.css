@@ -1,4 +1,4 @@
-/* The Slides and Deck check tabs in PowerPoint. Colours come from the tokens in src/taskpane/theme.css. */
+/* The Slides and Pre-QA check tabs in PowerPoint. Colours come from the tokens in src/taskpane/theme.css. */
 
 /* Slide library */
 .slide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; max-height: 420px; overflow-y: auto; }
@@ -29,7 +29,7 @@
 .tracker-preview { margin: 0 0 8px; padding: 6px 8px; background: var(--off-white); border-left: 2px solid var(--charcoal-20); color: var(--charcoal); font-size: 10.5px; }
 .tracker-preview strong { color: var(--navy); }
 
-/* Deck check */
+/* Pre-QA check */
 .finding-slide { flex-shrink: 0; color: var(--charcoal); font-size: 10.5px; white-space: nowrap; }
 .finding.fix-group { background: var(--off-white); }
 .deck-limit { margin: -4px 0 8px; }

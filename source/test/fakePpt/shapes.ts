@@ -9,6 +9,7 @@ import { boundsOf, locate, setBounds } from './queries.ts'
 import { TextFrameObj, normaliseColour } from './text.ts'
 import { TableObj } from './table.ts'
 import { SlideObj } from './presentation.ts'
+import { AdjustmentsObj, defaultAdjustments } from './adjustments.ts'
 
 /** Shape properties newer than PowerPointApi 1.4. */
 export const SHAPE_VERSIONS: Record<string, string> = {
@@ -67,9 +68,9 @@ export class FillObj extends FakeObject {
   set transparency(v: number) { this.each((s) => (s.fill.transparency = v)) }
   setSolidColor(color: string): void { this.foregroundColor = color }
   clear(): void { this.each((s) => (s.fill.type = 'NoFill')) }
-  setImage(_base64: string): void {
+  setImage(base64: string): void {
     this.context.gate('1.8', 'ShapeFill.setImage')
-    this.each((s) => (s.fill.type = 'PictureAndTexture'))
+    this.each((s) => (s.fill = { ...s.fill, type: 'PictureAndTexture', image: base64 }))
   }
 }
 
@@ -206,7 +207,7 @@ export class ShapeObj extends FakeObject {
 
   get fill(): FillObj { return (this.fillObj ??= new FillObj(this.context, () => this.data)) }
   get lineFormat(): LineFormatObj { return (this.lineObj ??= new LineFormatObj(this.context, () => this.data)) }
-  get textFrame(): TextFrameObj { return (this.frameObj ??= new TextFrameObj(this.context, { model: this.model, shape: () => this.data })) }
+  get textFrame(): TextFrameObj { return (this.frameObj ??= new TextFrameObj(this.context, { model: this.model, shape: () => this.data, owner: () => this })) }
   get tags(): TagCollectionObj { return (this.tagsObj ??= new TagCollectionObj(this.context, () => this.data.tags)) }
   get placeholderFormat(): PlaceholderFormatObj {
     this.context.gate('1.8', 'Shape.placeholderFormat')
@@ -221,11 +222,16 @@ export class ShapeObj extends FakeObject {
     const parent = this.shape ? locate(this.model, this.shape)?.parent ?? null : null
     return new ShapeObj(this.context, this.model, parent)
   }
+  get adjustments(): AdjustmentsObj {
+    this.context.gate('1.10', 'Shape.adjustments')
+    return (this.adjustmentsObj ??= new AdjustmentsObj(this.context, () => this.data))
+  }
+  private adjustmentsObj: AdjustmentsObj | undefined
 
   protected override onLoaded(head: string, rest: string): void {
     const child: Record<string, (() => FakeObject) | undefined> = {
       fill: () => this.fill, lineFormat: () => this.lineFormat, textFrame: () => this.textFrame, tags: () => this.tags,
-      placeholderFormat: () => this.placeholderFormat, group: () => this.group,
+      placeholderFormat: () => this.placeholderFormat, group: () => this.group, adjustments: () => this.adjustments,
     }
     child[head]?.().markLoaded(rest || '*')
   }
@@ -303,7 +309,7 @@ export class ShapeCollectionObj extends ShapeListObj {
     return this.proxy(data)
   }
   addGeometricShape(type: string, options?: AddOptions): ShapeObj {
-    return this.add(shapeData({ geometricShapeType: type, ...position(options) }), '1.4', 'ShapeCollection.addGeometricShape')
+    return this.add(shapeData({ geometricShapeType: type, adjustments: defaultAdjustments(type), ...position(options) }), '1.4', 'ShapeCollection.addGeometricShape')
   }
   addTextBox(text: string, options?: AddOptions): ShapeObj {
     return this.add(textBoxData(text, position(options)), '1.4', 'ShapeCollection.addTextBox')

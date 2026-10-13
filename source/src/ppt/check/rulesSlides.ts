@@ -1,18 +1,55 @@
-// Slides: a title on every slide, in the title placeholder and on two lines at most; not too many words on one
-// slide; and alt text on pictures.
+// Slides: a title on every slide, in the title placeholder, on two lines at most and not the same as another slide's;
+// no empty slides; not too many words on one slide; and alt text on pictures and graphics.
 
-import { LONG_TITLE, authoredText, isPicture, isTitleShape, needsAltText, slideTitle } from './shapes.ts'
-import { wordCount } from './text.ts'
-import type { DeckFinding, DeckSnapshot } from './types.ts'
+import type { SlideKind } from './shapes.ts'
+import { LONG_TITLE, authoredText, isEmptySlide, isPicture, isTitleShape, needsAltText, slideKind, slideTitle } from './shapes.ts'
+import { oneLine, wordCount } from './text.ts'
+import type { DeckFinding, DeckSnapshot, SlideInfo } from './types.ts'
 import { onShape, onSlide, shapeExcerpt, shapeKey } from './util.ts'
 
 /** Slides read best with fewer words than this. */
 export const MAX_WORDS = 120
 
-export function slideFindings(snapshot: DeckSnapshot): DeckFinding[] {
+/** Slides whose titles carry the argument, so two of them should never say the same thing. */
+const ARGUMENT: ReadonlySet<SlideKind> = new Set<SlideKind>(['content', 'summary'])
+
+const titleKey = (text: string): string => oneLine(text).toLowerCase().replace(/[.:;,]+$/, '')
+
+/** The same action title on two slides: the later one is flagged, pointing at the first. */
+function duplicateTitleFindings(slides: SlideInfo[]): DeckFinding[] {
+  const first = new Map<string, SlideInfo>()
   const out: DeckFinding[] = []
+  for (const slide of slides) {
+    const title = slideTitle(slide)
+    if (!title || !ARGUMENT.has(slideKind(slide))) continue
+    const key = titleKey(title.text)
+    const earlier = first.get(key)
+    if (!earlier) {
+      first.set(key, slide)
+      continue
+    }
+    out.push({
+      id: `slides:same-title:${slide.id}`, rule: 'slides/duplicate-title', group: 'slides', severity: 'minor',
+      title: `Same title as slide ${earlier.index + 1}`,
+      detail: 'Each slide should make its own point. If this one carries on from the other, give it a title that says what it adds.',
+      excerpt: title.text, slide: slide.index + 1, location: onShape(slide, title.shape),
+    })
+  }
+  return out
+}
+
+export function slideFindings(snapshot: DeckSnapshot): DeckFinding[] {
+  const out: DeckFinding[] = duplicateTitleFindings(snapshot.slides)
   for (const slide of snapshot.slides) {
     const n = slide.index + 1
+    if (isEmptySlide(slide, snapshot.can.placeholders)) {
+      out.push({
+        id: `slides:empty:${slide.id}`, rule: 'slides/empty-slide', group: 'slides', severity: 'major',
+        title: 'Empty slide', detail: 'It has nothing on it but empty placeholders. Delete it, or fill it in.',
+        slide: n, location: onSlide(slide), fix: { kind: 'delete-slide', slideId: slide.id }, fixLabel: 'Delete the slide',
+      })
+      continue
+    }
     const title = slideTitle(slide)
     if (!title) {
       out.push({

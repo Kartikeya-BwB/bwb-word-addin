@@ -1,4 +1,4 @@
-// What the slide tools and the deck check add to src/ppt/run.ts: the API version each feature needs, batched loads
+// What the slide tools and the PowerPoint Pre-QA check add to src/ppt/run.ts: the API version each feature needs, batched loads
 // that survive one unreadable shape, and finding a shape by its path through groups.
 
 /** The PowerPoint JavaScript API version each feature needs. */
@@ -9,6 +9,8 @@ export const NEEDS = {
   read: '1.4',
   /** The current slide, and going to a slide or shape. */
   current: '1.5',
+  /** Slide hyperlinks. */
+  links: '1.6',
   /** Moving a new slide next to the current one; placeholder types; shapes inside groups. */
   move: '1.8',
   /** Copying slides to a new presentation; alt text; the slide size. */

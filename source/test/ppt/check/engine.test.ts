@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { deckBulkFixes, deckLimits, deckQaNote, isBulkSafe, runDeckCheck } from '../../../src/ppt/check/engine.ts'
 import { flattenFixes, orderReplacements, sameBox } from '../../../src/ppt/check/fixes.ts'
 import type { DeckFinding, DeckFix } from '../../../src/ppt/check/types.ts'
-import { body, deck, font, picture, slide, source, text, title } from './build.ts'
+import { body, can, deck, font, picture, slide, source, text, title } from './build.ts'
 
 function messyDeck() {
   return deck([
@@ -30,7 +30,7 @@ function cleanDeck() {
   ])
 }
 
-describe('the deck check', () => {
+describe('the Pre-QA check for decks', () => {
   it('finds what a QA reviewer would raise on a messy deck', () => {
     const report = runDeckCheck(messyDeck())
     const found = new Set(report.findings.map((f) => f.rule))
@@ -60,7 +60,7 @@ describe('the deck check', () => {
   })
 
   it('says which checks this PowerPoint could not run', () => {
-    const old = deck([], { can: { formatting: true, placeholders: false, groups: false, altText: false, pageSize: false, selection: false }, partial: true })
+    const old = deck([], { can: can({ placeholders: false, groups: false, altText: false, pageSize: false, selection: false, hidden: false, background: false, links: false, markers: false }), partial: true })
     const limits = deckLimits(old)
     expect(limits).toHaveLength(5)
     expect(limits.join(' ')).toMatch(/API 1\.8.*API 1\.10.*API 1\.10.*API 1\.5/)
@@ -119,7 +119,7 @@ describe('the QA note', () => {
     const report = runDeckCheck(messyDeck())
     const note = deckQaNote(report, 'Adaptation finance', new Date(2026, 9, 13))
     const lines = note.split('\n')
-    expect(lines[0]).toBe('BwB deck check: Adaptation finance, 13 October 2026')
+    expect(lines[0]).toBe('BwB Pre-QA check: Adaptation finance, 13 October 2026')
     expect(lines[1]).toMatch(/^6 slides, \d+ words, 2 pictures$/)
     expect(lines[3]).toBe('Not ready yet. Major items:')
     expect(lines).toContain('- Slide 3: 1 review note left on 1 slide')
