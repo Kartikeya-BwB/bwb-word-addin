@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BwB Toolkit</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+      :root { --navy: #022338; --green: #328840; --lime: #bed62f; --charcoal: #4a4a4c; --white: #ffffff; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: 'Aptos', 'Segoe UI', system-ui, sans-serif; font-size: 13px; color: var(--navy); background: var(--white); }
+      header { background: var(--navy); color: var(--white); padding: 10px 14px; font-family: 'Candara', 'Segoe UI', sans-serif; font-weight: 700; }
+      .strip { display: flex; height: 3px; }
+      .strip span:nth-child(1) { flex: 3; background: var(--green); }
+      .strip span:nth-child(2) { flex: 2; background: var(--charcoal); }
+      .strip span:nth-child(3) { flex: 1; background: var(--lime); }
+      main { padding: 14px; }
+      p { margin: 0 0 14px; line-height: 1.45; }
+      button { font: inherit; font-weight: 600; padding: 6px 14px; border: 1px solid var(--navy); background: var(--navy); color: var(--white); cursor: pointer; }
+      button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>BwB Toolkit</header>
+    <div class="strip" aria-hidden="true"><span></span><span></span><span></span></div>
+    <main>
+      <p id="message" role="alert">That did not work.</p>
+      <button type="button" id="close">Close</button>
+    </main>
+    <script>
+      var message = new URLSearchParams(window.location.search).get('m')
+      if (message) document.getElementById('message').textContent = message
+      document.getElementById('close').addEventListener('click', function () {
+        try {
+          Office.context.ui.messageParent('close')
+        } catch (e) {
+          window.close()
+        }
+      })
+      Office.onReady(function () {
+        document.getElementById('close').focus()
+      })
+    </script>
+  </body>
+</html>

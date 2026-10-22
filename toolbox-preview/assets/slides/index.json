@@ -1,0 +1,290 @@
+{
+ "version": 1,
+ "file": "templates/bwb-slides.pptx",
+ "starterDeck": "templates/bwb-deck.pptx",
+ "slides": [
+  {
+   "id": "title",
+   "title": "Title",
+   "category": "Structure",
+   "description": "Opening slide on navy with the logo, the presentation title, a subtitle and the date.",
+   "tags": [
+    "title",
+    "cover",
+    "opening",
+    "navy"
+   ],
+   "slideId": "256#930293517",
+   "thumb": "assets/slides/thumbs/title.png"
+  },
+  {
+   "id": "agenda",
+   "title": "Agenda",
+   "category": "Structure",
+   "description": "Five numbered sections, each with a one-line description.",
+   "tags": [
+    "agenda",
+    "contents",
+    "sections",
+    "overview"
+   ],
+   "slideId": "257#136333637",
+   "thumb": "assets/slides/thumbs/agenda.png"
+  },
+  {
+   "id": "section-divider",
+   "title": "Section divider",
+   "category": "Structure",
+   "description": "Navy divider with a large lime section number, the section title and a line of context.",
+   "tags": [
+    "divider",
+    "section",
+    "chapter",
+    "navy"
+   ],
+   "slideId": "258#414069683",
+   "thumb": "assets/slides/thumbs/section-divider.png"
+  },
+  {
+   "id": "executive-summary",
+   "title": "Executive summary",
+   "category": "Messages",
+   "description": "Three key messages, each with a green marker, a headline and the evidence behind it.",
+   "tags": [
+    "summary",
+    "key messages",
+    "findings",
+    "answer first"
+   ],
+   "slideId": "259#167807095",
+   "thumb": "assets/slides/thumbs/executive-summary.png"
+  },
+  {
+   "id": "bullets",
+   "title": "Text and callout",
+   "category": "Messages",
+   "description": "An action title, two levels of bullets and a callout for the key takeaway.",
+   "tags": [
+    "text",
+    "bullets",
+    "callout",
+    "takeaway"
+   ],
+   "slideId": "260#1940440457",
+   "thumb": "assets/slides/thumbs/bullets.png"
+  },
+  {
+   "id": "two-columns",
+   "title": "Two columns",
+   "category": "Messages",
+   "description": "Two columns with headings and bullets, for options or periods side by side, and a recommendation.",
+   "tags": [
+    "comparison",
+    "options",
+    "before and after",
+    "columns"
+   ],
+   "slideId": "261#1023045121",
+   "thumb": "assets/slides/thumbs/two-columns.png"
+  },
+  {
+   "id": "key-figures",
+   "title": "Key figures",
+   "category": "Data",
+   "description": "Four headline numbers on a navy band, the first in lime, with a note under each.",
+   "tags": [
+    "figures",
+    "statistics",
+    "numbers",
+    "kpi",
+    "navy"
+   ],
+   "slideId": "262#2051732495",
+   "thumb": "assets/slides/thumbs/key-figures.png"
+  },
+  {
+   "id": "chart-and-text",
+   "title": "Chart and text",
+   "category": "Data",
+   "description": "A native column chart in the BwB colours, ready for Edit Data, with a panel on what it shows.",
+   "tags": [
+    "chart",
+    "graph",
+    "data",
+    "commentary"
+   ],
+   "slideId": "263#1513724288",
+   "thumb": "assets/slides/thumbs/chart-and-text.png"
+  },
+  {
+   "id": "table",
+   "title": "Table",
+   "category": "Data",
+   "description": "A data table with a navy header row, right-aligned figures and a total row.",
+   "tags": [
+    "table",
+    "figures",
+    "comparison",
+    "data"
+   ],
+   "slideId": "264#1785516064",
+   "thumb": "assets/slides/thumbs/table.png"
+  },
+  {
+   "id": "process",
+   "title": "Process",
+   "category": "Visuals",
+   "description": "Four chevrons for the steps of a process, with the timing, activities and output of each.",
+   "tags": [
+    "process",
+    "steps",
+    "approach",
+    "methodology",
+    "chevrons"
+   ],
+   "slideId": "265#1315865751",
+   "thumb": "assets/slides/thumbs/process.png"
+  },
+  {
+   "id": "matrix",
+   "title": "Two-by-two matrix",
+   "category": "Visuals",
+   "description": "Four quadrants on impact and feasibility, with the options plotted and listed.",
+   "tags": [
+    "matrix",
+    "prioritisation",
+    "quadrants",
+    "options"
+   ],
+   "slideId": "266#1560199421",
+   "thumb": "assets/slides/thumbs/matrix.png"
+  },
+  {
+   "id": "timeline",
+   "title": "Timeline",
+   "category": "Visuals",
+   "description": "Six milestones on a line, grouped into phases, with the critical path below.",
+   "tags": [
+    "timeline",
+    "milestones",
+    "roadmap",
+    "phases"
+   ],
+   "slideId": "267#825329004",
+   "thumb": "assets/slides/thumbs/timeline.png"
+  },
+  {
+   "id": "workplan",
+   "title": "Workplan",
+   "category": "Data",
+   "description": "A Gantt-style table of activities over twelve weeks, with deliverables marked.",
+   "tags": [
+    "workplan",
+    "gantt",
+    "schedule",
+    "plan"
+   ],
+   "slideId": "268#495998481",
+   "thumb": "assets/slides/thumbs/workplan.png"
+  },
+  {
+   "id": "icon-grid",
+   "title": "Icon grid",
+   "category": "Visuals",
+   "description": "Six items in a grid, each with a green Lucide icon, a title and a sentence.",
+   "tags": [
+    "icons",
+    "capabilities",
+    "services",
+    "grid"
+   ],
+   "slideId": "269#1362763244",
+   "thumb": "assets/slides/thumbs/icon-grid.png"
+  },
+  {
+   "id": "image-and-text",
+   "title": "Image and text",
+   "category": "Visuals",
+   "description": "A photo from the BwB library beside a heading, bullets and a key point.",
+   "tags": [
+    "photo",
+    "image",
+    "picture",
+    "text"
+   ],
+   "slideId": "270#49050199",
+   "thumb": "assets/slides/thumbs/image-and-text.png"
+  },
+  {
+   "id": "case-study",
+   "title": "Case study",
+   "category": "Messages",
+   "description": "A navy panel naming the case, the challenge and the approach, and four results.",
+   "tags": [
+    "case study",
+    "example",
+    "project",
+    "results",
+    "credentials"
+   ],
+   "slideId": "271#1732660736",
+   "thumb": "assets/slides/thumbs/case-study.png"
+  },
+  {
+   "id": "quote",
+   "title": "Quote",
+   "category": "People",
+   "description": "One quotation in Candara italic on a navy panel, with the speaker’s name and role.",
+   "tags": [
+    "quote",
+    "testimonial",
+    "stakeholder",
+    "interview"
+   ],
+   "slideId": "272#1999934610",
+   "thumb": "assets/slides/thumbs/quote.png"
+  },
+  {
+   "id": "team",
+   "title": "Team",
+   "category": "People",
+   "description": "Four photo frames with names, roles and a short profile.",
+   "tags": [
+    "team",
+    "people",
+    "staff",
+    "profiles"
+   ],
+   "slideId": "273#1843307086",
+   "thumb": "assets/slides/thumbs/team.png"
+  },
+  {
+   "id": "closing",
+   "title": "Closing",
+   "category": "Closing",
+   "description": "Navy closing slide with two contacts and the BwB website.",
+   "tags": [
+    "closing",
+    "contact",
+    "thank you",
+    "end"
+   ],
+   "slideId": "274#489781173",
+   "thumb": "assets/slides/thumbs/closing.png"
+  },
+  {
+   "id": "disclaimer",
+   "title": "Disclaimer",
+   "category": "Closing",
+   "description": "The standard BwB disclaimer and the FCA note, in an off-white panel.",
+   "tags": [
+    "disclaimer",
+    "legal",
+    "compliance",
+    "fca"
+   ],
+   "slideId": "275#1027164723",
+   "thumb": "assets/slides/thumbs/disclaimer.png"
+  }
+ ]
+}
