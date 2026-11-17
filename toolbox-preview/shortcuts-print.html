@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BwB Toolbox keyboard shortcuts</title>
+    <!-- Opened by Settings, Keyboard shortcuts, Print (src/ui/settings/print.ts). The list arrives in ?d= as JSON. -->
+    <style>
+      body { font-family: 'Aptos', 'Segoe UI', system-ui, sans-serif; color: CanvasText; background: Canvas; margin: 24px; font-size: 12pt; }
+      h1 { font-size: 16pt; margin: 0 0 4px; }
+      p { margin: 0 0 16px; }
+      table { border-collapse: collapse; width: 100%; max-width: 640px; }
+      th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid GrayText; vertical-align: top; }
+      th[scope='rowgroup'] { padding-top: 14px; }
+      td:last-child { font-family: ui-monospace, Menlo, Consolas, monospace; white-space: nowrap; }
+      button { font: inherit; padding: 4px 12px; margin-bottom: 16px; }
+      @media print { button { display: none; } body { margin: 0; } }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">BwB Toolbox keyboard shortcuts</h1>
+    <p id="note"></p>
+    <button type="button" id="print">Print</button>
+    <table id="list"><thead><tr><th scope="col">Action</th><th scope="col">Keys</th></tr></thead></table>
+    <script>
+      (function () {
+        var data = null
+        try { data = JSON.parse(new URLSearchParams(location.search).get('d') || 'null') } catch (e) { data = null }
+        var table = document.getElementById('list')
+        var note = document.getElementById('note')
+        document.getElementById('print').addEventListener('click', function () { window.print() })
+        if (!data || !Array.isArray(data.rows)) { note.textContent = 'Open this list from Settings, Keyboard shortcuts, Print.'; return }
+        if (typeof data.title === 'string') { document.getElementById('title').textContent = data.title; document.title = data.title }
+        note.textContent = 'Printed from the BwB Toolbox. Keys you changed are included.'
+        var body = null
+        var group = null
+        data.rows.forEach(function (row) {
+          if (!Array.isArray(row) || row.length < 3) return
+          if (row[0] !== group) {
+            group = String(row[0])
+            body = table.appendChild(document.createElement('tbody'))
+            var head = body.appendChild(document.createElement('tr')).appendChild(document.createElement('th'))
+            head.scope = 'rowgroup'
+            head.colSpan = 2
+            head.textContent = group
+          }
+          var tr = body.appendChild(document.createElement('tr'))
+          tr.appendChild(document.createElement('td')).textContent = String(row[1])
+          tr.appendChild(document.createElement('td')).textContent = String(row[2])
+        })
+      })()
+    </script>
+  </body>
+</html>

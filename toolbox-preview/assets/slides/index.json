@@ -286,5 +286,363 @@
    "slideId": "275#1027164723",
    "thumb": "assets/slides/thumbs/disclaimer.png"
   }
+ ],
+ "collections": [
+  {
+   "id": "official",
+   "label": "Official template",
+   "file": "templates/bwb-official-slides.pptx",
+   "source": "https://bwb-brand-toolkit.azurewebsites.net/templates/Word%20and%20PPT%20standard/BwB-PowerPoint-Template_Final2.pptx",
+   "slides": [
+    {
+     "id": "official-title",
+     "title": "Title",
+     "category": "Official template",
+     "description": "The cover: document title, sub-title, a positioning line and the date over the photograph.",
+     "tags": [
+      "title",
+      "cover",
+      "opening",
+      "photo"
+     ],
+     "slideId": "441#3802155620",
+     "thumb": "assets/slides/official/official-title.jpg",
+     "layout": "TITLE",
+     "tag": "title"
+    },
+    {
+     "id": "official-agenda",
+     "title": "Agenda",
+     "category": "Official template",
+     "description": "Four numbered sections, each with a one-line description.",
+     "tags": [
+      "agenda",
+      "contents",
+      "sections"
+     ],
+     "slideId": "328#3746123652",
+     "thumb": "assets/slides/official/official-agenda.jpg",
+     "layout": "Standard Slide",
+     "tag": "agenda"
+    },
+    {
+     "id": "official-section-divider",
+     "title": "Section divider",
+     "category": "Official template",
+     "description": "Navy divider with a large lime section number, the section title and a line of context.",
+     "tags": [
+      "divider",
+      "section",
+      "chapter",
+      "navy"
+     ],
+     "slideId": "329#4217029061",
+     "thumb": "assets/slides/official/official-section-divider.jpg",
+     "layout": "SECTION_DIVIDER",
+     "tag": "section-divider"
+    },
+    {
+     "id": "official-standard",
+     "title": "Standard slide",
+     "category": "Official template",
+     "description": "Action title, a heading and three blocks of text with bullets, and the source line.",
+     "tags": [
+      "text",
+      "bullets",
+      "standard",
+      "content"
+     ],
+     "slideId": "380#394383415",
+     "thumb": "assets/slides/official/official-standard.jpg",
+     "layout": "Standard Slide"
+    },
+    {
+     "id": "official-grid-tags",
+     "title": "Four blocks with tags",
+     "category": "Official template",
+     "description": "Four text blocks in two rows, each with a green tag, a heading and bullets.",
+     "tags": [
+      "grid",
+      "four",
+      "quadrant",
+      "text"
+     ],
+     "slideId": "385#3826433723",
+     "thumb": "assets/slides/official/official-grid-tags.jpg",
+     "layout": "4*4 Grid_style1"
+    },
+    {
+     "id": "official-grid-markers",
+     "title": "Four panels with markers",
+     "category": "Official template",
+     "description": "Four grey panels in two rows, each with a navy marker, a heading and bullets.",
+     "tags": [
+      "grid",
+      "four",
+      "panels",
+      "text"
+     ],
+     "slideId": "388#4079914769",
+     "thumb": "assets/slides/official/official-grid-markers.jpg",
+     "layout": "4*4 Grid_style2"
+    },
+    {
+     "id": "official-grid-numbered",
+     "title": "Four numbered blocks",
+     "category": "Official template",
+     "description": "Four numbered text blocks in two rows, for options or workstreams.",
+     "tags": [
+      "grid",
+      "four",
+      "numbered",
+      "text"
+     ],
+     "slideId": "390#1146747074",
+     "thumb": "assets/slides/official/official-grid-numbered.jpg",
+     "layout": "4*4 Grid_style3"
+    },
+    {
+     "id": "official-two-pictures-icons",
+     "title": "Two pictures with tiles",
+     "category": "Official template",
+     "description": "Two pictures with a green tile and an icon under each, then text.",
+     "tags": [
+      "pictures",
+      "photos",
+      "two",
+      "tiles",
+      "icons"
+     ],
+     "slideId": "435#4240718012",
+     "thumb": "assets/slides/official/official-two-pictures-icons.jpg",
+     "layout": "2 Images+tiles+icons_style1"
+    },
+    {
+     "id": "official-two-pictures-numbered",
+     "title": "Two pictures, numbered",
+     "category": "Official template",
+     "description": "Two pictures with numbered headings and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "two",
+      "numbered"
+     ],
+     "slideId": "436#2843385078",
+     "thumb": "assets/slides/official/official-two-pictures-numbered.jpg",
+     "layout": "1_2 Images+tiles+icons_style1"
+    },
+    {
+     "id": "official-two-pictures-panels",
+     "title": "Two pictures with panels",
+     "category": "Official template",
+     "description": "Two pictures over grey text panels with markers.",
+     "tags": [
+      "pictures",
+      "photos",
+      "two",
+      "panels"
+     ],
+     "slideId": "438#1949204487",
+     "thumb": "assets/slides/official/official-two-pictures-panels.jpg",
+     "layout": "2 Images+tiles+icons_style2"
+    },
+    {
+     "id": "official-three-pictures",
+     "title": "Three pictures",
+     "category": "Official template",
+     "description": "Three pictures with a caption and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "three",
+      "columns"
+     ],
+     "slideId": "412#3531079835",
+     "thumb": "assets/slides/official/official-three-pictures.jpg",
+     "layout": "3 Images+tiles"
+    },
+    {
+     "id": "official-three-pictures-tiles",
+     "title": "Three pictures with tiles",
+     "category": "Official template",
+     "description": "Three pictures with a green tile and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "three",
+      "tiles"
+     ],
+     "slideId": "417#3944084073",
+     "thumb": "assets/slides/official/official-three-pictures-tiles.jpg",
+     "layout": "3 Images+tiles+icons_style1"
+    },
+    {
+     "id": "official-three-pictures-icons",
+     "title": "Three pictures with icons",
+     "category": "Official template",
+     "description": "Three pictures with an icon tile and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "three",
+      "icons"
+     ],
+     "slideId": "419#2421350422",
+     "thumb": "assets/slides/official/official-three-pictures-icons.jpg",
+     "layout": "3 Images+tiles+icons_style2"
+    },
+    {
+     "id": "official-three-pictures-numbered",
+     "title": "Three pictures, numbered",
+     "category": "Official template",
+     "description": "Three pictures with numbered steps under them, for phases.",
+     "tags": [
+      "pictures",
+      "photos",
+      "three",
+      "phases",
+      "process"
+     ],
+     "slideId": "423#3998956716",
+     "thumb": "assets/slides/official/official-three-pictures-numbered.jpg",
+     "layout": "3 Images+tiles+icons_style3"
+    },
+    {
+     "id": "official-four-pictures",
+     "title": "Four pictures",
+     "category": "Official template",
+     "description": "Four pictures with a caption and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "four",
+      "columns"
+     ],
+     "slideId": "427#1677861620",
+     "thumb": "assets/slides/official/official-four-pictures.jpg",
+     "layout": "4 Images+tiles"
+    },
+    {
+     "id": "official-four-pictures-tiles",
+     "title": "Four pictures with tiles",
+     "category": "Official template",
+     "description": "Four pictures with a coloured tile and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "four",
+      "tiles"
+     ],
+     "slideId": "429#1685477273",
+     "thumb": "assets/slides/official/official-four-pictures-tiles.jpg",
+     "layout": "4 Images+tiles+icons"
+    },
+    {
+     "id": "official-four-pictures-icons",
+     "title": "Four pictures with icons",
+     "category": "Official template",
+     "description": "Four pictures with an icon tile and text under each.",
+     "tags": [
+      "pictures",
+      "photos",
+      "four",
+      "icons"
+     ],
+     "slideId": "432#1346103975",
+     "thumb": "assets/slides/official/official-four-pictures-icons.jpg",
+     "layout": "4 Images+tiles+icons_style2"
+    },
+    {
+     "id": "official-picture-chart",
+     "title": "Picture, text and chart",
+     "category": "Official template",
+     "description": "A picture on the left third, text and a native chart on the right.",
+     "tags": [
+      "picture",
+      "split",
+      "chart",
+      "data"
+     ],
+     "slideId": "406#1067338006",
+     "thumb": "assets/slides/official/official-picture-chart.jpg",
+     "layout": "1/3rd Split Image Left"
+    },
+    {
+     "id": "official-picture-table",
+     "title": "Text and table, picture right",
+     "category": "Official template",
+     "description": "Text and a table, with a picture on the right third.",
+     "tags": [
+      "picture",
+      "split",
+      "table"
+     ],
+     "slideId": "407#2596101250",
+     "thumb": "assets/slides/official/official-picture-table.jpg",
+     "layout": "1/3rd Image Split Left"
+    },
+    {
+     "id": "official-picture-right-half",
+     "title": "Text, picture right",
+     "category": "Official template",
+     "description": "Text on the left half and a picture filling the right half.",
+     "tags": [
+      "picture",
+      "split",
+      "case study"
+     ],
+     "slideId": "408#3802801997",
+     "thumb": "assets/slides/official/official-picture-right-half.jpg",
+     "layout": "Right image split"
+    },
+    {
+     "id": "official-contact",
+     "title": "Contact, picture left",
+     "category": "Official template",
+     "description": "A picture filling the left half, and how to reach BwB on the right.",
+     "tags": [
+      "contact",
+      "closing",
+      "picture",
+      "split"
+     ],
+     "slideId": "409#151114329",
+     "thumb": "assets/slides/official/official-contact.jpg",
+     "layout": "Left Image Split",
+     "tag": "contact"
+    },
+    {
+     "id": "official-text-columns",
+     "title": "Text in three columns",
+     "category": "Official template",
+     "description": "Numbered text blocks in three columns, with a picture on the right third.",
+     "tags": [
+      "columns",
+      "three",
+      "text",
+      "picture"
+     ],
+     "slideId": "440#3921160406",
+     "thumb": "assets/slides/official/official-text-columns.jpg",
+     "layout": "1/3rd Image Split Left"
+    },
+    {
+     "id": "official-disclaimer",
+     "title": "Disclaimer",
+     "category": "Official template",
+     "description": "The standard disclaimer in full.",
+     "tags": [
+      "disclaimer",
+      "legal",
+      "closing"
+     ],
+     "slideId": "439#2438907972",
+     "thumb": "assets/slides/official/official-disclaimer.jpg",
+     "layout": "Standard Slide",
+     "tag": "disclaimer"
+    }
+   ]
+  }
  ]
 }

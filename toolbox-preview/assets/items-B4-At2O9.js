@@ -1,0 +1,1 @@
+function e(e,t=6){let n=e.slice(0,t).map(String),r=e.length-n.length;return r>0?`${n.join(`, `)} and ${r} more`:n.length<2?n.join(``):`${n.slice(0,-1).join(`, `)} and ${n[n.length-1]??``}`}var t=(e,t,n=`${t}s`)=>`${e} ${e===1?t:n}`;export{t as n,e as t};

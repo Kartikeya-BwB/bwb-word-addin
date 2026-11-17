@@ -1,0 +1,1627 @@
+{
+  "actions": [
+    {
+      "id": "bwbShowTaskpane",
+      "type": "ExecuteFunction",
+      "name": "Open the BwB Toolbox"
+    },
+    {
+      "id": "bwbRepeatLast",
+      "type": "ExecuteFunction",
+      "name": "Repeat the last toolbox command"
+    },
+    {
+      "id": "bwbSearchMyLibrary",
+      "type": "ExecuteFunction",
+      "name": "Search My library"
+    },
+    {
+      "id": "bwbPictureFromClipboard",
+      "type": "ExecuteFunction",
+      "name": "Replace a picture from the clipboard"
+    },
+    {
+      "id": "bwbAlignLeft",
+      "type": "ExecuteFunction",
+      "name": "Align left edges"
+    },
+    {
+      "id": "bwbAlignCentre",
+      "type": "ExecuteFunction",
+      "name": "Align centres"
+    },
+    {
+      "id": "bwbAlignRight",
+      "type": "ExecuteFunction",
+      "name": "Align right edges"
+    },
+    {
+      "id": "bwbAlignTop",
+      "type": "ExecuteFunction",
+      "name": "Align top edges"
+    },
+    {
+      "id": "bwbAlignMiddle",
+      "type": "ExecuteFunction",
+      "name": "Align middles"
+    },
+    {
+      "id": "bwbAlignBottom",
+      "type": "ExecuteFunction",
+      "name": "Align bottom edges"
+    },
+    {
+      "id": "bwbSpaceHorizontally",
+      "type": "ExecuteFunction",
+      "name": "Equal gaps, side to side"
+    },
+    {
+      "id": "bwbSpaceVertically",
+      "type": "ExecuteFunction",
+      "name": "Equal gaps, top to bottom"
+    },
+    {
+      "id": "bwbMatchSize",
+      "type": "ExecuteFunction",
+      "name": "Match width and height"
+    },
+    {
+      "id": "bwbSwap",
+      "type": "ExecuteFunction",
+      "name": "Swap two shapes"
+    },
+    {
+      "id": "bwbFillNavy",
+      "type": "ExecuteFunction",
+      "name": "Fill navy"
+    },
+    {
+      "id": "bwbFillGreen",
+      "type": "ExecuteFunction",
+      "name": "Fill green"
+    },
+    {
+      "id": "bwbFillNone",
+      "type": "ExecuteFunction",
+      "name": "No fill"
+    },
+    {
+      "id": "bwbTextNavy",
+      "type": "ExecuteFunction",
+      "name": "Text navy"
+    },
+    {
+      "id": "bwbSuperscript",
+      "type": "ExecuteFunction",
+      "name": "Superscript"
+    },
+    {
+      "id": "bwbStrikethrough",
+      "type": "ExecuteFunction",
+      "name": "Strikethrough"
+    },
+    {
+      "id": "bwbScore0",
+      "type": "ExecuteFunction",
+      "name": "Score marker: empty"
+    },
+    {
+      "id": "bwbScore1",
+      "type": "ExecuteFunction",
+      "name": "Score marker: quarter"
+    },
+    {
+      "id": "bwbScore2",
+      "type": "ExecuteFunction",
+      "name": "Score marker: half"
+    },
+    {
+      "id": "bwbScore3",
+      "type": "ExecuteFunction",
+      "name": "Score marker: three quarters"
+    },
+    {
+      "id": "bwbScore4",
+      "type": "ExecuteFunction",
+      "name": "Score marker: full"
+    },
+    {
+      "id": "bwbScoreUp",
+      "type": "ExecuteFunction",
+      "name": "Score up a quarter"
+    },
+    {
+      "id": "bwbScoreDown",
+      "type": "ExecuteFunction",
+      "name": "Score down a quarter"
+    },
+    {
+      "id": "bwbStatusGreen",
+      "type": "ExecuteFunction",
+      "name": "Status dot: green"
+    },
+    {
+      "id": "bwbStatusAmber",
+      "type": "ExecuteFunction",
+      "name": "Status dot: amber"
+    },
+    {
+      "id": "bwbStatusRed",
+      "type": "ExecuteFunction",
+      "name": "Status dot: red"
+    },
+    {
+      "id": "bwbSourceLine",
+      "type": "ExecuteFunction",
+      "name": "Source line"
+    },
+    {
+      "id": "bwbFootnote",
+      "type": "ExecuteFunction",
+      "name": "Add a numbered footnote"
+    },
+    {
+      "id": "bwbLegend",
+      "type": "ExecuteFunction",
+      "name": "Add a legend"
+    },
+    {
+      "id": "bwbReviewNote",
+      "type": "ExecuteFunction",
+      "name": "Add a review note"
+    },
+    {
+      "id": "bwbNextNote",
+      "type": "ExecuteFunction",
+      "name": "Next review note"
+    },
+    {
+      "id": "bwbStickerDraft",
+      "type": "ExecuteFunction",
+      "name": "Sticker: Draft"
+    },
+    {
+      "id": "bwbStickerForDiscussion",
+      "type": "ExecuteFunction",
+      "name": "Sticker: For discussion"
+    },
+    {
+      "id": "bwbStickerPreliminary",
+      "type": "ExecuteFunction",
+      "name": "Sticker: Preliminary"
+    },
+    {
+      "id": "bwbStickerIllustrative",
+      "type": "ExecuteFunction",
+      "name": "Sticker: Illustrative"
+    },
+    {
+      "id": "bwbStickerConfidential",
+      "type": "ExecuteFunction",
+      "name": "Sticker: Confidential"
+    },
+    {
+      "id": "bwbStickerNotForDistribution",
+      "type": "ExecuteFunction",
+      "name": "Sticker: Not for distribution"
+    },
+    {
+      "id": "bwbStickersRemove",
+      "type": "ExecuteFunction",
+      "name": "Remove stickers"
+    },
+    {
+      "id": "bwbCleanWording",
+      "type": "ExecuteFunction",
+      "name": "Clean up wording"
+    },
+    {
+      "id": "bwbCleanCopy",
+      "type": "ExecuteFunction",
+      "name": "Make a clean copy"
+    },
+    {
+      "id": "bwbCaseSentence",
+      "type": "ExecuteFunction",
+      "name": "Sentence case"
+    },
+    {
+      "id": "bwbCaseTitle",
+      "type": "ExecuteFunction",
+      "name": "Title case"
+    },
+    {
+      "id": "bwbCaseUpper",
+      "type": "ExecuteFunction",
+      "name": "Upper case"
+    },
+    {
+      "id": "bwbCaseLower",
+      "type": "ExecuteFunction",
+      "name": "Lower case"
+    },
+    {
+      "id": "bwbInsertTable",
+      "type": "ExecuteFunction",
+      "name": "Insert a BwB table"
+    },
+    {
+      "id": "bwbInsertCallout",
+      "type": "ExecuteFunction",
+      "name": "Insert a callout"
+    },
+    {
+      "id": "bwbInsertKeyFigures",
+      "type": "ExecuteFunction",
+      "name": "Insert key figures"
+    },
+    {
+      "id": "bwbInsertQuote",
+      "type": "ExecuteFunction",
+      "name": "Insert a quote"
+    },
+    {
+      "id": "bwbPainterPickUp",
+      "type": "ExecuteFunction",
+      "name": "Format painter: pick up the format"
+    },
+    {
+      "id": "bwbPainterApply",
+      "type": "ExecuteFunction",
+      "name": "Format painter: apply the format"
+    },
+    {
+      "id": "bwbPainterStyle1",
+      "type": "ExecuteFunction",
+      "name": "Apply saved style 1"
+    },
+    {
+      "id": "bwbPainterStyle2",
+      "type": "ExecuteFunction",
+      "name": "Apply saved style 2"
+    },
+    {
+      "id": "bwbPainterStyle3",
+      "type": "ExecuteFunction",
+      "name": "Apply saved style 3"
+    },
+    {
+      "id": "bwbPositionsRemember",
+      "type": "ExecuteFunction",
+      "name": "Remember the positions of the selected shapes"
+    },
+    {
+      "id": "bwbPositionsApply",
+      "type": "ExecuteFunction",
+      "name": "Apply the remembered positions"
+    },
+    {
+      "id": "bwbChangeTypeFromFirst",
+      "type": "ExecuteFunction",
+      "name": "Change shape type: outline of the first selected shape"
+    },
+    {
+      "id": "bwbLineHeavier",
+      "type": "ExecuteFunction",
+      "name": "Line heavier"
+    },
+    {
+      "id": "bwbLineLighter",
+      "type": "ExecuteFunction",
+      "name": "Line lighter"
+    },
+    {
+      "id": "bwbLineDashNext",
+      "type": "ExecuteFunction",
+      "name": "Next dash style"
+    },
+    {
+      "id": "bwbTextMarginsCycle",
+      "type": "ExecuteFunction",
+      "name": "Cycle text margins"
+    },
+    {
+      "id": "bwbPaneInsertCharts",
+      "type": "ExecuteFunction",
+      "name": "Open the chart builder"
+    },
+    {
+      "id": "bwbPaneInsertIcons",
+      "type": "ExecuteFunction",
+      "name": "Open Icons, flags and maps"
+    },
+    {
+      "id": "bwbPaneInsertPhotos",
+      "type": "ExecuteFunction",
+      "name": "Open Photos"
+    },
+    {
+      "id": "bwbPaneCheck",
+      "type": "ExecuteFunction",
+      "name": "Open the Pre-QA check"
+    },
+    {
+      "id": "bwbPaneBeforeYouSend",
+      "type": "ExecuteFunction",
+      "name": "Open Before you send"
+    },
+    {
+      "id": "bwbPaneBrand",
+      "type": "ExecuteFunction",
+      "name": "Open the Brand guide"
+    },
+    {
+      "id": "bwbPaneSlidesCopy",
+      "type": "ExecuteFunction",
+      "name": "Open Copy & export slides"
+    },
+    {
+      "id": "bwbPaneStartNewDocument",
+      "type": "ExecuteFunction",
+      "name": "Open New document"
+    },
+    {
+      "id": "bwbAddStyles",
+      "type": "ExecuteFunction",
+      "name": "Set up document: Add BwB styles"
+    },
+    {
+      "id": "bwbPartContents",
+      "type": "ExecuteFunction",
+      "name": "Set up document: Contents"
+    },
+    {
+      "id": "bwbPartDisclaimer",
+      "type": "ExecuteFunction",
+      "name": "Set up document: Disclaimer"
+    },
+    {
+      "id": "bwbPartEu",
+      "type": "ExecuteFunction",
+      "name": "Set up document: EU acknowledgement"
+    },
+    {
+      "id": "bwbPartPageBreak",
+      "type": "ExecuteFunction",
+      "name": "Set up document: Page break"
+    },
+    {
+      "id": "bwbStyleHeading1",
+      "type": "ExecuteFunction",
+      "name": "Styles: Heading 1"
+    },
+    {
+      "id": "bwbStyleHeading2",
+      "type": "ExecuteFunction",
+      "name": "Styles: Heading 2"
+    },
+    {
+      "id": "bwbStyleHeading3",
+      "type": "ExecuteFunction",
+      "name": "Styles: Heading 3"
+    },
+    {
+      "id": "bwbStyleHeading4",
+      "type": "ExecuteFunction",
+      "name": "Styles: Heading 4"
+    },
+    {
+      "id": "bwbStyleHeading1Unnumbered",
+      "type": "ExecuteFunction",
+      "name": "Styles: Unnumbered heading 1"
+    },
+    {
+      "id": "bwbStyleHeading2Unnumbered",
+      "type": "ExecuteFunction",
+      "name": "Styles: Unnumbered heading 2"
+    },
+    {
+      "id": "bwbStyleNormal",
+      "type": "ExecuteFunction",
+      "name": "Styles: Body text"
+    },
+    {
+      "id": "bwbStyleLead",
+      "type": "ExecuteFunction",
+      "name": "Styles: Lead paragraph"
+    },
+    {
+      "id": "bwbStyleAccent",
+      "type": "ExecuteFunction",
+      "name": "Styles: Accent paragraph"
+    },
+    {
+      "id": "bwbStyleSource",
+      "type": "ExecuteFunction",
+      "name": "Styles: Source line"
+    },
+    {
+      "id": "bwbStylePullQuote",
+      "type": "ExecuteFunction",
+      "name": "Styles: Pull quote"
+    },
+    {
+      "id": "bwbListGreenSquare",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Green square"
+    },
+    {
+      "id": "bwbListNavyCircle",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Navy circle"
+    },
+    {
+      "id": "bwbListGreenCircle",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Green circle"
+    },
+    {
+      "id": "bwbListCharcoalDash",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Charcoal dash"
+    },
+    {
+      "id": "bwbListArrow",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Green arrow"
+    },
+    {
+      "id": "bwbListNumbered",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Numbered"
+    },
+    {
+      "id": "bwbListLimeOnNavy",
+      "type": "ExecuteFunction",
+      "name": "Lists and wording: Lime on navy"
+    },
+    {
+      "id": "bwbBlockNote",
+      "type": "ExecuteFunction",
+      "name": "Blocks: Note"
+    },
+    {
+      "id": "bwbBlockSnapshot",
+      "type": "ExecuteFunction",
+      "name": "Blocks: Snapshot"
+    },
+    {
+      "id": "bwbBlockCase",
+      "type": "ExecuteFunction",
+      "name": "Blocks: Case study"
+    },
+    {
+      "id": "bwbBlockGrid",
+      "type": "ExecuteFunction",
+      "name": "Blocks: Icon grid"
+    },
+    {
+      "id": "bwbBlockDetails",
+      "type": "ExecuteFunction",
+      "name": "Blocks: Details table"
+    },
+    {
+      "id": "bwbTableFormat",
+      "type": "ExecuteFunction",
+      "name": "Table: Format table at cursor"
+    },
+    {
+      "id": "bwbCaptionTable",
+      "type": "ExecuteFunction",
+      "name": "Table: Table caption"
+    },
+    {
+      "id": "bwbCaptionFigure",
+      "type": "ExecuteFunction",
+      "name": "Table: Figure caption"
+    },
+    {
+      "id": "bwbPicturesFitWidth",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Fit to text width"
+    },
+    {
+      "id": "bwbPicturesSameWidth",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Same width as the first"
+    },
+    {
+      "id": "bwbPicturesCentre",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Centre on the line"
+    },
+    {
+      "id": "bwbPicturesCaption",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Add a figure caption"
+    },
+    {
+      "id": "bwbPicturesAltFromCaptions",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Alt text from captions"
+    },
+    {
+      "id": "bwbTableDistribute",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Distribute columns"
+    },
+    {
+      "id": "bwbTableFitWindow",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Fit to the page width"
+    },
+    {
+      "id": "bwbTableCentre",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Centre the table"
+    },
+    {
+      "id": "bwbTableAddTotal",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Add a total row"
+    },
+    {
+      "id": "bwbTableDeleteEmptyRows",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Delete empty rows"
+    },
+    {
+      "id": "bwbTextToTable",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Text to BwB table"
+    },
+    {
+      "id": "bwbTableToText",
+      "type": "ExecuteFunction",
+      "name": "Pictures and tables: Table to text"
+    },
+    {
+      "id": "bwbJoinBrokenLines",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Join lines pasted from a PDF"
+    },
+    {
+      "id": "bwbClearFormatting",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Clear stray formatting"
+    },
+    {
+      "id": "bwbNonBreakingSpaces",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Keep figures together"
+    },
+    {
+      "id": "bwbToggleTracking",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Track changes on or off"
+    },
+    {
+      "id": "bwbAcceptAllChanges",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Accept all changes"
+    },
+    {
+      "id": "bwbDeleteAllComments",
+      "type": "ExecuteFunction",
+      "name": "Text and review: Delete all comments"
+    },
+    {
+      "id": "bwbPaneToolsNavigator",
+      "type": "ExecuteFunction",
+      "name": "Open the Navigator"
+    },
+    {
+      "id": "bwbPaneTools",
+      "type": "ExecuteFunction",
+      "name": "Open Power tools"
+    },
+    {
+      "id": "bwbPaneBid",
+      "type": "ExecuteFunction",
+      "name": "Open Bid tools"
+    },
+    {
+      "id": "bwbBidUpdateFields",
+      "type": "ExecuteFunction",
+      "name": "Update bid details"
+    },
+    {
+      "id": "bwbBidCheckNames",
+      "type": "ExecuteFunction",
+      "name": "Find names from an earlier bid"
+    },
+    {
+      "id": "bwbReadabilityReport",
+      "type": "ExecuteFunction",
+      "name": "How it reads"
+    },
+    {
+      "id": "bwbUpdateAllFields",
+      "type": "ExecuteFunction",
+      "name": "Status and fields: Update fields"
+    },
+    {
+      "id": "bwbNewDeck",
+      "type": "ExecuteFunction",
+      "name": "New BwB deck"
+    },
+    {
+      "id": "bwbPaneSlidesLibrary",
+      "type": "ExecuteFunction",
+      "name": "Open Slide library"
+    },
+    {
+      "id": "bwbPaneSlidesStoryline",
+      "type": "ExecuteFunction",
+      "name": "Open Storyline"
+    },
+    {
+      "id": "bwbAgendaInsert",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Insert agenda slide"
+    },
+    {
+      "id": "bwbAgendaUpdate",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Update agenda"
+    },
+    {
+      "id": "bwbTrackersAdd",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Add section trackers"
+    },
+    {
+      "id": "bwbTrackersUpdate",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Update trackers"
+    },
+    {
+      "id": "bwbTrackersRemove",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Remove trackers"
+    },
+    {
+      "id": "bwbSectionMark",
+      "type": "ExecuteFunction",
+      "name": "Organise deck: Start a section here"
+    },
+    {
+      "id": "bwbPaneSlidesMyLibrary",
+      "type": "ExecuteFunction",
+      "name": "Open My library"
+    },
+    {
+      "id": "bwbSaveSlideToLibrary",
+      "type": "ExecuteFunction",
+      "name": "My library: Save slide to My library"
+    },
+    {
+      "id": "bwbSaveSelectionToLibrary",
+      "type": "ExecuteFunction",
+      "name": "My library: Save shapes to My library"
+    },
+    {
+      "id": "bwbShowGrid",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Show the BwB grid"
+    },
+    {
+      "id": "bwbHideGrid",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Hide the grid"
+    },
+    {
+      "id": "bwbPaneSlidesNavigate",
+      "type": "ExecuteFunction",
+      "name": "Open Go to slide"
+    },
+    {
+      "id": "bwbGoBack",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Go back"
+    },
+    {
+      "id": "bwbGoForward",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Go forward"
+    },
+    {
+      "id": "bwbPaneSlidesNumbersFooters",
+      "type": "ExecuteFunction",
+      "name": "Open Numbers and footers"
+    },
+    {
+      "id": "bwbUpdateSlideNumbers",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Update slide numbers"
+    },
+    {
+      "id": "bwbFootnotesLarger",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Footnotes larger"
+    },
+    {
+      "id": "bwbFootnotesSmaller",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Footnotes smaller"
+    },
+    {
+      "id": "bwbMoveToAppendix",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Move to appendix"
+    },
+    {
+      "id": "bwbSummaryOfSelected",
+      "type": "ExecuteFunction",
+      "name": "Slide tools: Summary of selected slides"
+    },
+    {
+      "id": "bwbPaneSlidesOutlineSlides",
+      "type": "ExecuteFunction",
+      "name": "Open Summary and outline slides"
+    },
+    {
+      "id": "bwbCentreOnSlide",
+      "type": "ExecuteFunction",
+      "name": "Align: Centre on the slide"
+    },
+    {
+      "id": "bwbMiddleOnSlide",
+      "type": "ExecuteFunction",
+      "name": "Align: Middle of the slide"
+    },
+    {
+      "id": "bwbAlignMarginLeft",
+      "type": "ExecuteFunction",
+      "name": "Align: Left margin"
+    },
+    {
+      "id": "bwbAlignMarginRight",
+      "type": "ExecuteFunction",
+      "name": "Align: Right margin"
+    },
+    {
+      "id": "bwbAlignMarginTop",
+      "type": "ExecuteFunction",
+      "name": "Align: Top of the content area"
+    },
+    {
+      "id": "bwbAlignMarginBottom",
+      "type": "ExecuteFunction",
+      "name": "Align: Bottom margin"
+    },
+    {
+      "id": "bwbAlignColumnLeft",
+      "type": "ExecuteFunction",
+      "name": "Align: Left of its grid column"
+    },
+    {
+      "id": "bwbAlignColumnCentre",
+      "type": "ExecuteFunction",
+      "name": "Align: Centre in its grid column"
+    },
+    {
+      "id": "bwbAlignColumnRight",
+      "type": "ExecuteFunction",
+      "name": "Align: Right of its grid column"
+    },
+    {
+      "id": "bwbDistributeAcrossMargins",
+      "type": "ExecuteFunction",
+      "name": "Distribute and size: Across the margins"
+    },
+    {
+      "id": "bwbDistributeDownContent",
+      "type": "ExecuteFunction",
+      "name": "Distribute and size: Down the content area"
+    },
+    {
+      "id": "bwbTidyUp",
+      "type": "ExecuteFunction",
+      "name": "Distribute and size: Tidy up into rows and columns"
+    },
+    {
+      "id": "bwbSameWidth",
+      "type": "ExecuteFunction",
+      "name": "Distribute and size: Same width"
+    },
+    {
+      "id": "bwbSameHeight",
+      "type": "ExecuteFunction",
+      "name": "Distribute and size: Same height"
+    },
+    {
+      "id": "bwbStackHorizontally",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Stack side by side"
+    },
+    {
+      "id": "bwbStackVertically",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Stack top to bottom"
+    },
+    {
+      "id": "bwbSnapToGrid",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Snap to the BwB grid"
+    },
+    {
+      "id": "bwbBringToFront",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Bring to front"
+    },
+    {
+      "id": "bwbSendToBack",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Send to back"
+    },
+    {
+      "id": "bwbGroup",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Group"
+    },
+    {
+      "id": "bwbUngroup",
+      "type": "ExecuteFunction",
+      "name": "Position and layout: Ungroup"
+    },
+    {
+      "id": "bwbPaneArrange",
+      "type": "ExecuteFunction",
+      "name": "Open Arrange tools"
+    },
+    {
+      "id": "bwbRotateLeft",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Rotate left 90°"
+    },
+    {
+      "id": "bwbRotateRight",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Rotate right 90°"
+    },
+    {
+      "id": "bwbScaleDown",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Scale to 90%"
+    },
+    {
+      "id": "bwbScaleUp",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Scale to 110%"
+    },
+    {
+      "id": "bwbSqueezeGaps",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Narrow gaps"
+    },
+    {
+      "id": "bwbExpandGaps",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Widen gaps"
+    },
+    {
+      "id": "bwbSwapLeftRight",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Swap left-right only"
+    },
+    {
+      "id": "bwbSwapUpDown",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Swap up-down only"
+    },
+    {
+      "id": "bwbGroupByRow",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Group by row"
+    },
+    {
+      "id": "bwbGroupByColumn",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Group by column"
+    },
+    {
+      "id": "bwbRegroup",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Regroup"
+    },
+    {
+      "id": "bwbSwapCentres",
+      "type": "ExecuteFunction",
+      "name": "Rotate, scale and group: Swap by centres"
+    },
+    {
+      "id": "bwbStraightenLines",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Straighten lines"
+    },
+    {
+      "id": "bwbStretchToNextRight",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Stretch to the next shape, right"
+    },
+    {
+      "id": "bwbStretchToNextDown",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Stretch to the next shape, down"
+    },
+    {
+      "id": "bwbMatchAdjustments",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Match shape adjustments"
+    },
+    {
+      "id": "bwbCopyToAllSlides",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Copy to all slides"
+    },
+    {
+      "id": "bwbSpreadToSlides",
+      "type": "ExecuteFunction",
+      "name": "Edit shapes: Spread onto their own slides"
+    },
+    {
+      "id": "bwbPaneArrangeChangeType",
+      "type": "ExecuteFunction",
+      "name": "Open Slice, multiply and more"
+    },
+    {
+      "id": "bwbSelectSameLineColour",
+      "type": "ExecuteFunction",
+      "name": "Select same: Same line colour"
+    },
+    {
+      "id": "bwbSelectSameTextColour",
+      "type": "ExecuteFunction",
+      "name": "Select same: Same text colour"
+    },
+    {
+      "id": "bwbSelectSameTextAlignment",
+      "type": "ExecuteFunction",
+      "name": "Select same: Same text alignment"
+    },
+    {
+      "id": "bwbPaneArrangeSelectMatching",
+      "type": "ExecuteFunction",
+      "name": "Open Select by several properties"
+    },
+    {
+      "id": "bwbFontSizeUp",
+      "type": "ExecuteFunction",
+      "name": "Text style: Larger text"
+    },
+    {
+      "id": "bwbFontSizeDown",
+      "type": "ExecuteFunction",
+      "name": "Text style: Smaller text"
+    },
+    {
+      "id": "bwbColourBoldText",
+      "type": "ExecuteFunction",
+      "name": "Text style: Colour the bold text"
+    },
+    {
+      "id": "bwbTextResetBwB",
+      "type": "ExecuteFunction",
+      "name": "Text style: Reset to BwB style"
+    },
+    {
+      "id": "bwbClearText",
+      "type": "ExecuteFunction",
+      "name": "Text style: Delete the text"
+    },
+    {
+      "id": "bwbMaskText",
+      "type": "ExecuteFunction",
+      "name": "Text style: Mask text with dots"
+    },
+    {
+      "id": "bwbMergeText",
+      "type": "ExecuteFunction",
+      "name": "Text boxes: Merge text boxes"
+    },
+    {
+      "id": "bwbSplitText",
+      "type": "ExecuteFunction",
+      "name": "Text boxes: Split by paragraph"
+    },
+    {
+      "id": "bwbPaneCheckFontsAndText",
+      "type": "ExecuteFunction",
+      "name": "Open Fonts and text across the deck"
+    },
+    {
+      "id": "bwbInsertProcess",
+      "type": "ExecuteFunction",
+      "name": "Elements: Process, three steps"
+    },
+    {
+      "id": "bwbInsertMatrix",
+      "type": "ExecuteFunction",
+      "name": "Elements: Two-by-two matrix"
+    },
+    {
+      "id": "bwbInsertTimeline",
+      "type": "ExecuteFunction",
+      "name": "Elements: Timeline"
+    },
+    {
+      "id": "bwbInsertStepMarkers",
+      "type": "ExecuteFunction",
+      "name": "Elements: Numbered markers"
+    },
+    {
+      "id": "bwbInsertDividerArrows",
+      "type": "ExecuteFunction",
+      "name": "Elements: Divider arrows"
+    },
+    {
+      "id": "bwbInsertTakeaway",
+      "type": "ExecuteFunction",
+      "name": "Elements: Takeaway arrow box"
+    },
+    {
+      "id": "bwbStatusOnTrack",
+      "type": "ExecuteFunction",
+      "name": "Visuals: On track (tick)"
+    },
+    {
+      "id": "bwbStatusAtRisk",
+      "type": "ExecuteFunction",
+      "name": "Visuals: At risk"
+    },
+    {
+      "id": "bwbStatusOffTrack",
+      "type": "ExecuteFunction",
+      "name": "Visuals: Off track (cross)"
+    },
+    {
+      "id": "bwbPaneInsertTables",
+      "type": "ExecuteFunction",
+      "name": "Open Table tools"
+    },
+    {
+      "id": "bwbPaneInsertOrgChart",
+      "type": "ExecuteFunction",
+      "name": "Open Org chart"
+    },
+    {
+      "id": "bwbPaneInsertDiagrams",
+      "type": "ExecuteFunction",
+      "name": "Open Diagrams"
+    },
+    {
+      "id": "bwbPaneInsertBrandDiagrams",
+      "type": "ExecuteFunction",
+      "name": "Open BwB diagrams library"
+    },
+    {
+      "id": "bwbPaneInsertPictureFrame",
+      "type": "ExecuteFunction",
+      "name": "Open Picture into frame"
+    },
+    {
+      "id": "bwbInsertRectangle",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Rectangle"
+    },
+    {
+      "id": "bwbInsertRoundedRectangle",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Rounded rectangle"
+    },
+    {
+      "id": "bwbInsertCircle",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Circle"
+    },
+    {
+      "id": "bwbInsertTriangle",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Triangle"
+    },
+    {
+      "id": "bwbInsertArrowRight",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Arrow right"
+    },
+    {
+      "id": "bwbInsertChevron",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Chevron"
+    },
+    {
+      "id": "bwbInsertArrowBox",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Arrow box"
+    },
+    {
+      "id": "bwbInsertCalloutShape",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Callout shape"
+    },
+    {
+      "id": "bwbInsertLine",
+      "type": "ExecuteFunction",
+      "name": "Shapes: Line"
+    },
+    {
+      "id": "bwbPaneInsertShapes",
+      "type": "ExecuteFunction",
+      "name": "Open All shapes"
+    },
+    {
+      "id": "bwbPaneInsertMiniSlide",
+      "type": "ExecuteFunction",
+      "name": "Open Mini slide"
+    },
+    {
+      "id": "bwbInsertProgress25",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Progress circle: 25%"
+    },
+    {
+      "id": "bwbInsertProgress50",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Progress circle: 50%"
+    },
+    {
+      "id": "bwbInsertProgress75",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Progress circle: 75%"
+    },
+    {
+      "id": "bwbInsertPlus",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Plus"
+    },
+    {
+      "id": "bwbInsertMinus",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Minus"
+    },
+    {
+      "id": "bwbInsertTrendUp",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Trend: rising"
+    },
+    {
+      "id": "bwbInsertTrendFlat",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Trend: level"
+    },
+    {
+      "id": "bwbInsertTrendDown",
+      "type": "ExecuteFunction",
+      "name": "Progress and trends: Trend: falling"
+    },
+    {
+      "id": "bwbTableAddRowAbove",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add row above"
+    },
+    {
+      "id": "bwbTableAddRowBelow",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add row below"
+    },
+    {
+      "id": "bwbTableMoveRowUp",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Move row up"
+    },
+    {
+      "id": "bwbTableMoveRowDown",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Move row down"
+    },
+    {
+      "id": "bwbTableDeleteRow",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Delete row"
+    },
+    {
+      "id": "bwbTableAddColumnLeft",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add column left"
+    },
+    {
+      "id": "bwbTableAddColumnRight",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add column right"
+    },
+    {
+      "id": "bwbTableMoveColumnLeft",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Move column left"
+    },
+    {
+      "id": "bwbTableMoveColumnRight",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Move column right"
+    },
+    {
+      "id": "bwbTableDeleteColumn",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Delete column"
+    },
+    {
+      "id": "bwbTableGapColumn",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add gap column"
+    },
+    {
+      "id": "bwbTableGapRow",
+      "type": "ExecuteFunction",
+      "name": "Table rows and columns: Add gap row"
+    },
+    {
+      "id": "bwbPaneInsertTableRowsColumns",
+      "type": "ExecuteFunction",
+      "name": "Open Table rows and columns"
+    },
+    {
+      "id": "bwbTableBandedRows",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Band the rows"
+    },
+    {
+      "id": "bwbTableRemoveBanding",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Remove banding"
+    },
+    {
+      "id": "bwbTableFitColumns",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Fit columns to contents"
+    },
+    {
+      "id": "bwbTableMatchWidths",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Match column widths"
+    },
+    {
+      "id": "bwbTableFromTextBoxes",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Table from text boxes"
+    },
+    {
+      "id": "bwbTableToTextBoxes",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Table to text boxes"
+    },
+    {
+      "id": "bwbTableCopyForExcel",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Copy as cells for Excel"
+    },
+    {
+      "id": "bwbTablePickUpFormat",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Pick up table format"
+    },
+    {
+      "id": "bwbTableApplyFormat",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Apply table format"
+    },
+    {
+      "id": "bwbPaneInsertTablePlace",
+      "type": "ExecuteFunction",
+      "name": "Open Place shapes on a table"
+    },
+    {
+      "id": "bwbTableFromText",
+      "type": "ExecuteFunction",
+      "name": "Table layout and copy: Table from text"
+    },
+    {
+      "id": "bwbNotesRemoveAll",
+      "type": "ExecuteFunction",
+      "name": "Review and wording: Remove all review notes"
+    },
+    {
+      "id": "bwbPreviousNote",
+      "type": "ExecuteFunction",
+      "name": "Review and wording: Previous note"
+    },
+    {
+      "id": "bwbPaneSlidesReviewMarks",
+      "type": "ExecuteFunction",
+      "name": "Open Labels, notes and stamps"
+    },
+    {
+      "id": "bwbStampSlides",
+      "type": "ExecuteFunction",
+      "name": "Review and wording: Stamp slides"
+    },
+    {
+      "id": "bwbFillOffWhite",
+      "type": "ExecuteFunction",
+      "name": "Brand: Fill off-white"
+    },
+    {
+      "id": "bwbTextCharcoal",
+      "type": "ExecuteFunction",
+      "name": "Brand: Text charcoal"
+    },
+    {
+      "id": "bwbTextWhite",
+      "type": "ExecuteFunction",
+      "name": "Brand: Text white"
+    },
+    {
+      "id": "bwbLineGrey",
+      "type": "ExecuteFunction",
+      "name": "Brand: Light grey outline"
+    },
+    {
+      "id": "bwbLineNone",
+      "type": "ExecuteFunction",
+      "name": "Brand: No outline"
+    },
+    {
+      "id": "bwbFontsBwB",
+      "type": "ExecuteFunction",
+      "name": "Brand: BwB fonts"
+    },
+    {
+      "id": "bwbMarginsZero",
+      "type": "ExecuteFunction",
+      "name": "Brand: No text margins"
+    },
+    {
+      "id": "bwbMarginsStandard",
+      "type": "ExecuteFunction",
+      "name": "Brand: Standard text margins"
+    },
+    {
+      "id": "bwbAutofitOff",
+      "type": "ExecuteFunction",
+      "name": "Brand: Do not autofit"
+    },
+    {
+      "id": "bwbCycleAccent",
+      "type": "ExecuteFunction",
+      "name": "Next accent colour"
+    },
+    {
+      "id": "bwbInsertArcLight",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Arc pattern (light)"
+    },
+    {
+      "id": "bwbInsertArcNavy",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Arc pattern (navy)"
+    },
+    {
+      "id": "bwbInsertColourStrip",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Colour strip"
+    },
+    {
+      "id": "bwbTextSectionLabel",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Section label"
+    },
+    {
+      "id": "bwbTextCaption",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Caption"
+    },
+    {
+      "id": "bwbTextDataCallout",
+      "type": "ExecuteFunction",
+      "name": "Brand elements: Data callout"
+    },
+    {
+      "id": "bwbPaneInsertArcPattern",
+      "type": "ExecuteFunction",
+      "name": "Open Arc pattern options"
+    },
+    {
+      "id": "bwbPptRepeatLast",
+      "type": "ExecuteFunction",
+      "name": "Repeat last command"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "bwbShowTaskpane",
+      "key": {
+        "default": "Ctrl+Alt+Shift+P",
+        "mac": "Command+Alt+Shift+P"
+      }
+    },
+    {
+      "action": "bwbRepeatLast",
+      "key": {
+        "default": "Ctrl+Alt+Shift+5",
+        "mac": "Command+Alt+Shift+5"
+      }
+    },
+    {
+      "action": "bwbAlignLeft",
+      "key": {
+        "default": "Ctrl+Alt+Shift+L",
+        "mac": "Command+Alt+Shift+L"
+      }
+    },
+    {
+      "action": "bwbAlignCentre",
+      "key": {
+        "default": "Ctrl+Alt+Shift+C",
+        "mac": "Command+Alt+Shift+C"
+      }
+    },
+    {
+      "action": "bwbAlignRight",
+      "key": {
+        "default": "Ctrl+Alt+Shift+R",
+        "mac": "Command+Alt+Shift+R"
+      }
+    },
+    {
+      "action": "bwbAlignTop",
+      "key": {
+        "default": "Ctrl+Alt+Shift+T",
+        "mac": "Command+Alt+Shift+T"
+      }
+    },
+    {
+      "action": "bwbAlignMiddle",
+      "key": {
+        "default": "Ctrl+Alt+Shift+M",
+        "mac": "Command+Alt+Shift+M"
+      }
+    },
+    {
+      "action": "bwbAlignBottom",
+      "key": {
+        "default": "Ctrl+Alt+Shift+B",
+        "mac": "Command+Alt+Shift+B"
+      }
+    },
+    {
+      "action": "bwbSpaceHorizontally",
+      "key": {
+        "default": "Ctrl+Alt+Shift+H",
+        "mac": "Command+Alt+Shift+H"
+      }
+    },
+    {
+      "action": "bwbSpaceVertically",
+      "key": {
+        "default": "Ctrl+Alt+Shift+D",
+        "mac": "Command+Alt+Shift+D"
+      }
+    },
+    {
+      "action": "bwbMatchSize",
+      "key": {
+        "default": "Ctrl+Alt+Shift+Z",
+        "mac": "Command+Alt+Shift+Z"
+      }
+    },
+    {
+      "action": "bwbSwap",
+      "key": {
+        "default": "Ctrl+Alt+Shift+X",
+        "mac": "Command+Alt+Shift+X"
+      }
+    },
+    {
+      "action": "bwbFillNavy",
+      "key": {
+        "default": "Ctrl+Alt+Shift+N",
+        "mac": "Command+Alt+Shift+N"
+      }
+    },
+    {
+      "action": "bwbFillGreen",
+      "key": {
+        "default": "Ctrl+Alt+Shift+G",
+        "mac": "Command+Alt+Shift+G"
+      }
+    },
+    {
+      "action": "bwbSuperscript",
+      "key": {
+        "default": "Ctrl+Alt+Shift+6",
+        "mac": "Command+Alt+Shift+6"
+      }
+    },
+    {
+      "action": "bwbStrikethrough",
+      "key": {
+        "default": "Ctrl+Alt+Shift+-",
+        "mac": "Command+Alt+Shift+-"
+      }
+    },
+    {
+      "action": "bwbScore0",
+      "key": {
+        "default": "Ctrl+Alt+Shift+0",
+        "mac": "Command+Alt+Shift+0"
+      }
+    },
+    {
+      "action": "bwbScore1",
+      "key": {
+        "default": "Ctrl+Alt+Shift+1",
+        "mac": "Command+Alt+Shift+1"
+      }
+    },
+    {
+      "action": "bwbScore2",
+      "key": {
+        "default": "Ctrl+Alt+Shift+2",
+        "mac": "Command+Alt+Shift+2"
+      }
+    },
+    {
+      "action": "bwbScore3",
+      "key": {
+        "default": "Ctrl+Alt+Shift+3",
+        "mac": "Command+Alt+Shift+3"
+      }
+    },
+    {
+      "action": "bwbScore4",
+      "key": {
+        "default": "Ctrl+Alt+Shift+4",
+        "mac": "Command+Alt+Shift+4"
+      }
+    },
+    {
+      "action": "bwbScoreUp",
+      "key": {
+        "default": "Ctrl+Alt+Shift+K",
+        "mac": "Command+Alt+Shift+K"
+      }
+    },
+    {
+      "action": "bwbScoreDown",
+      "key": {
+        "default": "Ctrl+Alt+Shift+J",
+        "mac": "Command+Alt+Shift+J"
+      }
+    },
+    {
+      "action": "bwbSourceLine",
+      "key": {
+        "default": "Ctrl+Alt+Shift+F",
+        "mac": "Command+Alt+Shift+F"
+      }
+    },
+    {
+      "action": "bwbFootnote",
+      "key": {
+        "default": "Ctrl+Alt+Shift+8",
+        "mac": "Command+Alt+Shift+8"
+      }
+    },
+    {
+      "action": "bwbLegend",
+      "key": {
+        "default": "Ctrl+Alt+Shift+7",
+        "mac": "Command+Alt+Shift+7"
+      }
+    },
+    {
+      "action": "bwbReviewNote",
+      "key": {
+        "default": "Ctrl+Alt+Shift+Y",
+        "mac": "Command+Alt+Shift+Y"
+      }
+    },
+    {
+      "action": "bwbNextNote",
+      "key": {
+        "default": "Ctrl+Alt+Shift+9",
+        "mac": "Command+Alt+Shift+9"
+      }
+    }
+  ]
+}
