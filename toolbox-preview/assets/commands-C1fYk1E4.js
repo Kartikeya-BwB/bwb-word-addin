@@ -1,1 +1,0 @@
-import{Sr as e,xr as t}from"./deckPackage-DI8rTNCl.js";import{t as n}from"./handlers--JqFbGeC.js";Office.onReady(()=>{for(let[r,i]of Object.entries(n)){let n=async()=>{let t=await i();return e(r,n),t},a=t(n);Office.actions.associate(r,a),Object.assign(globalThis,{[r]:a})}});
