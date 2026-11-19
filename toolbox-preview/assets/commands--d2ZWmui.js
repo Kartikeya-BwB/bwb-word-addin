@@ -1,1 +1,0 @@
-import"./format-B0NmOHYk.js";import{Ji as e,qi as t}from"./shades-BARYNGIg.js";import{t as n}from"./handlers-CLwymudu.js";Office.onReady(()=>{for(let[r,i]of Object.entries(n)){let n=async()=>{let t=await i();return e(r,n),t},a=t(n);Office.actions.associate(r,a),Object.assign(globalThis,{[r]:a})}});
